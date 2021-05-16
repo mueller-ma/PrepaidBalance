@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="@string/general">
+        <EditTextPreference
+            android:key="ussd_code"
+            android:defaultValue="*100#"
+            android:title="@string/ussd_code" />
+        <SwitchPreferenceCompat
+            android:key="periodic_checks"
+            android:defaultValue="false"
+            android:title="@string/periodic_checks_title" />
+        <Preference
+            android:key="clear_data"
+            android:title="@string/clear_current_data"
+            android:summary="@string/clear_current_data_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/notifications">
+        <SwitchPreferenceCompat
+            android:key="notify_balance_increased"
+            android:defaultValue="false"
+            android:title="@string/notify_balance_increased_title" />
+        <SwitchPreferenceCompat
+            android:key="notify_balance_under_threshold"
+            android:defaultValue="true"
+            android:title="@string/notify_balance_under_threshold_title" />
+        <EditTextPreference
+            android:key="notify_balance_under_threshold_value"
+            android:dependency="notify_balance_under_threshold"
+            android:title="@string/notify_balance_under_threshold_value_title"
+            app:useSimpleSummaryProvider="true"
+            android:inputType="number"
+            android:defaultValue="1.00" />
+    </PreferenceCategory>
+</PreferenceScreen>

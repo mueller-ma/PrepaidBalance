@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Prepaid Balance</string>
+    <string name="ussd_failed">Failed to request USSD code</string>
+    <string name="current_balance">Current balance: %1$,.2f</string>
+    <string name="unable_get_balance">Unable to get balance from response</string>
+    <string name="check_now">Check now</string>
+    <string name="permissions_required">Phone permissions required</string>
+    <string name="preferences">Settings</string>
+    <string name="periodic_checks_title">Periodically check balance</string>
+    <string name="notify_balance_increased_title">Balance increased</string>
+    <string name="notify_balance_under_threshold_title">Balance under threshold</string>
+    <string name="notify_balance_under_threshold_value_title">Threshold</string>
+    <string name="notifications">Notifications</string>
+    <string name="balance_increased">Balance has been increased by %s</string>
+    <string name="threshold_reached">Balance is under threshold: %s</string>
+    <string name="channel_name_balance_increased">Balance increased</string>
+    <string name="channel_name_threshold_reached">Threshold reached</string>
+    <string name="invalid_ussd_code">Invalid USSD code entered. It must start with \'*\' and end with \'#\'.</string>
+    <string name="ussd_code">USSD code</string>
+    <string name="ussd_code_summary">The app queries the USSD code %s to get the current balance</string>
+    <string name="general">General</string>
+    <string name="clear_current_data">Clear all current data</string>
+    <string name="no_data_hint">Swipe down to get your latest prepaid balance. You might want to check the configured USSD code in the settings first.</string>
+    <string name="clear_current_data_summary">Data older than 6 months is deleted automatically</string>
+    <string name="channel_name_error">Error</string>
+</resources>
