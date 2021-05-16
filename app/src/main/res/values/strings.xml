@@ -3,7 +3,6 @@
     <string name="ussd_failed">Failed to request USSD code</string>
     <string name="current_balance">Current balance: %1$,.2f</string>
     <string name="unable_get_balance">Unable to get balance from response</string>
-    <string name="check_now">Check now</string>
     <string name="permissions_required">Phone permissions required</string>
     <string name="preferences">Settings</string>
     <string name="periodic_checks_title">Periodically check balance</string>
