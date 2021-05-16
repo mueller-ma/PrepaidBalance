@@ -20,6 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityMainBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
+import com.github.muellerma.prepaidbalance.utils.formatAsCurrency
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
 import com.google.android.material.snackbar.Snackbar
@@ -116,7 +117,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
                     launch {
                         val latestEntry = database.balanceDao().getLatest()
                             ?: throw IllegalStateException("No balance in db")
-                        showSnackbar(getString(R.string.current_balance, latestEntry.balance))
+                        showSnackbar(getString(R.string.current_balance, latestEntry.balance.formatAsCurrency()))
                         updateBalanceList()
                     }
                 }
