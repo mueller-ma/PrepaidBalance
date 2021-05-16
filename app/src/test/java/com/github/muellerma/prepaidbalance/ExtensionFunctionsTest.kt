@@ -24,7 +24,7 @@ class ExtensionFunctionsTest {
     @Test
     fun testFormatAsCurrency() {
         //val dfs = DecimalFormatSymbols(Locale.getDefault()).decimalSeparator
-        val dfs = "," // TODO
+        val dfs = "." // TODO
         assertEquals("0${dfs}00", 0.0.formatAsCurrency())
         assertEquals("42${dfs}00", 42.0.formatAsCurrency())
         assertEquals("42${dfs}10", 42.1.formatAsCurrency())
