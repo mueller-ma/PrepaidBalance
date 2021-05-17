@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate()")
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -61,11 +62,13 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     }
 
     override fun onResume() {
+        Log.d(TAG, "onResume()")
         updateBalanceList()
         super.onResume()
     }
 
     private fun updateBalanceList() {
+        Log.d(TAG, "updateBalanceList()")
         launch {
             val entries = database.balanceDao().getAll()
 
@@ -78,12 +81,14 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        Log.d(TAG, "onCreateOptionsMenu()")
         val inflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d(TAG, "onOptionsItemSelected($item)")
         return when(item.itemId) {
             R.id.preferences -> {
                 Intent(this, PreferenceActivity::class.java).apply {
@@ -108,6 +113,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     }
 
     override fun onRefresh() {
+        Log.d(TAG, "onRefresh()")
         CheckBalanceWorker.checkBalance(this@MainActivity) { result ->
             Log.d(TAG, "Got result $result")
             binding.swiperefresh.isRefreshing = false
@@ -139,6 +145,5 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
-        private const val REQUEST_CODE_PHONE = 1
     }
 }

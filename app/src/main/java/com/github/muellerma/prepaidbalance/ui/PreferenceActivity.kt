@@ -61,7 +61,7 @@ class PreferenceActivity : AppCompatActivity() {
 
             val ussdCodePreference = getPreference("ussd_code")
             ussdCodePreference.setSummaryProvider { pref ->
-                val currentValue = preferenceManager.sharedPreferences.getString(pref.key, "").orEmpty()
+                val currentValue = pref.sharedPreferences.getString(pref.key, "").orEmpty()
                 if (!currentValue.isValidUssdCode()) {
                     getString(R.string.invalid_ussd_code)
                 } else {

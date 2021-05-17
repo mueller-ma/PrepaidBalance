@@ -62,10 +62,11 @@ class CheckBalanceWorker(
 
         fun checkBalance(context: Context, callback: (CheckResult)->Unit) {
             GlobalScope.launch(Dispatchers.IO) {
+                Log.d(TAG, "Remove entries older than 6 months")
                 AppDatabase
                     .get(context)
                     .balanceDao()
-                    .deleteBefore(System.currentTimeMillis() - 6L * 30 * 24 * 60 * 60 * 1000) // 6 months
+                    .deleteBefore(System.currentTimeMillis() - 6L * 30 * 24 * 60 * 60 * 1000)
             }
 
             if (ActivityCompat.checkSelfPermission(
@@ -99,12 +100,12 @@ class CheckBalanceWorker(
                 }
             }
 
-            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            val ussdCode = prefs.getString("ussd_code", "").orEmpty()
+            val ussdCode = context.prefs().getString("ussd_code", "").orEmpty()
             if (!ussdCode.isValidUssdCode()) {
                 return callback(CheckResult.USSD_INVALID)
             }
 
+            Log.d(TAG, "Send USSD request to $ussdCode")
             context.getSystemService(TelephonyManager::class.java)
                 .sendUssdRequest(
                     ussdCode,
@@ -120,6 +121,7 @@ class CheckBalanceWorker(
                 val latestInDb = database.balanceDao().getLatest()
                 val new = BalanceEntry(timestamp = System.currentTimeMillis(), balance = balance)
 
+                Log.d(TAG, "Insert $new")
                 database
                     .balanceDao()
                     .insert(new)
@@ -165,6 +167,7 @@ class CheckBalanceWorker(
                     prefs.getBoolean("notify_balance_under_threshold", false) &&
                     new.balance < threshold
                 ) {
+                    Log.d(TAG, "Below threshold")
                     val notification = getBaseNotification(context, CHANNEL_ID_THRESHOLD_REACHED)
                         .setContentTitle(context.getString(R.string.threshold_reached, new.balance.formatAsCurrency()))
 
