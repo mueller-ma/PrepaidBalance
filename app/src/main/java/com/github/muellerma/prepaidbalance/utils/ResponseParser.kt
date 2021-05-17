@@ -1,5 +1,7 @@
 package com.github.muellerma.prepaidbalance.utils
 
+import android.util.Log
+
 class ResponseParser {
     companion object {
         private val TAG = ResponseParser::class.java.simpleName
@@ -16,7 +18,7 @@ class ResponseParser {
             val withDots = response.replace(',', '.')
 
             MATCHERS.forEach { matcher ->
-                println("Check matcher $matcher") // TODO Log.d()
+                Log.d(TAG, "Check matcher $matcher")
                 if (withDots.matches(matcher.regex)) {
                     return matcher
                         .regex
@@ -25,7 +27,7 @@ class ResponseParser {
                         ?.get(matcher.groupContainsBalance)
                         ?.value
                         ?.toDouble()
-                        .also { println("Found balance $it") }
+                        .also { Log.d(TAG, "Found balance $it") }
                 }
             }
 
