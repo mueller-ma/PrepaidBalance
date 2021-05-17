@@ -17,16 +17,13 @@ import androidx.work.WorkerParameters
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.room.AppDatabase
 import com.github.muellerma.prepaidbalance.room.BalanceEntry
-import com.github.muellerma.prepaidbalance.utils.NotificationUtils
+import com.github.muellerma.prepaidbalance.utils.*
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.CHANNEL_ID_BALANCE_INCREASED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.CHANNEL_ID_ERROR
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.CHANNEL_ID_THRESHOLD_REACHED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.NOTIFICATION_ID_BALANCE_INCREASED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.NOTIFICATION_ID_THRESHOLD_REACHED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.getBaseNotification
-import com.github.muellerma.prepaidbalance.utils.ResponseParser
-import com.github.muellerma.prepaidbalance.utils.formatAsCurrency
-import com.github.muellerma.prepaidbalance.utils.isValidUssdCode
 import kotlinx.coroutines.*
 
 class CheckBalanceWorker(
@@ -37,6 +34,7 @@ class CheckBalanceWorker(
 {
     override fun doWork(): Result {
             checkBalance(applicationContext) { result ->
+                Log.d(TAG, "Got result $result")
                 @StringRes val errorMessage = when (result) {
                     CheckResult.USSD_FAILED -> R.string.ussd_failed
                     CheckResult.MISSING_PERMISSIONS -> R.string.permissions_required
@@ -49,6 +47,7 @@ class CheckBalanceWorker(
                     val notification = getBaseNotification(context, CHANNEL_ID_ERROR)
                         .setContentTitle(context.getString(errorMessage))
 
+                    NotificationUtils.createChannels(context)
                     NotificationUtils
                         .manager(context)
                         .notify(NotificationUtils.NOTIFICATION_ID_ERROR, notification.build())
@@ -125,22 +124,26 @@ class CheckBalanceWorker(
                     .balanceDao()
                     .insert(new)
 
-                if (latestInDb?.nearlyEquals(new) == true) {
+                val prefs = context.prefs()
+                if (
+                    prefs.getBoolean("no_duplicates", true) &&
+                    latestInDb?.balance == new.balance
+                ) {
                     Log.d(TAG, "Remove $latestInDb from db")
                     database.balanceDao().delete(latestInDb)
                 }
 
                 callback(CheckResult.OK)
 
-                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-                if (prefs.getBoolean("notify_balance_increased", false) &&
+                NotificationUtils.createChannels(context)
+
+                if (
+                    prefs.getBoolean("notify_balance_increased", false) &&
                     latestInDb != null &&
                     new.balance > latestInDb.balance
                 ) {
                     val diff = new.balance - latestInDb.balance
                     Log.d(TAG, "New balance is larger: $diff")
-
-                    NotificationUtils.createChannels(context)
 
                     val notification = getBaseNotification(context, CHANNEL_ID_BALANCE_INCREASED)
                         .setContentTitle(context.getString(R.string.balance_increased, diff.formatAsCurrency()))
@@ -162,8 +165,6 @@ class CheckBalanceWorker(
                     prefs.getBoolean("notify_balance_under_threshold", false) &&
                     new.balance < threshold
                 ) {
-                    NotificationUtils.createChannels(context)
-
                     val notification = getBaseNotification(context, CHANNEL_ID_THRESHOLD_REACHED)
                         .setContentTitle(context.getString(R.string.threshold_reached, new.balance.formatAsCurrency()))
 
