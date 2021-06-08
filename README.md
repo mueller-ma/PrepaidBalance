@@ -18,6 +18,11 @@ You might run into on of these issues with the app:
 * Your provider doesn't provide a USSD code to query your prepaid balance. In this case you cannot use this app.
 * Depending on the response pattern the parsing might fail. In this case please open an issue.
 
+## Android permissions
+
+* `CALL_PHONE`: Used to query USSD codes.
+* `ACCESS_NETWORK_STATE`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `WAKE_LOCK`: Used by [WorkManager](https://developer.android.com/reference/androidx/work/WorkManager) to ensure work constraints are met and running workers aren't killed.
+
 ## Credits
 
 * Feature graphic by https://unsplash.com/@joshappel
