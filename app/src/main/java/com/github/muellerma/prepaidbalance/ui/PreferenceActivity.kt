@@ -108,6 +108,10 @@ class PreferenceActivity : AppCompatActivity() {
                     .show()
                 true
             }
+
+            val providerCodesPref = getPreference("provider_codes")
+            val config = preferenceManager.context.resources.configuration
+            providerCodesPref.summary = "MCC: ${config.mcc}\nMNC: ${config.mnc}"
         }
     }
 }

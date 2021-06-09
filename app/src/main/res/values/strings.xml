@@ -23,4 +23,5 @@
     <string name="clear_current_data_summary">Data older than 6 months is deleted automatically</string>
     <string name="channel_name_error">Error</string>
     <string name="duplicates">Don\'t save duplicate values</string>
+    <string name="debug">Troubleshooting</string>
 </resources>
