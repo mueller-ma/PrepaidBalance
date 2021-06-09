@@ -17,6 +17,7 @@
     <string name="invalid_ussd_code">Invalid USSD code entered. It must start with \'*\' and end with \'#\'.</string>
     <string name="ussd_code">USSD code</string>
     <string name="ussd_code_summary">The app queries the USSD code %s to get the current balance</string>
+    <string name="ussd_code_default" translatable="false"/>
     <string name="general">General</string>
     <string name="clear_current_data">Clear all current data</string>
     <string name="no_data_hint">Swipe down to get your latest prepaid balance. You might want to check the configured USSD code in the settings first.</string>

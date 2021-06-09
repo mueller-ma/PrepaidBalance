@@ -26,6 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Device (please complete the following information):**
  - Device: [e.g. Pixel 3]
  - Android version: [e.g. 11]
+ - MCC and MNC (Shown in settings): 
 
 **Additional context**
 Add any other context about the problem here.

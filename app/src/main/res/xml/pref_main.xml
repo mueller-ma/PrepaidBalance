@@ -6,7 +6,7 @@
         android:title="@string/general">
         <EditTextPreference
             android:key="ussd_code"
-            android:defaultValue="*100#"
+            android:defaultValue="@string/ussd_code_default"
             android:title="@string/ussd_code" />
         <SwitchPreferenceCompat
             android:key="periodic_checks"
