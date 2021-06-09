@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
+            binding.swiperefresh.isRefreshing = true
             onRefresh()
         } else {
             showSnackbar(R.string.permissions_required)
