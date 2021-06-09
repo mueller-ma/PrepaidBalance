@@ -7,8 +7,8 @@ class ResponseParser {
         private val TAG = ResponseParser::class.java.simpleName
 
         private val MATCHERS = listOf(
-            MATCHER("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*) EUR[ ,.](.*)".toRegex(), 2),
-            MATCHER("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex(), 2)
+            Matcher("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*) EUR[ .](.*)\$".toRegex(), 2),
+            Matcher("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex(), 2)
         )
 
         fun getBalance(response: String?): Double? {
@@ -36,6 +36,6 @@ class ResponseParser {
             return null
         }
 
-        private data class MATCHER(val regex: Regex, val groupContainsBalance: Int)
+        private data class Matcher(val regex: Regex, val groupContainsBalance: Int)
     }
 }

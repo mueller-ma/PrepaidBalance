@@ -22,6 +22,7 @@ class ResponseParserTest {
         assertEquals(5.12, ResponseParser.getBalance("5.12 EUR"))
         assertEquals(5.12, ResponseParser.getBalance("Current balance is 5.12 EUR"))
         assertEquals(5.12, ResponseParser.getBalance("Current balance: 5.12 EUR."))
+        assertEquals(5.12, ResponseParser.getBalance("Current balance: 5.12 EUR. foobar"))
         assertEquals(5.12, ResponseParser.getBalance("5.12 EUR is the current balance"))
         assertEquals(5.12, ResponseParser.getBalance("Some ads; 5.12 EUR is the current balance"))
         assertEquals(5.12, ResponseParser.getBalance("Some ads. 5.12 EUR is the current balance"))
