@@ -7,7 +7,7 @@ class ResponseParser {
         private val TAG = ResponseParser::class.java.simpleName
 
         private val MATCHERS = listOf(
-            MATCHER("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*) EUR (.*)".toRegex(), 2),
+            MATCHER("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*) EUR[ ,.](.*)".toRegex(), 2),
             MATCHER("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex(), 2)
         )
 
@@ -15,7 +15,9 @@ class ResponseParser {
             if (response == null || response.trim().isEmpty()) {
                 return null
             }
-            val withDots = response.replace(',', '.')
+            val withDots = response
+                .replace(',', '.')
+                .replace("\n", " ")
 
             MATCHERS.forEach { matcher ->
                 Log.d(TAG, "Check matcher $matcher")

@@ -32,5 +32,14 @@ class ResponseParserTest {
         assertEquals(5.12, ResponseParser.getBalance("Current balance is 5.12 USD"))
         assertEquals(5.12, ResponseParser.getBalance("Current balance is $ 5.12"))
         assertEquals(5.12, ResponseParser.getBalance("Current balance is 5.12"))
+
+        // Vodafone Germany
+        assertEquals(5.12, ResponseParser.getBalance("Aktuelles Guthaben: 5,12 EUR\n" +
+                "Wähl bitte aus:\n" +
+                "1 Aufladen\n" +
+                "2 Guthaben & Verbrauch\n" +
+                "3  Tarife & Optionen\n" +
+                "4 Spracheinstellungen\n" +
+                "5 Vorteilsangebot"))
     }
 }
