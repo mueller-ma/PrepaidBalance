@@ -14,7 +14,7 @@
     <string name="threshold_reached">Balance is under threshold: %s</string>
     <string name="channel_name_balance_increased">Balance increased</string>
     <string name="channel_name_threshold_reached">Threshold reached</string>
-    <string name="invalid_ussd_code">Invalid USSD code entered. It must start with \'*\' and end with \'#\'.</string>
+    <string name="invalid_ussd_code">Invalid USSD code entered</string>
     <string name="ussd_code">USSD code</string>
     <string name="ussd_code_summary">The app queries the USSD code %s to get the current balance</string>
     <string name="ussd_code_default" translatable="false"/>
