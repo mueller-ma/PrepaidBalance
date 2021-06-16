@@ -14,6 +14,6 @@ fun Long.timestampForUi(context: Context): String {
             DateFormat.getDateFormat(context).format(this)
 }
 
-fun String.isValidUssdCode() = matches("^\\*(\\d)+#$".toRegex())
+fun String.isValidUssdCode() = matches("^([*#][*#]?)(\\d)+([*#][*#]?)$".toRegex())
 
-fun Context.prefs() = PreferenceManager.getDefaultSharedPreferences(this)
+fun Context.prefs(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)

@@ -19,6 +19,12 @@ class ExtensionFunctionsTest {
         assertTrue("*123#".isValidUssdCode())
         assertTrue("*1#".isValidUssdCode())
         assertTrue("*0#".isValidUssdCode())
+        assertTrue("#0#".isValidUssdCode())
+        assertTrue("##0#".isValidUssdCode())
+        assertTrue("##0*#".isValidUssdCode())
+        assertTrue("#*0#".isValidUssdCode())
+        assertTrue("*#0#".isValidUssdCode())
+        assertTrue("#123#".isValidUssdCode()) // Truemove-H Thailand
     }
 
     @Test
