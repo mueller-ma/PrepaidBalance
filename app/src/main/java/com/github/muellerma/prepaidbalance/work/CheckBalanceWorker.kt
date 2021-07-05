@@ -33,7 +33,7 @@ class CheckBalanceWorker(
     Worker(context, workerParams)
 {
     override fun doWork(): Result {
-            checkBalance(applicationContext) { result ->
+            checkBalance(applicationContext) { result, _ ->
                 Log.d(TAG, "Got result $result")
                 @StringRes val errorMessage = when (result) {
                     CheckResult.USSD_FAILED -> R.string.ussd_failed
@@ -60,7 +60,7 @@ class CheckBalanceWorker(
     companion object {
         private val TAG = CheckBalanceWorker::class.java.simpleName
 
-        fun checkBalance(context: Context, callback: (CheckResult)->Unit) {
+        fun checkBalance(context: Context, callback: (CheckResult, String?)->Unit) {
             GlobalScope.launch(Dispatchers.IO) {
                 Log.d(TAG, "Remove entries older than 6 months")
                 AppDatabase
@@ -74,7 +74,7 @@ class CheckBalanceWorker(
                     Manifest.permission.CALL_PHONE
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                return callback(CheckResult.MISSING_PERMISSIONS)
+                return callback(CheckResult.MISSING_PERMISSIONS, null)
             }
 
             val ussdResponseCallback = object : TelephonyManager.UssdResponseCallback() {
@@ -85,9 +85,9 @@ class CheckBalanceWorker(
                 ) {
                     Log.d(TAG, "onReceiveUssdResponse($response)")
                     val balance = ResponseParser.getBalance(response as String?)
-                        ?: return callback(CheckResult.PARSER_FAILED)
+                        ?: return callback(CheckResult.PARSER_FAILED, null)
 
-                    handleNewBalance(context, balance, callback)
+                    handleNewBalance(context, balance, response, callback)
                 }
 
                 override fun onReceiveUssdResponseFailed(
@@ -96,13 +96,13 @@ class CheckBalanceWorker(
                     failureCode: Int
                 ) {
                     Log.d(TAG, "onReceiveUssdResponseFailed($failureCode)")
-                    return callback(CheckResult.USSD_FAILED)
+                    return callback(CheckResult.USSD_FAILED, null)
                 }
             }
 
             val ussdCode = context.prefs().getString("ussd_code", "").orEmpty()
             if (!ussdCode.isValidUssdCode()) {
-                return callback(CheckResult.USSD_INVALID)
+                return callback(CheckResult.USSD_INVALID, null)
             }
 
             Log.d(TAG, "Send USSD request to $ussdCode")
@@ -114,8 +114,12 @@ class CheckBalanceWorker(
                 )
         }
 
-        private fun handleNewBalance(context: Context, balance: Double, callback: (CheckResult) -> Unit) =
-            GlobalScope.launch(Dispatchers.IO) {
+        private fun handleNewBalance(
+            context: Context,
+            balance: Double,
+            response: String?,
+            callback: (CheckResult, String?) -> Unit
+        ) = GlobalScope.launch(Dispatchers.IO) {
                 val database = AppDatabase.get(context)
 
                 val latestInDb = database.balanceDao().getLatest()
@@ -135,7 +139,7 @@ class CheckBalanceWorker(
                     database.balanceDao().delete(latestInDb)
                 }
 
-                callback(CheckResult.OK)
+                callback(CheckResult.OK, response)
 
                 NotificationUtils.createChannels(context)
 

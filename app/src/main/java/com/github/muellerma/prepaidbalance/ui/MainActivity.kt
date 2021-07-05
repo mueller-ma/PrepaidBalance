@@ -2,7 +2,6 @@ package com.github.muellerma.prepaidbalance.ui
 
 import android.Manifest
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,7 +11,6 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,9 +18,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityMainBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
-import com.github.muellerma.prepaidbalance.utils.formatAsCurrency
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
+import com.google.android.material.snackbar.BaseTransientBottomBar.Duration
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -105,27 +103,26 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
         }
     }
 
-    private fun showSnackbar(@StringRes message: Int) {
-        showSnackbar(getString(message))
+    private fun showSnackbar(@StringRes message: Int, @Duration length: Int = Snackbar.LENGTH_LONG) {
+        showSnackbar(getString(message), length)
     }
 
-    private fun showSnackbar(message: String) {
-        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show()
+    private fun showSnackbar(message: String, @Duration length: Int = Snackbar.LENGTH_LONG) {
+        Snackbar.make(findViewById(android.R.id.content), message, length).show()
     }
 
     override fun onRefresh() {
         Log.d(TAG, "onRefresh()")
-        CheckBalanceWorker.checkBalance(this@MainActivity) { result ->
+        CheckBalanceWorker.checkBalance(this@MainActivity) { result, data ->
             Log.d(TAG, "Got result $result")
             binding.swiperefresh.isRefreshing = false
 
             when (result) {
                 CheckResult.OK -> {
                     launch {
-                        val latestEntry = database.balanceDao().getLatest()
-                            ?: throw IllegalStateException("No balance in db")
-                        showSnackbar(getString(R.string.current_balance, latestEntry.balance.formatAsCurrency()))
                         updateBalanceList()
+                        data ?: return@launch
+                        showSnackbar(data, Snackbar.LENGTH_INDEFINITE)
                     }
                 }
                 CheckResult.PARSER_FAILED -> {

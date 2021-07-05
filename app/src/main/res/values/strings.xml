@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Prepaid Balance</string>
     <string name="ussd_failed">Failed to request USSD code</string>
-    <string name="current_balance">Current balance: %s</string>
     <string name="unable_get_balance">Unable to get balance from response</string>
     <string name="permissions_required">Phone permissions required</string>
     <string name="preferences">Settings</string>
