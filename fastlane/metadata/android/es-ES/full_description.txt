@@ -1,0 +1,2 @@
+Esta aplicación hace un seguimiento de su saldo de prepago. Puede registrarlo automáticamente y enviar una notificación si su saldo cae por debajo de un umbral configurable.
+Para ello, analiza la respuesta de un código USSD, que puede configurarse en los ajustes.

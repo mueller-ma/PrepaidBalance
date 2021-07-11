@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Saldo Prepago</string>
+    <string name="ussd_failed">Error al conseguir el código USSD</string>
+    <string name="unable_get_balance">No se obtuvo el saldo como respuesta</string>
+    <string name="permissions_required">Se requiere permisos de teléfono</string>
+    <string name="preferences">Ajustes</string>
+    <string name="periodic_checks_title">Revisar saldo diariamente</string>
+    <string name="notify_balance_increased_title">Saldo incrementado</string>
+    <string name="notify_balance_under_threshold_title">Saldo debajo del umbral</string>
+    <string name="notify_balance_under_threshold_value_title">Saldo</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="balance_increased">El saldo ha incremntado a %s</string>
+    <string name="threshold_reached">El saldo ha bajado el umbral de: %s</string>
+    <string name="channel_name_balance_increased">Saldo incrementado</string>
+    <string name="channel_name_threshold_reached">Umbral alcanzado</string>
+    <string name="invalid_ussd_code">Código USSD introducido inválido</string>
+    <string name="ussd_code">Código USSD</string>
+    <string name="ussd_code_summary">La aplicación consulta el código USSD %s para obtener el saldo actual</string>
+    <string name="general">General</string>
+    <string name="clear_current_data">Limpiar todos los datos</string>
+    <string name="no_data_hint">Desliza abajo para obtener su último saldo prepago. Deberías comprobar el código USSD está configurado primero en los ajustes.</string>
+    <string name="clear_current_data_summary">Los datos anteriores a más de 6 meses serán borrados automáticamente</string>
+    <string name="channel_name_error">Error</string>
+    <string name="duplicates">No guardar valores duplicados</string>
+    <string name="debug">Solución de problemas</string>
+</resources>
