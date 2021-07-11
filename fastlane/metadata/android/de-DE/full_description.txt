@@ -1,0 +1,2 @@
+Diese App hilft dir den Überblick über dein Prepaid-Guthaben zu behalten. Das Guthaben kann automatisch abgefragt und gespeichert werden. Falls es unter einen bestimmten Schwellenwert fällt, wird eine Benachrichtigung abgezeigt.
+Die geschieht durch parsen der Antwort eines USSD-Codes, der in den Einstellungen gesetzt werden kann.

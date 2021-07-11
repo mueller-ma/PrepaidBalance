@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Prepaid-Guthaben</string>
+    <string name="ussd_failed">Abfragen des USSD-Codes fehlgeschlagen</string>
+    <string name="unable_get_balance">Auslesen des Guthabens fehlgeschlagen</string>
+    <string name="permissions_required">Telefon-Berechtigung benötigt</string>
+    <string name="preferences">Einstellungen</string>
+    <string name="periodic_checks_title">Regelmäßig Guthaben abfragen</string>
+    <string name="notify_balance_increased_title">Guthaben erhöht</string>
+    <string name="notify_balance_under_threshold_title">Guthaben unter Schwellenwert</string>
+    <string name="notify_balance_under_threshold_value_title">Schwellenwert</string>
+    <string name="notifications">Benachrichtigungen</string>
+    <string name="balance_increased">Guthaben wurde um %s erhöht</string>
+    <string name="threshold_reached">Guthaben unter Schwellenwert: %s</string>
+    <string name="channel_name_balance_increased">Guthaben erhöht</string>
+    <string name="channel_name_threshold_reached">Schwellenwert erreicht</string>
+    <string name="invalid_ussd_code">Ungültiger USSD-Code eingegeben</string>
+    <string name="ussd_code">USSD-Code</string>
+    <string name="ussd_code_summary">Die App fragt den USSD-Code %s ab, um das aktuelle Guthaben zu bekommen</string>
+    <string name="general">Allgemein</string>
+    <string name="clear_current_data">Alle Daten löschen</string>
+    <string name="no_data_hint">Wische nach unten, um das aktuelle Guthaben abzufragen. Vorher solltest du den USSD-Code in den Einstellungen überprüfen.</string>
+    <string name="clear_current_data_summary">Daten, die älter als 6 Monate sind, werden automatisch gelöscht</string>
+    <string name="channel_name_error">Fehler</string>
+    <string name="duplicates">Speichere keine doppelten Werte</string>
+    <string name="debug">Fehlersuche</string>
+</resources>

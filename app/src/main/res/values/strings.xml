@@ -18,8 +18,8 @@
     <string name="ussd_code_summary">The app queries the USSD code %s to get the current balance</string>
     <string name="ussd_code_default" translatable="false"/>
     <string name="general">General</string>
-    <string name="clear_current_data">Clear all current data</string>
-    <string name="no_data_hint">Swipe down to get your latest prepaid balance. You might want to check the configured USSD code in the settings first.</string>
+    <string name="clear_current_data">Clear all data</string>
+    <string name="no_data_hint">Swipe down to get your latest prepaid balance. You should check the configured USSD code in the settings first.</string>
     <string name="clear_current_data_summary">Data older than 6 months is deleted automatically</string>
     <string name="channel_name_error">Error</string>
     <string name="duplicates">Don\'t save duplicate values</string>
