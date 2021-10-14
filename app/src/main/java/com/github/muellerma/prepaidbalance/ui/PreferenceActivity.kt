@@ -18,6 +18,7 @@ import com.github.muellerma.prepaidbalance.databinding.ActivityPreferenceBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
 import com.github.muellerma.prepaidbalance.utils.isValidUssdCode
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -99,7 +100,7 @@ class PreferenceActivity : AppCompatActivity() {
                     .setMessage(R.string.clear_current_data)
                     .setNegativeButton(android.R.string.cancel, null)
                     .setPositiveButton(android.R.string.ok) { _, _ ->
-                        GlobalScope.launch(Dispatchers.IO) {
+                        CoroutineScope(Dispatchers.IO).launch {
                             AppDatabase.get(it.context)
                                 .balanceDao()
                                 .deleteAll()

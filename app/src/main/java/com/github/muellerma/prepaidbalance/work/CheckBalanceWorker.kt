@@ -21,8 +21,8 @@ import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.CHA
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.NOTIFICATION_ID_BALANCE_INCREASED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.NOTIFICATION_ID_THRESHOLD_REACHED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.getBaseNotification
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class CheckBalanceWorker(
@@ -60,7 +60,7 @@ class CheckBalanceWorker(
         private val TAG = CheckBalanceWorker::class.java.simpleName
 
         fun checkBalance(context: Context, callback: (CheckResult, String?) -> Unit) {
-            GlobalScope.launch(Dispatchers.IO) {
+            CoroutineScope(Dispatchers.IO).launch {
                 Log.d(TAG, "Remove entries older than 6 months")
                 AppDatabase
                     .get(context)
@@ -118,7 +118,7 @@ class CheckBalanceWorker(
             balance: Double,
             response: String?,
             callback: (CheckResult, String?) -> Unit
-        ) = GlobalScope.launch(Dispatchers.IO) {
+        ) = CoroutineScope(Dispatchers.IO).launch {
                 val database = AppDatabase.get(context)
 
                 val latestInDb = database.balanceDao().getLatest()
