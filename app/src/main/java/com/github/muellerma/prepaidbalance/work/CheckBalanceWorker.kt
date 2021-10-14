@@ -9,9 +9,6 @@ import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationBuilderWithBuilderAccessor
-import androidx.core.app.NotificationCompat
-import androidx.preference.PreferenceManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.github.muellerma.prepaidbalance.R
@@ -24,10 +21,12 @@ import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.CHA
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.NOTIFICATION_ID_BALANCE_INCREASED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.NOTIFICATION_ID_THRESHOLD_REACHED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.getBaseNotification
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class CheckBalanceWorker(
-    val context: Context,
+    private val context: Context,
     workerParams: WorkerParameters
 ) :
     Worker(context, workerParams)
@@ -60,7 +59,7 @@ class CheckBalanceWorker(
     companion object {
         private val TAG = CheckBalanceWorker::class.java.simpleName
 
-        fun checkBalance(context: Context, callback: (CheckResult, String?)->Unit) {
+        fun checkBalance(context: Context, callback: (CheckResult, String?) -> Unit) {
             GlobalScope.launch(Dispatchers.IO) {
                 Log.d(TAG, "Remove entries older than 6 months")
                 AppDatabase

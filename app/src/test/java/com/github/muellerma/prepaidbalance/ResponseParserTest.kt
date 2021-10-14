@@ -1,9 +1,8 @@
 package com.github.muellerma.prepaidbalance
 
 import com.github.muellerma.prepaidbalance.utils.ResponseParser
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class ResponseParserTest {
     @Test
