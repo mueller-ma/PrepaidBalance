@@ -40,6 +40,14 @@ class ResponseParserTest {
                 "2 Guthaben & Verbrauch\n" +
                 "3  Tarife & Optionen\n" +
                 "4 Spracheinstellungen\n" +
-                "5 Vorteilsangebot"))
+                "5 Vorteilsangebot")
+        )
+
+        // https://github.com/mueller-ma/PrepaidBalance/issues/11#issuecomment-977514814
+        assertEquals(1234.0, ResponseParser.getBalance("Pulsa Rp 1234 s.d. 01-01-2022 \n" +
+                "1 8GB,Rp30rb/30hr\n" +
+                "2 25GB,Rp50rb/30hr\n" +
+                "22 Info")
+        )
     }
 }
