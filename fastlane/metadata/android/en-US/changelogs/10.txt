@@ -1,0 +1,2 @@
+* Enhance debugging information in settings
+* Target Android 12
