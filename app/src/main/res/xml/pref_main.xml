@@ -44,7 +44,11 @@
         android:title="@string/debug">
         <Preference
             android:key="provider_codes"
-            android:enabled="false"
+            android:title="@string/debug_provider_details"
             android:persistent="false" />
+        <Preference
+            android:key="last_ussd_response"
+            android:title="@string/debug_last_ussd_response"
+            android:defaultValue="@string/debug_last_ussd_response_none" />
     </PreferenceCategory>
 </PreferenceScreen>

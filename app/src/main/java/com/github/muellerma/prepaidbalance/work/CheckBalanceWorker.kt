@@ -9,6 +9,7 @@ import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
+import androidx.core.content.edit
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.github.muellerma.prepaidbalance.R
@@ -83,6 +84,11 @@ class CheckBalanceWorker(
                     response: CharSequence?
                 ) {
                     Log.d(TAG, "onReceiveUssdResponse($response)")
+
+                    context.prefs().edit {
+                        putString("last_ussd_response", response?.toString())
+                    }
+
                     val balance = ResponseParser.getBalance(response as String?)
                         ?: return callback(CheckResult.PARSER_FAILED, null)
 
@@ -95,6 +101,14 @@ class CheckBalanceWorker(
                     failureCode: Int
                 ) {
                     Log.d(TAG, "onReceiveUssdResponseFailed($failureCode)")
+
+                    context.prefs().edit {
+                        putString(
+                            "last_ussd_response",
+                            context.getString(R.string.debug_last_ussd_response_invalid, failureCode)
+                        )
+                    }
+
                     return callback(CheckResult.USSD_FAILED, null)
                 }
             }

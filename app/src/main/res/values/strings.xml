@@ -1,4 +1,6 @@
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
     <string name="app_name">Prepaid Balance</string>
     <string name="ussd_failed">Failed to request USSD code</string>
     <string name="unable_get_balance">Unable to get balance from response</string>
@@ -24,4 +26,9 @@
     <string name="channel_name_error">Error</string>
     <string name="duplicates">Don\'t save duplicate values</string>
     <string name="debug">Troubleshooting</string>
+    <string name="debug_provider_details">Provider details</string>
+    <string name="debug_last_ussd_response">Last USSD response</string>
+    <string name="debug_last_ussd_response_none">No request has been made yet</string>
+    <string name="debug_last_ussd_response_invalid">Last request failed with code %d</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
 </resources>
