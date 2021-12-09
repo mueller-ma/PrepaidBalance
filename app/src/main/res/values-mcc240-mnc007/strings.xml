@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Comviq Sweden -->
+    <string name="ussd_code_default" translatable="false">*111#</string>
+</resources>
