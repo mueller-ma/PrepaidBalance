@@ -44,8 +44,7 @@
         android:title="@string/debug">
         <Preference
             android:key="provider_codes"
-            android:title="@string/debug_provider_details"
-            android:persistent="false" />
+            android:title="@string/debug_provider_details" />
         <Preference
             android:key="last_ussd_response"
             android:title="@string/debug_last_ussd_response"

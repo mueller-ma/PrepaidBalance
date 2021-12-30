@@ -29,6 +29,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.preference.ListPreference
 
 
@@ -119,7 +120,12 @@ class PreferenceActivity : AppCompatActivity() {
 
             getPreference("provider_codes").apply {
                 val config = preferenceManager.context.resources.configuration
-                summary = "MCC: ${config.mcc}\nMNC: ${config.mnc}"
+                val codes = "MCC: ${config.mcc}\nMNC: ${config.mnc}"
+                summary = codes
+                context.prefs().edit {
+                    // Set as value to make it accessible to CopyToClipboardClickHandler
+                    putString("provider_codes", codes)
+                }
                 onPreferenceClickListener = CopyToClipboardClickHandler()
             }
 
