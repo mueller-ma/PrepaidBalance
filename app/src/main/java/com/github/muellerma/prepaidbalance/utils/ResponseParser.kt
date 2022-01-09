@@ -8,6 +8,7 @@ class ResponseParser {
 
         private val MATCHERS = listOf(
             Matcher("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*) EUR[ .](.*)\$".toRegex(), 2),
+            Matcher("^(.*?)((\\d)+\\.(\\d){1,2}) PLN(.*?)\$".toRegex(), 2),
             Matcher("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex(), 2)
         )
 
