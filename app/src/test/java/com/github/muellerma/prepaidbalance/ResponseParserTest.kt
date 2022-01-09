@@ -49,5 +49,13 @@ class ResponseParserTest {
                 "2 25GB,Rp50rb/30hr\n" +
                 "22 Info")
         )
+
+        // Polish Plus
+        assertEquals(
+            1.23,
+            ResponseParser.getBalance(
+                "Aktualny stan konta dla numeru 48123456789: 1,23 PLN. Konto wazne do dnia 01-01-2022 01:02:03.Doladuj PLUSem!"
+            )
+        )
     }
 }
