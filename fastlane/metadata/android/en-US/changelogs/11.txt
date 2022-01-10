@@ -1,0 +1,3 @@
+* Support Polish Plus
+* Set USSD code for Comviq in Sweden
+* Fix copy MCC and MNC to clipboard
