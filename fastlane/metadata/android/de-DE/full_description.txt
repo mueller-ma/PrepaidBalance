@@ -1,2 +1,2 @@
-This app keeps track of your prepaid balance. It can automatically record it and post a notification if your balance drops under a configurable threshold.
-It does so by parsing the response of a USSD code, that can be set in the settings.
+Diese App hilft dir den Überblick über dein Prepaid-Guthaben zu behalten. Das Guthaben kann automatisch abgefragt und gespeichert werden.
+Die geschieht durch parsen der Antwort eines USSD-Codes, der in den Einstellungen gesetzt werden kann.
