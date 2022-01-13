@@ -1,4 +1,6 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation instructions can be found in the Readme -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
     <string name="app_name">Prepaid-Guthaben</string>
     <string name="ussd_failed">Abfragen des USSD-Codes fehlgeschlagen</string>
     <string name="unable_get_balance">Auslesen des Guthabens fehlgeschlagen</string>
@@ -23,4 +25,9 @@
     <string name="channel_name_error">Fehler</string>
     <string name="duplicates">Speichere keine doppelten Werte</string>
     <string name="debug">Fehlersuche</string>
+    <string name="debug_provider_details">Anbieterdetails</string>
+    <string name="debug_last_ussd_response">Letzte USSD-Antwort</string>
+    <string name="debug_last_ussd_response_none">Es wurde noch keine Anfrage gestellt</string>
+    <string name="debug_last_ussd_response_invalid">Letzte Anfrage fehlgeschlagen mit Code %d</string>
+    <string name="copied_to_clipboard">In Zwischenablage kopiert</string>
 </resources>
