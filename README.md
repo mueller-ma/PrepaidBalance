@@ -1,5 +1,9 @@
 # Prepaid balance
 
+[![Build App](https://github.com/mueller-ma/PrepaidBalance/actions/workflows/build.yml/badge.svg)](https://github.com/mueller-ma/PrepaidBalance/actions/workflows/build.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/mueller-ma/prepaidbalance/badge)](https://www.codefactor.io/repository/github/mueller-ma/prepaidbalance)
+[![Crowdin](https://badges.crowdin.net/prepaidbalance/localized.svg)](https://crowdin.com/project/prepaidbalance)
+
 This app keeps track of your prepaid balance. It can automatically record it and post a notification if your balance drops under a configurable threshold.
 It does so by parsing the response of a USSD code, that can be set in the settings.
 
