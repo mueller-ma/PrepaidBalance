@@ -70,7 +70,7 @@ class PreferenceActivity : AppCompatActivity() {
 
             val ussdCodePreference = getPreference("ussd_code")
             ussdCodePreference.setSummaryProvider { pref ->
-                val currentValue = pref.sharedPreferences.getString(pref.key, "").orEmpty()
+                val currentValue = pref.sharedPreferences!!.getString(pref.key, "").orEmpty()
                 if (!currentValue.isValidUssdCode()) {
                     getString(R.string.invalid_ussd_code)
                 } else {
@@ -141,9 +141,7 @@ fun PreferenceFragmentCompat.getPreference(key: String) =
     preferenceManager.findPreference<Preference>(key)!!
 
 class CopyToClipboardClickHandler : Preference.OnPreferenceClickListener {
-    override fun onPreferenceClick(preference: Preference?): Boolean {
-        preference ?: return true
-
+    override fun onPreferenceClick(preference: Preference): Boolean {
         val context = preference.context
         val value = context.prefs().getString(preference.key, "")
 
