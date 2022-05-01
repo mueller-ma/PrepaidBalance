@@ -1,7 +1,9 @@
 package com.github.muellerma.prepaidbalance.work
 
 import android.Manifest
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.Looper
@@ -10,8 +12,7 @@ import android.util.Log
 import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
-import androidx.work.Worker
-import androidx.work.WorkerParameters
+import androidx.work.*
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.room.AppDatabase
 import com.github.muellerma.prepaidbalance.room.BalanceEntry
@@ -25,6 +26,7 @@ import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.get
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.Duration
 
 class CheckBalanceWorker(
     private val context: Context,
@@ -44,8 +46,21 @@ class CheckBalanceWorker(
                 }
 
                 errorMessage?.let {
+                    val retryIntent = Intent(context, RetryBroadcastReceiver::class.java)
+                    val retryPendingIntent = PendingIntent.getBroadcast(
+                        context,
+                        0,
+                        retryIntent,
+                        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
+                    )
+
                     val notification = getBaseNotification(context, CHANNEL_ID_ERROR)
                         .setContentTitle(context.getString(errorMessage))
+                        .addAction(
+                            R.drawable.ic_baseline_refresh_24,
+                            context.getString(R.string.retry),
+                            retryPendingIntent
+                        )
 
                     NotificationUtils.createChannels(context)
                     NotificationUtils
@@ -59,6 +74,23 @@ class CheckBalanceWorker(
 
     companion object {
         private val TAG = CheckBalanceWorker::class.java.simpleName
+
+        fun enqueue(context: Context) {
+            WorkManager.getInstance(context).apply {
+                val request = PeriodicWorkRequest.Builder(
+                    CheckBalanceWorker::class.java,
+                    Duration.ofHours(12)
+                )
+                    .setConstraints(Constraints.NONE)
+                    .build()
+
+                enqueueUniquePeriodicWork(
+                    "work",
+                    ExistingPeriodicWorkPolicy.REPLACE,
+                    request
+                )
+            }
+        }
 
         fun checkBalance(context: Context, callback: (CheckResult, String?) -> Unit) {
             CoroutineScope(Dispatchers.IO).launch {

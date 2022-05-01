@@ -1,17 +1,19 @@
 package com.github.muellerma.prepaidbalance.ui
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.fragment.app.commit
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.work.Constraints
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityPreferenceBinding
@@ -22,15 +24,6 @@ import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.Duration
-import android.R.attr.label
-
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.util.Log
-import android.widget.Toast
-import androidx.core.content.edit
-import androidx.preference.ListPreference
 
 
 class PreferenceActivity : AppCompatActivity() {
@@ -80,23 +73,14 @@ class PreferenceActivity : AppCompatActivity() {
 
             val workPref = getPreference("periodic_checks")
             workPref.setOnPreferenceChangeListener { _, newValue ->
-                WorkManager.getInstance(preferenceManager.context).apply {
-                    if (newValue as Boolean) {
-                        val request = PeriodicWorkRequest.Builder(
-                            CheckBalanceWorker::class.java,
-                            Duration.ofHours(12)
-                        )
-                            .setConstraints(Constraints.NONE)
-                            .build()
+                val context = preferenceManager.context
 
-                        enqueueUniquePeriodicWork(
-                            "work",
-                            ExistingPeriodicWorkPolicy.REPLACE,
-                            request
-                        )
-                    } else {
-                        cancelAllWork()
-                    }
+                if (newValue as Boolean) {
+                    CheckBalanceWorker.enqueue(context)
+                } else {
+                    WorkManager
+                        .getInstance(preferenceManager.context)
+                        .cancelAllWork()
                 }
 
                 true

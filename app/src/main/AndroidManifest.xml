@@ -21,7 +21,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.github.muellerma.prepaidbalance.ui.PreferenceActivity" />
+        <activity
+            android:name="com.github.muellerma.prepaidbalance.ui.PreferenceActivity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".work.RetryBroadcastReceiver"
+            android:exported="false" />
     </application>
 
 </manifest>

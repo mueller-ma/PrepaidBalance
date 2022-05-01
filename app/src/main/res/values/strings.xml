@@ -33,4 +33,5 @@
     <string name="debug_last_ussd_response_none">No request has been made yet</string>
     <string name="debug_last_ussd_response_invalid">Last request failed with code %d</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="retry">Retry</string>
 </resources>
