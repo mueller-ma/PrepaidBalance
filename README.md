@@ -9,6 +9,8 @@ It does so by parsing the response of a USSD code, that can be set in the settin
 
 [<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/de/packages/com.github.muellerma.prepaidbalance/)
 
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="Screenshot" width=200px>
+
 ## Translations
 
 App strings and the app store description can be translated via Crowdin: https://crowdin.com/project/prepaidbalance
