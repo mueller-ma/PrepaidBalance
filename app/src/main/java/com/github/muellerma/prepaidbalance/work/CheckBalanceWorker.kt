@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.Looper
@@ -165,66 +166,100 @@ class CheckBalanceWorker(
             response: String?,
             callback: (CheckResult, String?) -> Unit
         ) = CoroutineScope(Dispatchers.IO).launch {
-                val database = AppDatabase.get(context)
+            val database = AppDatabase.get(context)
 
-                val latestInDb = database.balanceDao().getLatest()
-                val new = BalanceEntry(timestamp = System.currentTimeMillis(), balance = balance)
+            val latestInDb = database.balanceDao().getLatest()
+            val new = BalanceEntry(timestamp = System.currentTimeMillis(), balance = balance)
 
-                Log.d(TAG, "Insert $new")
-                database
-                    .balanceDao()
-                    .insert(new)
+            Log.d(TAG, "Insert $new")
+            database
+                .balanceDao()
+                .insert(new)
 
-                val prefs = context.prefs()
-                if (
-                    prefs.getBoolean("no_duplicates", true) &&
-                    latestInDb?.balance == new.balance
-                ) {
-                    Log.d(TAG, "Remove $latestInDb from db")
-                    database.balanceDao().delete(latestInDb)
-                }
+            val prefs = context.prefs()
+            removeDuplicatesIfRequired(prefs, database, new, latestInDb)
 
-                callback(CheckResult.OK, response)
+            callback(CheckResult.OK, response)
 
-                NotificationUtils.createChannels(context)
+            NotificationUtils.createChannels(context)
+            showBalancedIncreasedIfRequired(context, prefs, latestInDb, new)
+            showThresholdIfRequired(prefs, new, context)
+        }
 
-                if (
-                    prefs.getBoolean("notify_balance_increased", false) &&
-                    latestInDb != null &&
-                    new.balance > latestInDb.balance
-                ) {
-                    val diff = new.balance - latestInDb.balance
-                    Log.d(TAG, "New balance is larger: $diff")
-
-                    val notification = getBaseNotification(context, CHANNEL_ID_BALANCE_INCREASED)
-                        .setContentTitle(context.getString(R.string.balance_increased, diff.formatAsCurrency()))
-
-                    NotificationUtils
-                        .manager(context)
-                        .notify(NOTIFICATION_ID_BALANCE_INCREASED, notification.build())
-                }
-
-                val threshold = try {
-                    prefs
-                        .getString("notify_balance_under_threshold_value", "")
-                        ?.replace(',', '.')
-                        ?.toDouble() ?: Double.MAX_VALUE
-                } catch (e: Exception) {
-                    Double.MAX_VALUE
-                }
-                if (
-                    prefs.getBoolean("notify_balance_under_threshold", false) &&
-                    new.balance < threshold
-                ) {
-                    Log.d(TAG, "Below threshold")
-                    val notification = getBaseNotification(context, CHANNEL_ID_THRESHOLD_REACHED)
-                        .setContentTitle(context.getString(R.string.threshold_reached, new.balance.formatAsCurrency()))
-
-                    NotificationUtils
-                        .manager(context)
-                        .notify(NOTIFICATION_ID_THRESHOLD_REACHED, notification.build())
-                }
+        private fun removeDuplicatesIfRequired(
+            prefs: SharedPreferences,
+            database: AppDatabase,
+            new: BalanceEntry,
+            latestInDb: BalanceEntry?
+        ) {
+            if (
+                prefs.getBoolean("no_duplicates", true) &&
+                latestInDb?.balance == new.balance
+            ) {
+                Log.d(TAG, "Remove $latestInDb from db")
+                database.balanceDao().delete(latestInDb)
             }
+        }
+
+        private fun showThresholdIfRequired(
+            prefs: SharedPreferences,
+            new: BalanceEntry,
+            context: Context
+        ) {
+            val threshold = try {
+                prefs
+                    .getString("notify_balance_under_threshold_value", "")
+                    ?.replace(',', '.')
+                    ?.toDouble() ?: Double.MAX_VALUE
+            } catch (e: Exception) {
+                Double.MAX_VALUE
+            }
+            if (
+                prefs.getBoolean("notify_balance_under_threshold", false) &&
+                new.balance < threshold
+            ) {
+                Log.d(TAG, "Below threshold")
+                val notification = getBaseNotification(context, CHANNEL_ID_THRESHOLD_REACHED)
+                    .setContentTitle(
+                        context.getString(
+                            R.string.threshold_reached,
+                            new.balance.formatAsCurrency()
+                        )
+                    )
+
+                NotificationUtils
+                    .manager(context)
+                    .notify(NOTIFICATION_ID_THRESHOLD_REACHED, notification.build())
+            }
+        }
+
+        private fun showBalancedIncreasedIfRequired(
+            context: Context,
+            prefs: SharedPreferences,
+            latestInDb: BalanceEntry?,
+            new: BalanceEntry
+        ) {
+            if (
+                prefs.getBoolean("notify_balance_increased", false) &&
+                latestInDb != null &&
+                new.balance > latestInDb.balance
+            ) {
+                val diff = new.balance - latestInDb.balance
+                Log.d(TAG, "New balance is larger: $diff")
+
+                val notification = getBaseNotification(context, CHANNEL_ID_BALANCE_INCREASED)
+                    .setContentTitle(
+                        context.getString(
+                            R.string.balance_increased,
+                            diff.formatAsCurrency()
+                        )
+                    )
+
+                NotificationUtils
+                    .manager(context)
+                    .notify(NOTIFICATION_ID_BALANCE_INCREASED, notification.build())
+            }
+        }
 
         enum class CheckResult {
             OK,
