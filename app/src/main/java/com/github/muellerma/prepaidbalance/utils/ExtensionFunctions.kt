@@ -9,6 +9,14 @@ private const val TAG = "ExtensionFunctions"
 
 fun Double.formatAsCurrency() = "%1\$,.2f".format(this)
 
+fun Double.formatAsDiff(): String {
+    if (this >= 0) {
+        return "+${formatAsCurrency()}"
+    }
+
+    return formatAsCurrency()
+}
+
 fun Long.timestampForUi(context: Context): String {
     return DateFormat.getTimeFormat(context).format(this) + " " +
             DateFormat.getDateFormat(context).format(this)

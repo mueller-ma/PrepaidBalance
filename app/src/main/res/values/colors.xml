@@ -3,4 +3,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="golden">#D7BF2A</color>
     <color name="dark_golden">#443d10</color>
+    <color name="red">#B71C1C</color>
+    <color name="green">#2E7D32</color>
 </resources>
