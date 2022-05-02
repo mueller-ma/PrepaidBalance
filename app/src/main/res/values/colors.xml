@@ -2,4 +2,5 @@
 <resources>
     <color name="white">#FFFFFFFF</color>
     <color name="golden">#D7BF2A</color>
+    <color name="dark_golden">#443d10</color>
 </resources>
