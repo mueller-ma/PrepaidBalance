@@ -19,9 +19,11 @@ import com.github.muellerma.prepaidbalance.room.AppDatabase
 import com.github.muellerma.prepaidbalance.room.BalanceEntry
 import com.github.muellerma.prepaidbalance.utils.*
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.CHANNEL_ID_BALANCE_INCREASED
+import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.CHANNEL_ID_DAILY_LIMIT_REACHED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.CHANNEL_ID_ERROR
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.CHANNEL_ID_THRESHOLD_REACHED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.NOTIFICATION_ID_BALANCE_INCREASED
+import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.NOTIFICATION_ID_DAILY_LIMIT_REACHED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.NOTIFICATION_ID_THRESHOLD_REACHED
 import com.github.muellerma.prepaidbalance.utils.NotificationUtils.Companion.getBaseNotification
 import kotlinx.coroutines.CoroutineScope
@@ -183,7 +185,40 @@ class CheckBalanceWorker(
 
             NotificationUtils.createChannels(context)
             showBalancedIncreasedIfRequired(context, prefs, latestInDb, new)
-            showThresholdIfRequired(prefs, new, context)
+            showThresholdIfRequired(context, prefs, new)
+            showDailyLimitWarningIfRequired(context, prefs, new, database)
+        }
+
+        private fun showDailyLimitWarningIfRequired(
+            context: Context,
+            prefs: SharedPreferences,
+            new: BalanceEntry,
+            database: AppDatabase
+        ) {
+            if (!prefs.getBoolean("notify_balance_daily_limit", false)) {
+                return
+            }
+
+            val now = System.currentTimeMillis()
+            val lastDayBalances = database.balanceDao().getSince(now - 30 * 60 * 60 * 1000)
+            val highestBalance = lastDayBalances.maxOf { it.balance }
+            val limit = try {
+                prefs
+                    .getString("notify_balance_under_threshold_value", "")
+                    ?.replace(',', '.')
+                    ?.toDouble() ?: Double.MAX_VALUE
+            } catch (e: Exception) {
+                Double.MAX_VALUE
+            }
+
+            if (new.balance > highestBalance - limit) {
+                val notification = getBaseNotification(context, CHANNEL_ID_DAILY_LIMIT_REACHED)
+                    .setContentTitle(context.getString(R.string.daily_limit_reached))
+
+                NotificationUtils
+                    .manager(context)
+                    .notify(NOTIFICATION_ID_DAILY_LIMIT_REACHED, notification.build())
+            }
         }
 
         private fun removeDuplicatesIfRequired(
@@ -202,9 +237,9 @@ class CheckBalanceWorker(
         }
 
         private fun showThresholdIfRequired(
+            context: Context,
             prefs: SharedPreferences,
-            new: BalanceEntry,
-            context: Context
+            new: BalanceEntry
         ) {
             val threshold = try {
                 prefs
