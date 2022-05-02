@@ -14,7 +14,7 @@
 
         <item name="android:windowLightStatusBar">?isLightTheme</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">?isLightTheme</item>
-        <item name="android:statusBarColor">?android:windowBackground</item>
-        <item name="android:navigationBarColor">?android:windowBackground</item>
+        <item name="android:statusBarColor">?android:windowBackgroundFallback</item>
+        <item name="android:navigationBarColor">?android:windowBackgroundFallback</item>
     </style>
 </resources>
