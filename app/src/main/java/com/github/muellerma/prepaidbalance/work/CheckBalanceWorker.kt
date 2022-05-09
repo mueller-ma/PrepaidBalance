@@ -9,6 +9,8 @@ import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.Looper
 import android.telephony.TelephonyManager
+import android.telephony.TelephonyManager.USSD_ERROR_SERVICE_UNAVAIL
+import android.telephony.TelephonyManager.USSD_RETURN_FAILURE
 import android.util.Log
 import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
@@ -135,11 +137,14 @@ class CheckBalanceWorker(
                 ) {
                     Log.d(TAG, "onReceiveUssdResponseFailed($failureCode)")
 
+                    val errorMessage = when (failureCode) {
+                        USSD_RETURN_FAILURE -> context.getString(R.string.debug_last_ussd_response_failed_to_complete)
+                        USSD_ERROR_SERVICE_UNAVAIL -> context.getString(R.string.debug_last_ussd_response_failed_telephony_service_unavailable)
+                        else -> context.getString(R.string.debug_last_ussd_response_invalid, failureCode)
+                    }
+
                     context.prefs().edit {
-                        putString(
-                            "last_ussd_response",
-                            context.getString(R.string.debug_last_ussd_response_invalid, failureCode)
-                        )
+                        putString("last_ussd_response", errorMessage)
                     }
 
                     return callback(CheckResult.USSD_FAILED, null)
