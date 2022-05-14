@@ -24,4 +24,7 @@ interface BalanceDao {
 
     @Query("DELETE FROM BalanceEntry WHERE timestamp < :before")
     fun deleteBefore(before: Long)
+
+    @Query("SELECT * FROM BalanceEntry WHERE timestamp > :since ")
+    fun getSince(since: Long): List<BalanceEntry>
 }

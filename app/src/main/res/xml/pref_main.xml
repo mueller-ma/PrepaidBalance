@@ -39,6 +39,18 @@
             app:useSimpleSummaryProvider="true"
             android:inputType="number"
             android:defaultValue="1.00" />
+        <SwitchPreferenceCompat
+            android:key="notify_balance_daily_limit"
+            android:defaultValue="true"
+            android:title="@string/notify_balance_daily_limit_title"
+            android:summary="@string/notify_balance_daily_limit_summary" />
+        <EditTextPreference
+            android:key="notify_balance_daily_limit_value"
+            android:dependency="notify_balance_daily_limit"
+            android:title="@string/notify_balance_daily_limit_title"
+            app:useSimpleSummaryProvider="true"
+            android:inputType="number"
+            android:defaultValue="5.00" />
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/debug">

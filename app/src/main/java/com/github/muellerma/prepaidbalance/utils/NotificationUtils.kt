@@ -12,11 +12,13 @@ class NotificationUtils {
         private val TAG = NotificationUtils::class.java.simpleName
         const val CHANNEL_ID_BALANCE_INCREASED = "balance_increased"
         const val CHANNEL_ID_THRESHOLD_REACHED = "threshold"
+        const val CHANNEL_ID_DAILY_LIMIT_REACHED = "daily_limit"
         const val CHANNEL_ID_ERROR = "error"
 
         const val NOTIFICATION_ID_BALANCE_INCREASED = 0
         const val NOTIFICATION_ID_THRESHOLD_REACHED = 1
-        const val NOTIFICATION_ID_ERROR = 2
+        const val NOTIFICATION_ID_DAILY_LIMIT_REACHED = 2
+        const val NOTIFICATION_ID_ERROR = 3
 
         fun getBaseNotification(context: Context, channel: String): NotificationCompat.Builder {
             return NotificationCompat.Builder(context, channel)
@@ -41,6 +43,14 @@ class NotificationUtils {
                 NotificationChannel(
                     CHANNEL_ID_THRESHOLD_REACHED,
                     context.getString(R.string.channel_name_threshold_reached),
+                    NotificationManager.IMPORTANCE_DEFAULT
+                )
+            )
+
+            manager.createNotificationChannel(
+                NotificationChannel(
+                    CHANNEL_ID_DAILY_LIMIT_REACHED,
+                    context.getString(R.string.daily_limit_reached),
                     NotificationManager.IMPORTANCE_DEFAULT
                 )
             )
