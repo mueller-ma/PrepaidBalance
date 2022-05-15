@@ -13,7 +13,7 @@ import com.github.muellerma.prepaidbalance.utils.formatAsCurrency
 import com.github.muellerma.prepaidbalance.utils.formatAsDiff
 import com.github.muellerma.prepaidbalance.utils.timestampForUi
 
-class BalanceListAdapter(private val context: Context) :
+class BalanceListAdapter(context: Context) :
     RecyclerView.Adapter<BalanceListViewHolder>() {
     var balances = emptyList<BalanceEntry>()
         set(value) {
