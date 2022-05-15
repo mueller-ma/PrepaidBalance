@@ -57,5 +57,37 @@ class ResponseParserTest {
                 "Aktualny stan konta dla numeru 48123456789: 1,23 PLN. Konto wazne do dnia 01-01-2022 01:02:03.Doladuj PLUSem!"
             )
         )
+
+        // Kaufland mobil Germany
+        assertEquals(
+            70.0,
+            ResponseParser.getBalance(
+                "Dein Guthaben betraegt: 10,00 EUR Startguthaben, 20,00 EUR Kaufguthaben und 40,00 EUR Geschenkguthaben."
+            )
+        )
+        assertEquals(
+            0.0,
+            ResponseParser.getBalance(
+                "Dein Guthaben betraegt: 0,00 EUR Startguthaben, 0,00 EUR Kaufguthaben und 0,00 EUR Geschenkguthaben."
+            )
+        )
+        assertEquals(
+            10.0,
+            ResponseParser.getBalance(
+                "Dein Guthaben betraegt: 10,00 EUR Startguthaben, 0,00 EUR Kaufguthaben und 0,00 EUR Geschenkguthaben."
+            )
+        )
+        assertEquals(
+            30.0,
+            ResponseParser.getBalance(
+                "Dein Guthaben betraegt: 10,00 EUR Startguthaben und 20,00 EUR Kaufguthaben."
+            )
+        )
+        assertEquals(
+            20.0,
+            ResponseParser.getBalance(
+                "Dein Guthaben betraegt: 20,00 EUR Kaufguthaben."
+            )
+        )
     }
 }
