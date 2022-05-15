@@ -36,4 +36,5 @@
     <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Last request failed, because telephony service is unavailable</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="retry">Retry</string>
+    <string name="confirm_first_request">A USSD request will be made to %s</string>
 </resources>

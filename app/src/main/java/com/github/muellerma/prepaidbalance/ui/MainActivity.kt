@@ -10,7 +10,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityMainBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
+import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
 import com.google.android.material.snackbar.BaseTransientBottomBar.Duration
@@ -113,6 +116,32 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
 
     override fun onRefresh() {
         Log.d(TAG, "onRefresh()")
+
+        if (!prefs().getBoolean("confirmed_first_request", false)) {
+            val ussdCode = prefs().getString("ussd_code", "")
+            val message = if (ussdCode.isNullOrEmpty()) {
+                getString(R.string.invalid_ussd_code)
+            } else {
+                getString(R.string.confirm_first_request, ussdCode)
+            }
+
+            AlertDialog.Builder(this)
+                .setMessage(message)
+                .setNegativeButton(android.R.string.cancel) { _, _ ->
+                    binding.swiperefresh.isRefreshing = false
+                }
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    Log.d(TAG, "Confirmed request")
+                    prefs().edit {
+                        putBoolean("confirmed_first_request", true)
+                    }
+                    onRefresh()
+                }
+                .show()
+
+            return
+        }
+
         CheckBalanceWorker.checkBalance(this@MainActivity) { result, data ->
             Log.d(TAG, "Got result $result")
             binding.swiperefresh.isRefreshing = false
