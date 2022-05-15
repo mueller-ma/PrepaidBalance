@@ -3,7 +3,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
     <string name="app_name">Saldo Prepago</string>
     <string name="ussd_failed">Error al conseguir el código USSD</string>
-    <string name="unable_get_balance">No se obtuvo el saldo como respuesta</string>
     <string name="permissions_required">Se requiere permisos de teléfono</string>
     <string name="preferences">Ajustes</string>
     <string name="periodic_checks_title">Revisar saldo diariamente</string>
