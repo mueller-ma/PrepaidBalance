@@ -12,7 +12,6 @@ import android.telephony.TelephonyManager
 import android.telephony.TelephonyManager.USSD_ERROR_SERVICE_UNAVAIL
 import android.telephony.TelephonyManager.USSD_RETURN_FAILURE
 import android.util.Log
-import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
 import androidx.work.*
@@ -38,13 +37,13 @@ class CheckBalanceWorker(
     Worker(context, workerParams)
 {
     override fun doWork(): Result {
-            checkBalance(applicationContext) { result, _ ->
+            checkBalance(applicationContext) { result, data ->
                 Log.d(TAG, "Got result $result")
-                @StringRes val errorMessage = when (result) {
-                    CheckResult.USSD_FAILED -> R.string.ussd_failed
-                    CheckResult.MISSING_PERMISSIONS -> R.string.permissions_required
-                    CheckResult.PARSER_FAILED -> R.string.unable_get_balance
-                    CheckResult.USSD_INVALID -> R.string.invalid_ussd_code
+                val errorMessage = when (result) {
+                    CheckResult.USSD_FAILED -> context.getString(R.string.ussd_failed)
+                    CheckResult.MISSING_PERMISSIONS -> context.getString(R.string.permissions_required)
+                    CheckResult.PARSER_FAILED -> context.getString(R.string.unable_get_balance, data)
+                    CheckResult.USSD_INVALID -> context.getString(R.string.invalid_ussd_code)
                     CheckResult.OK -> null
                 }
 
@@ -58,7 +57,7 @@ class CheckBalanceWorker(
                     )
 
                     val notification = getBaseNotification(context, CHANNEL_ID_ERROR)
-                        .setContentTitle(context.getString(errorMessage))
+                        .setContentTitle(errorMessage)
                         .addAction(
                             R.drawable.ic_baseline_refresh_24,
                             context.getString(R.string.retry),
@@ -125,7 +124,7 @@ class CheckBalanceWorker(
                     }
 
                     val balance = ResponseParser.getBalance(response as String?)
-                        ?: return callback(CheckResult.PARSER_FAILED, null)
+                        ?: return callback(CheckResult.PARSER_FAILED, response)
 
                     handleNewBalance(context, balance, response, callback)
                 }

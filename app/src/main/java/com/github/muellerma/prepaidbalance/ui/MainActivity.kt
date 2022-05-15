@@ -126,7 +126,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
                     }
                 }
                 CheckResult.PARSER_FAILED -> {
-                    showSnackbar(R.string.unable_get_balance)
+                    showSnackbar(
+                        getString(R.string.unable_get_balance, data),
+                        Snackbar.LENGTH_INDEFINITE
+                    )
                 }
                 CheckResult.USSD_FAILED -> {
                     showSnackbar(R.string.ussd_failed)
