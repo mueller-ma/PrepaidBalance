@@ -2,10 +2,13 @@ package com.github.muellerma.prepaidbalance.utils
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.github.muellerma.prepaidbalance.R
+import com.github.muellerma.prepaidbalance.ui.MainActivity
 
 class NotificationUtils {
     companion object {
@@ -19,7 +22,15 @@ class NotificationUtils {
         const val NOTIFICATION_ID_ERROR = 2
 
         fun getBaseNotification(context: Context, channel: String): NotificationCompat.Builder {
+            val pendingIntent = PendingIntent.getActivity(
+                context,
+                0,
+                Intent(context, MainActivity::class.java),
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+
             return NotificationCompat.Builder(context, channel)
+                .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.ic_circle_multiple_outline)
                 .setColor(context.getColor(R.color.golden))
                 .setLights(context.getColor(R.color.golden), 500, 500)
