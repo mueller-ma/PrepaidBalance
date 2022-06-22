@@ -11,6 +11,7 @@ class ExtensionFunctionsTest {
     fun testIsValidUssdCode() {
         assertFalse("".isValidUssdCode())
         assertFalse("abc".isValidUssdCode())
+        assertFalse("*abc#".isValidUssdCode())
         assertFalse("123".isValidUssdCode())
         assertFalse("*123".isValidUssdCode())
         assertFalse("*#".isValidUssdCode())
@@ -26,6 +27,7 @@ class ExtensionFunctionsTest {
         assertTrue("#*0#".isValidUssdCode())
         assertTrue("*#0#".isValidUssdCode())
         assertTrue("#123#".isValidUssdCode()) // Truemove-H Thailand
+        assertTrue("*123*8*2#".isValidUssdCode())
     }
 
     @Test
