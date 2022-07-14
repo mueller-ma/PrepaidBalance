@@ -1,3 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation"></resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Ön Ödemeli Bakiye</string>
+    <string name="ussd_failed">USSD kodu talep edilemedi</string>
+    <string name="permissions_required">Telefon izinleri gerekli</string>
+    <string name="preferences">Ayarlar</string>
+    <string name="periodic_checks_title">Bakiyeyi periyodik olarak kontrol et</string>
+    <string name="notify_balance_increased_title">Bakiye arttırıldı</string>
+    <string name="notify_balance_under_threshold_title">Bakiye sınırın altında</string>
+    <string name="notify_balance_under_threshold_value_title">Sınır seviye</string>
+    <string name="notifications">Bildirimler</string>
+    <string name="balance_increased">Bakiye %s oranında arttı</string>
+    <string name="threshold_reached">Bakiye sınırın altında: %s</string>
+    <string name="channel_name_balance_increased">Bakiye arttırıldı</string>
+    <string name="channel_name_threshold_reached">Sınıra ulaşıldı</string>
+    <string name="invalid_ussd_code">Geçersiz USSD kodu girildi</string>
+    <string name="ussd_code">USSD kodu</string>
+    <string name="general">Genel</string>
+    <string name="clear_current_data">Tüm verileri temizle</string>
+    <string name="no_data_hint">Güncel ön ödemeli bakiyenizi almak için aşağı kaydırın. Önce ayarlarda yapılandırılmış USSD kodunu kontrol etmelisiniz.</string>
+    <string name="clear_current_data_summary">6 aydan eski veriler otomatik olarak silinir</string>
+    <string name="channel_name_error">Hata</string>
+    <string name="duplicates">Yinelenen değerleri kaydetme</string>
+    <string name="debug">Sorun giderme</string>
+    <string name="debug_provider_details">Sağlayıcı ayrıntıları</string>
+    <string name="debug_last_ussd_response">Son USSD yanıtı</string>
+    <string name="debug_last_ussd_response_none">Henüz bir talepte bulunulmadı</string>
+    <string name="debug_last_ussd_response_invalid">Son istek %d koduyla başarısız oldu</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Son istek tamamlanamadı</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Telefon hizmeti kullanılamadığından son istek başarısız oldu</string>
+    <string name="copied_to_clipboard">Panoya kopyalandı</string>
+    <string name="retry">Yeniden dene</string>
+</resources>
