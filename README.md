@@ -20,8 +20,9 @@ Translations have to be approved before being merged into the app. To become a t
 ## Troubleshooting
 
 You might run into on of these issues with the app:
-* The USSD code is different than the default (`*100#`). In this case please configure the correct one and open an issue, so I can change the default code for your provider. 
+* The USSD code is different than the default. In this case please configure the correct one and open an issue, so I can change the default code for your provider. 
 * Your provider doesn't provide a USSD code to query your prepaid balance. In this case you cannot use this app.
+* The USSD code to query the balance is "menu based", i.e. if you enter it in the dialer app, you get a menu. See [this issue](https://github.com/mueller-ma/PrepaidBalance/issues/81#issuecomment-1131516634) for more details.
 * Depending on the response pattern the parsing might fail. In this case please open an issue.
 
 ## Android permissions
