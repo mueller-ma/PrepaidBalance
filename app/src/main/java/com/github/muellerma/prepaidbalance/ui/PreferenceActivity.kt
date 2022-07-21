@@ -1,12 +1,8 @@
 package com.github.muellerma.prepaidbalance.ui
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
@@ -21,6 +17,7 @@ import com.github.muellerma.prepaidbalance.room.AppDatabase
 import com.github.muellerma.prepaidbalance.utils.isValidUssdCode
 import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
+import com.mikepenz.aboutlibraries.LibsBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -117,31 +114,27 @@ class PreferenceActivity : AppCompatActivity() {
                 summary = context.prefs().getString("last_ussd_response", "")
                 onPreferenceClickListener = CopyToClipboardClickHandler()
             }
+
+            getPreference("about").apply {
+                setOnPreferenceClickListener {
+                    val fragment = LibsBuilder()
+                        .withAboutIconShown(true)
+                        .withAboutVersionShownName(true)
+                        .withSortEnabled(true)
+                        .withListener(AboutButtonsListener())
+                        .supportFragment()
+
+                    parentFragmentManager.commit {
+                        addToBackStack("about")
+                        val prefActivity = requireActivity() as PreferenceActivity
+                        replace(prefActivity.binding.activityContent.id, fragment, "about")
+                    }
+                    true
+                }
+            }
         }
     }
 }
 
 fun PreferenceFragmentCompat.getPreference(key: String) =
     preferenceManager.findPreference<Preference>(key)!!
-
-class CopyToClipboardClickHandler : Preference.OnPreferenceClickListener {
-    override fun onPreferenceClick(preference: Preference): Boolean {
-        val context = preference.context
-        val value = context.prefs().getString(preference.key, "")
-
-        Log.d(TAG, "Copy $value to clipboard")
-
-        val clipboardManager = context.getSystemService(ClipboardManager::class.java)
-        val clip = ClipData.newPlainText(context.getString(R.string.app_name), value)
-        clipboardManager.setPrimaryClip(clip)
-
-        Toast.makeText(context, context.getString(R.string.copied_to_clipboard), Toast.LENGTH_SHORT)
-            .show()
-
-        return true
-    }
-
-    companion object {
-        private val TAG = CopyToClipboardClickHandler::class.java.simpleName
-    }
-}

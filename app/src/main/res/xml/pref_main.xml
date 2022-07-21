@@ -50,4 +50,9 @@
             android:title="@string/debug_last_ussd_response"
             android:defaultValue="@string/debug_last_ussd_response_none" />
     </PreferenceCategory>
+    <PreferenceCategory>
+        <Preference
+            android:key="about"
+            android:title="@string/about" />
+    </PreferenceCategory>
 </PreferenceScreen>
