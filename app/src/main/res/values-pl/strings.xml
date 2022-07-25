@@ -35,4 +35,6 @@
     <string name="retry">Spróbuj ponownie</string>
     <string name="confirm_first_request">Wywołanie USSD zostanie wysłane do %s</string>
     <!-- About menu -->
+    <string name="about">O aplikacji Stan Konta</string>
+    <string name="error_no_browser_found">Nie znaleziono przeglądarki</string>
 </resources>
