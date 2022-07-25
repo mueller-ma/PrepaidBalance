@@ -22,4 +22,5 @@
     <string name="clear_current_data_summary">Los datos anteriores a más de 6 meses serán borrados automáticamente</string>
     <string name="duplicates">No guardar valores duplicados</string>
     <string name="debug">Solución de problemas</string>
+    <!-- About menu -->
 </resources>
