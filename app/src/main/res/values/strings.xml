@@ -37,4 +37,11 @@
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="retry">Retry</string>
     <string name="confirm_first_request">A USSD request will be made to %s</string>
+
+    <!-- About menu -->
+    <string name="about">About Prepaid Balance</string>
+    <string name="error_no_browser_found">No browser found</string>
+    <string name="aboutLibraries_description_special1_name" translatable="false">GitHub</string>
+    <string name="aboutLibraries_description_special2_name" translatable="false">F-Droid</string>
+    <string name="aboutLibraries_description_special3_name" translatable="false">Crowdin</string>
 </resources>

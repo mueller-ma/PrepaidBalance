@@ -1,9 +1,16 @@
 package com.github.muellerma.prepaidbalance.utils
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.text.format.DateFormat
+import android.util.Log
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.preference.PreferenceManager
+import com.github.muellerma.prepaidbalance.R
 
 private const val TAG = "ExtensionFunctions"
 
@@ -25,3 +32,19 @@ fun Long.timestampForUi(context: Context): String {
 fun String.isValidUssdCode() = matches("^([*#][*#]?)([\\d*])+([*#][*#]?)$".toRegex())
 
 fun Context.prefs(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+fun String.openInBrowser(context: Context) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(this))
+    try {
+        context.startActivity(intent)
+    } catch (e: ActivityNotFoundException) {
+        Log.d(TAG, "Unable to open url in browser: $intent")
+        context.showToast(R.string.error_no_browser_found)
+    }
+}
+
+fun Context.showToast(@StringRes msg: Int) {
+    Toast
+        .makeText(this, msg, Toast.LENGTH_SHORT)
+        .show()
+}
