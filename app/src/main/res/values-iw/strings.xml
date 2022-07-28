@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">יתרה מראש</string>
+    <string name="ussd_failed">בקשת קוד ה־USSD נכשלה</string>
+    <string name="unable_get_balance">לא ניתן לקבל את היתרה מהתגובה: %s</string>
+    <string name="permissions_required">נדרשות הרשאות לטלפון</string>
+    <string name="preferences">הגדרות</string>
+    <string name="periodic_checks_title">לבדוק את היתרה באופן שגרתי</string>
+    <string name="notify_balance_increased_title">היתרה הוגדלה</string>
+    <string name="notify_balance_under_threshold_title">היתרה מתחת לסף</string>
+    <string name="notify_balance_under_threshold_value_title">סף</string>
+    <string name="notifications">התראות</string>
+    <string name="balance_increased">היתרה הוגדלה ב־%s</string>
+    <string name="threshold_reached">היתרה מתחת לסף: %s</string>
+    <string name="channel_name_balance_increased">היתרה הוגדלה</string>
+    <string name="channel_name_threshold_reached">הגעת לסף</string>
     <!-- About menu -->
 </resources>
