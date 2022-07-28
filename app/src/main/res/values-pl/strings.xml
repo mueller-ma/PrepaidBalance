@@ -1,3 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation"></resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Stan konta</string>
+    <string name="ussd_failed">Nie udało się wywołać kodu USSD</string>
+    <string name="unable_get_balance">Nie można uzyskać salda z odpowiedzi: %s</string>
+    <string name="permissions_required">Wymagane jest uprawnienie \"Telefon\"</string>
+    <string name="preferences">Ustawienia</string>
+    <string name="periodic_checks_title">Okresowo sprawdzaj saldo</string>
+    <string name="notify_balance_increased_title">Saldo wzrosło</string>
+    <string name="notify_balance_under_threshold_title">Saldo poniżej progu</string>
+    <string name="notify_balance_under_threshold_value_title">Próg</string>
+    <string name="notifications">Powiadomienia</string>
+    <string name="balance_increased">Saldo wzrosło o %s</string>
+    <string name="threshold_reached">Saldo jest poniżej progu: %s</string>
+    <string name="channel_name_balance_increased">Saldo wzrosło</string>
+    <string name="channel_name_threshold_reached">Osiągnięto próg</string>
+    <string name="invalid_ussd_code">Wprowadzono nieprawidłowy kod USSD</string>
+    <string name="ussd_code">Kod USSD</string>
+    <string name="ussd_code_summary">Aplikacja zapytuje o kod USSD %s, aby uzyskać bieżące saldo</string>
+    <string name="general">Ogólne</string>
+    <string name="clear_current_data">Wyczyść wszystkie dane</string>
+    <string name="no_data_hint">Przesuń palcem w dół, aby uzyskać najnowsze saldo konta. Sprawdź najpierw w ustawieniach skonfigurowany kod USSD.</string>
+    <string name="clear_current_data_summary">Dane starsze niż 6 miesięcy są usuwane automatycznie</string>
+    <string name="channel_name_error">Błąd</string>
+    <string name="duplicates">Nie zapisuj takich samych wartości</string>
+    <string name="debug">Rozwiązywanie problemów</string>
+    <string name="debug_provider_details">Szczegóły operatora</string>
+    <string name="debug_last_ussd_response">Ostatnia odpowiedź USSD</string>
+    <string name="debug_last_ussd_response_none">Nie wykonano jeszcze żadnego wywołania</string>
+    <string name="debug_last_ussd_response_invalid">Ostatnie wywołanie nie powiodło się z kodem %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Ostatnie wywołanie nie powiodło się</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Ostatnie żądanie nie powiodło się, ponieważ sieć komórkowa jest niedostępna</string>
+    <string name="copied_to_clipboard">Skopiowano do schowka</string>
+    <string name="retry">Spróbuj ponownie</string>
+    <string name="confirm_first_request">Wywołanie USSD zostanie wysłane do %s</string>
+    <!-- About menu -->
+    <string name="about">O aplikacji Stan Konta</string>
+    <string name="error_no_browser_found">Nie znaleziono przeglądarki</string>
+</resources>
