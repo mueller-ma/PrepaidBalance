@@ -25,6 +25,14 @@ You might run into on of these issues with the app:
 * The USSD code to query the balance is "menu based", i.e. if you enter it in the dialer app, you get a menu. See [this issue](https://github.com/mueller-ma/PrepaidBalance/issues/81#issuecomment-1131516634) for more details.
 * Depending on the response pattern the parsing might fail. In this case please open an issue.
 
+## Development
+
+### Fix parsing of an USSD code response
+
+* Add a new `Matcher` to `MATCHERS` in `ReponseParser.kt`
+* Add your USSD code to `testGetBalance()` in `ResponseParserTest.kt`
+* Check if all test succeed
+
 ## Android permissions
 
 * `CALL_PHONE`: Used to query USSD codes.
