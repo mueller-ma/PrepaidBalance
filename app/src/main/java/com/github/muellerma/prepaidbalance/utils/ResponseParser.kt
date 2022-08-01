@@ -7,7 +7,7 @@ class ResponseParser {
         private val TAG = ResponseParser::class.java.simpleName
 
         private val MATCHERS = listOf(
-            Matcher("^Dein Guthaben betraegt: ((\\d)+\\.(\\d){1,2})(.*)\$".toRegex()) { groups ->
+            Matcher("Kaufland mobil Germany", "^Dein Guthaben betraegt: ((\\d)+\\.(\\d){1,2})(.*)\$".toRegex()) { groups ->
                 // Get full response (group 0) and split by whitespace
                 // Then convert each element to a double or filter it out.
                 val values = groups?.get(0)?.value
@@ -17,16 +17,16 @@ class ResponseParser {
 
                 return@Matcher values.sum()
             },
-            Matcher("^(.*?)Account Balance \\\$((\\d)+\\.?(\\d)?(\\d)?)(.*)[ .](.*)\$".toRegex()) { groups ->
+            Matcher("T-Mobile US", "^(.*?)Account Balance \\\$((\\d)+\\.?(\\d)?(\\d)?)(.*)[ .](.*)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
-            Matcher("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*) EUR[ .](.*)\$".toRegex()) { groups ->
+            Matcher("Generic Euro", "^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*) EUR[ .](.*)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
-            Matcher("^(.*?)((\\d)+\\.(\\d){1,2}) PLN(.*?)\$".toRegex()) { groups ->
+            Matcher("Generic PLN", "^(.*?)((\\d)+\\.(\\d){1,2}) PLN(.*?)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
-            Matcher("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex()) { groups ->
+            Matcher("Generic", "^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
         )
@@ -47,7 +47,7 @@ class ResponseParser {
                         .matchEntire(withDots)
                         ?.groups
                     groups?.forEachIndexed { index, matchGroup ->
-                        println("Matcher ${matcher.regex}: Index '$index' ${matchGroup?.value}")
+                        println("Matcher ${matcher.name}: Index '$index' ${matchGroup?.value}")
                     }
                     val balance = matcher.process(groups)
                     Log.d(TAG, "Found balance $balance")
@@ -64,6 +64,7 @@ class ResponseParser {
         }
 
         private data class Matcher(
+            val name: String,
             val regex: Regex,
             val process: (groups: MatchGroupCollection?) -> Double?
         )
