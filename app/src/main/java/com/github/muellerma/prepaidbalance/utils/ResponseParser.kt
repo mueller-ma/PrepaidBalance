@@ -17,6 +17,9 @@ class ResponseParser {
 
                 return@Matcher values.sum()
             },
+            Matcher("^(.*?)Account Balance \\\$((\\d)+\\.?(\\d)?(\\d)?)(.*)[ .](.*)\$".toRegex()) { groups ->
+                return@Matcher parseRegexGroupAsDouble(groups, 2)
+            },
             Matcher("^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*) EUR[ .](.*)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
@@ -44,7 +47,7 @@ class ResponseParser {
                         .matchEntire(withDots)
                         ?.groups
                     groups?.forEachIndexed { index, matchGroup ->
-                        println("$index: ${matchGroup?.value}")
+                        println("Matcher ${matcher.regex}: Index '$index' ${matchGroup?.value}")
                     }
                     val balance = matcher.process(groups)
                     Log.d(TAG, "Found balance $balance")

@@ -89,5 +89,11 @@ class ResponseParserTest {
                 "Dein Guthaben betraegt: 20,00 EUR Kaufguthaben."
             )
         )
+
+        // US T-Mobile
+        assertEquals(
+            56.78,
+            ResponseParser.getBalance("Current plan active until 08/10/2022 and will renew for \$12.34. Account Balance \$56.78. Add money by dialing *233 or redeem a refill card.")
+        )
     }
 }
