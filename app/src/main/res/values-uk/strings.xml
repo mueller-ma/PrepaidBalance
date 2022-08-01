@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Передплачений баланс</string>
+    <string name="ussd_failed">Не вдалося запитати USSD-код</string>
+    <string name="unable_get_balance">Не вдалося отримати баланс із відповіді: %s</string>
+    <string name="permissions_required">Потрібні дозволи для телефону</string>
+    <string name="preferences">Налаштування</string>
+    <string name="periodic_checks_title">Періодично перевіряйте баланс</string>
+    <string name="notify_balance_increased_title">Баланс збільшився</string>
+    <string name="notify_balance_under_threshold_title">Баланс під порогом</string>
+    <string name="notify_balance_under_threshold_value_title">Поріг</string>
+    <string name="notifications">Сповіщення</string>
+    <string name="balance_increased">Баланс збільшено на %s</string>
+    <string name="threshold_reached">Баланс нижче порогової суми: %s</string>
+    <string name="channel_name_balance_increased">Баланс збільшився</string>
+    <string name="channel_name_threshold_reached">Досягнуто поріг</string>
+    <string name="invalid_ussd_code">Введено недійсний код USSD</string>
+    <string name="ussd_code">USSD код</string>
+    <string name="ussd_code_summary">Програма запитує USSD-код %s, щоб отримати поточний баланс</string>
+    <string name="general">Основне</string>
+    <string name="clear_current_data">Очистити всі дані</string>
+    <string name="no_data_hint">Проведіть пальцем вниз, щоб переглянути останній баланс передоплати. Спочатку слід перевірити налаштований USSD-код у налаштуваннях.</string>
+    <string name="clear_current_data_summary">Дані старше 6 місяців видаляються автоматично</string>
+    <string name="channel_name_error">Помилка</string>
+    <string name="duplicates">Не зберігайте повторювані значення</string>
+    <string name="debug">Вирішення проблем</string>
+    <string name="debug_provider_details">Інформація про постачальника</string>
+    <string name="debug_last_ussd_response">Остання відповідь USSD</string>
+    <string name="debug_last_ussd_response_none">Жодного запиту ще не було</string>
+    <string name="debug_last_ussd_response_invalid">Помилка останнього запиту з кодом %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Останній запит не виконано</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Останній запит не вдався, оскільки послуга телефонії недоступна</string>
+    <string name="copied_to_clipboard">Скопійовано в буфер обміну</string>
+    <string name="retry">Повторити</string>
+    <string name="confirm_first_request">USSD-запит буде зроблено на %s</string>
     <!-- About menu -->
+    <string name="about">Про додаток</string>
+    <string name="error_no_browser_found">Браузер не знайдено</string>
 </resources>
