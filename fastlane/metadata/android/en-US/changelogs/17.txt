@@ -1,0 +1,2 @@
+* Add about menu
+* Update translations
