@@ -35,4 +35,6 @@
     <string name="retry">Wiederholen</string>
     <string name="confirm_first_request">Eine USSD-Anfrage wird an %s gestellt</string>
     <!-- About menu -->
+    <string name="about">Über Prepaid-Guthaben</string>
+    <string name="error_no_browser_found">Kein Browser gefunden</string>
 </resources>
