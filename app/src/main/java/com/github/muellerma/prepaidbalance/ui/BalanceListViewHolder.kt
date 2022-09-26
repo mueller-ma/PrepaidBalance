@@ -1,11 +1,6 @@
 package com.github.muellerma.prepaidbalance.ui
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.github.muellerma.prepaidbalance.R
+import com.github.muellerma.prepaidbalance.databinding.ListBalanceBinding
 
-class BalanceListViewHolder internal constructor(
-    inflater: LayoutInflater,
-    parent: ViewGroup
-) : RecyclerView.ViewHolder(inflater.inflate(R.layout.list_balance, parent, false))
+class BalanceListViewHolder internal constructor(val binding: ListBalanceBinding) : RecyclerView.ViewHolder(binding.root)

@@ -3,11 +3,11 @@ package com.github.muellerma.prepaidbalance.ui
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.github.muellerma.prepaidbalance.R
+import com.github.muellerma.prepaidbalance.databinding.ListBalanceBinding
 import com.github.muellerma.prepaidbalance.room.BalanceEntry
 import com.github.muellerma.prepaidbalance.utils.formatAsCurrency
 import com.github.muellerma.prepaidbalance.utils.formatAsDiff
@@ -23,15 +23,13 @@ class BalanceListAdapter(context: Context) :
     private val inflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BalanceListViewHolder {
-        return BalanceListViewHolder(inflater, parent)
+        return BalanceListViewHolder(ListBalanceBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: BalanceListViewHolder, position: Int) {
-        holder.itemView.findViewById<TextView>(R.id.balance).apply {
-            text = balances[position].balance.formatAsCurrency()
-        }
+        holder.binding.balance.text = balances[position].balance.formatAsCurrency()
 
-        holder.itemView.findViewById<TextView>(R.id.difference).apply {
+        holder.binding.difference.apply {
             if (position == balances.lastIndex) {
                 text = ""
                 return@apply
@@ -44,7 +42,7 @@ class BalanceListAdapter(context: Context) :
             setTextColor(ContextCompat.getColor(context, color))
         }
 
-        holder.itemView.findViewById<TextView>(R.id.date).apply {
+        holder.binding.date.apply {
             text = balances[position].timestamp.timestampForUi(context)
         }
     }
