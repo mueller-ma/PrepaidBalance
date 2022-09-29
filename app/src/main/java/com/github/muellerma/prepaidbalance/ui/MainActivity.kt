@@ -77,11 +77,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
         Log.d(TAG, "updateBalanceList()")
         launch {
             val entries = database.balanceDao().getAll()
-            databaseLoaded = true
             Handler(Looper.getMainLooper()).post {
                 (binding.list.adapter as BalanceListAdapter).balances = entries
                 binding.list.isVisible = entries.isNotEmpty()
                 binding.hint.isVisible = entries.isEmpty()
+                databaseLoaded = true
             }
         }
     }
