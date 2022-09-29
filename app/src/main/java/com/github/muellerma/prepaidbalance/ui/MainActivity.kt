@@ -13,6 +13,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     override val coroutineContext: CoroutineContext get() = Dispatchers.IO + Job()
     private lateinit var binding: ActivityMainBinding
     private lateinit var database: AppDatabase
+    private var databaseLoaded = false
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
@@ -48,8 +50,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate()")
+        splashScreen.setKeepOnScreenCondition { !databaseLoaded }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -73,11 +77,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
         Log.d(TAG, "updateBalanceList()")
         launch {
             val entries = database.balanceDao().getAll()
-
             Handler(Looper.getMainLooper()).post {
                 (binding.list.adapter as BalanceListAdapter).balances = entries
                 binding.list.isVisible = entries.isNotEmpty()
                 binding.hint.isVisible = entries.isEmpty()
+                databaseLoaded = true
             }
         }
     }

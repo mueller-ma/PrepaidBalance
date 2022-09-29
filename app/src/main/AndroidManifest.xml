@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App">
+        android:theme="@style/Theme.App.Starting">
         <activity
             android:name="com.github.muellerma.prepaidbalance.ui.MainActivity"
             android:exported="true">
