@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     }
 
     private fun showSnackbar(message: String, @Duration length: Int = Snackbar.LENGTH_LONG) {
-        Snackbar.make(findViewById(android.R.id.content), message, length).show()
+        Snackbar.make(binding.root, message, length).show()
     }
 
     override fun onRefresh() {
