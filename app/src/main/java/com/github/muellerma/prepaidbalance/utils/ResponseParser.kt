@@ -26,6 +26,9 @@ class ResponseParser {
             Matcher("Generic PLN", "^(.*?)((\\d)+\\.(\\d){1,2}) PLN(.*?)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
+            Matcher("Generic CHF", "^(.*?)((\\d)+\\.(\\d){1,2}) CHF(.*?)\$".toRegex()) { groups ->
+                return@Matcher parseRegexGroupAsDouble(groups, 2)
+            },
             Matcher("Generic", "^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },

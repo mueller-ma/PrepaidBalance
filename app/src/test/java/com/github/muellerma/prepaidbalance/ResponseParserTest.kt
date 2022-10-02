@@ -95,5 +95,11 @@ class ResponseParserTest {
             56.78,
             ResponseParser.getBalance("Current plan active until 08/10/2022 and will renew for \$12.34. Account Balance \$56.78. Add money by dialing *233 or redeem a refill card.")
         )
+
+        // Sunrise Switzerland
+        assertEquals(
+            12.34,
+            ResponseParser.getBalance("Ihr Guthaben beträgt CHF 12.34")
+        )
     }
 }
