@@ -1,10 +1,13 @@
 package com.github.muellerma.prepaidbalance.ui
 
-import android.Manifest
+import android.Manifest.permission.CALL_PHONE
+import android.Manifest.permission.READ_PHONE_STATE
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.telephony.SubscriptionManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
@@ -39,9 +43,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     private lateinit var database: AppDatabase
     private var databaseLoaded = false
     private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { isGranted: Map<String, Boolean> ->
+        if (isGranted.all { it.value }) {
             binding.swiperefresh.isRefreshing = true
             onRefresh()
         } else {
@@ -146,7 +150,39 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
             return
         }
 
-        CheckBalanceWorker.checkBalance(this@MainActivity) { result, data ->
+        checkActiveSubscriptions()
+    }
+
+
+    private fun checkActiveSubscriptions() {
+        if (ActivityCompat.checkSelfPermission(this, READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions()
+            return
+        }
+
+        val subscriptionManager = getSystemService(SubscriptionManager::class.java)
+        val (subscriptionIds, carrierNames) = subscriptionManager.activeSubscriptionInfoList.let { subscriptions ->
+            val subscriptionIds = subscriptions.map { it.subscriptionId }
+            val carrierNames = subscriptions.map { it.carrierName }.toTypedArray()
+            subscriptionIds to carrierNames
+        }
+
+        if (subscriptionIds.size == 1) {
+            checkBalance(subscriptionIds[0])
+        } else {
+            // allow user to pick one carrier
+            AlertDialog.Builder(this)
+                .setItems(carrierNames) { dialog, index ->
+                    val subscriptionId = subscriptionIds[index]
+                    checkBalance(subscriptionId)
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
+
+    private fun checkBalance(subscriptionId: Int) {
+        CheckBalanceWorker.checkBalance(this@MainActivity, subscriptionId) { result, data ->
             Log.d(TAG, "Got result $result")
             binding.swiperefresh.isRefreshing = false
 
@@ -168,13 +204,17 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
                     showSnackbar(R.string.ussd_failed)
                 }
                 CheckResult.MISSING_PERMISSIONS -> {
-                    requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
+                    requestPermissions()
                 }
                 CheckResult.USSD_INVALID -> {
                     showSnackbar(R.string.invalid_ussd_code)
                 }
             }
         }
+    }
+
+    private fun requestPermissions() {
+        requestPermissionLauncher.launch(arrayOf(CALL_PHONE, READ_PHONE_STATE))
     }
 
     companion object {

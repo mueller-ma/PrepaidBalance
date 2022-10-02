@@ -94,7 +94,7 @@ class CheckBalanceWorker(
             }
         }
 
-        fun checkBalance(context: Context, callback: (CheckResult, String?) -> Unit) {
+        fun checkBalance(context: Context, subscriptionId: Int? = null, callback: (CheckResult, String?) -> Unit) {
             CoroutineScope(Dispatchers.IO).launch {
                 Log.d(TAG, "Remove entries older than 6 months")
                 AppDatabase
@@ -156,12 +156,13 @@ class CheckBalanceWorker(
             }
 
             Log.d(TAG, "Send USSD request to $ussdCode")
-            context.getSystemService(TelephonyManager::class.java)
-                .sendUssdRequest(
-                    ussdCode,
-                    ussdResponseCallback,
-                    Handler(Looper.getMainLooper())
-                )
+            var telephonyManager = context.getSystemService(TelephonyManager::class.java)
+            subscriptionId?.let { telephonyManager = telephonyManager.createForSubscriptionId(it) }
+            telephonyManager.sendUssdRequest(
+                ussdCode,
+                ussdResponseCallback,
+                Handler(Looper.getMainLooper())
+            )
         }
 
         private fun handleNewBalance(
