@@ -37,6 +37,8 @@
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="retry">Retry</string>
     <string name="confirm_first_request">A USSD request will be made to %s</string>
+    <string name="close">Close</string>
+    <string name="no_response_saved">No response saved</string>
 
     <!-- About menu -->
     <string name="about">About Prepaid Balance</string>

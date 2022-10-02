@@ -9,7 +9,8 @@ import kotlin.math.abs
 data class BalanceEntry(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
     val timestamp: Long,
-    @ColumnInfo(name = "balance") val balance: Double
+    @ColumnInfo(name = "balance") val balance: Double,
+    val fullResponse: String?
 ) {
     fun nearlyEquals(other: BalanceEntry): Boolean {
         if (balance != other.balance) {

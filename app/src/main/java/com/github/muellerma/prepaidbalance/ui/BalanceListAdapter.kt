@@ -11,7 +11,9 @@ import com.github.muellerma.prepaidbalance.databinding.ListBalanceBinding
 import com.github.muellerma.prepaidbalance.room.BalanceEntry
 import com.github.muellerma.prepaidbalance.utils.formatAsCurrency
 import com.github.muellerma.prepaidbalance.utils.formatAsDiff
+import com.github.muellerma.prepaidbalance.utils.showToast
 import com.github.muellerma.prepaidbalance.utils.timestampForUi
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class BalanceListAdapter(context: Context) :
     RecyclerView.Adapter<BalanceListViewHolder>() {
@@ -40,6 +42,18 @@ class BalanceListAdapter(context: Context) :
             text = diff.formatAsDiff()
             @ColorRes val color = if (diff < 0) R.color.red else R.color.green
             setTextColor(ContextCompat.getColor(context, color))
+        }
+
+        val fullResponse = balances[position].fullResponse
+        holder.binding.card.setOnClickListener {
+            if (fullResponse.isNullOrEmpty()) {
+                it.context.showToast(R.string.no_response_saved)
+            } else {
+                MaterialAlertDialogBuilder(it.context)
+                    .setPositiveButton(R.string.close, null)
+                    .setMessage(fullResponse)
+                    .show()
+            }
         }
 
         holder.binding.date.apply {
