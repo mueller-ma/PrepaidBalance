@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     ) { isGranted: Map<String, Boolean> ->
         if (isGranted.all { it.value }) {
             binding.swiperefresh.isRefreshing = true
+            setDefaultSubscriptionId()
             onRefresh()
         } else {
             showSnackbar(R.string.permissions_required)
@@ -150,39 +151,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
             return
         }
 
-        checkActiveSubscriptions()
-    }
-
-
-    private fun checkActiveSubscriptions() {
-        if (ActivityCompat.checkSelfPermission(this, READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions()
-            return
-        }
-
-        val subscriptionManager = getSystemService(SubscriptionManager::class.java)
-        val (subscriptionIds, carrierNames) = subscriptionManager.activeSubscriptionInfoList.let { subscriptions ->
-            val subscriptionIds = subscriptions.map { it.subscriptionId }
-            val carrierNames = subscriptions.map { it.carrierName }.toTypedArray()
-            subscriptionIds to carrierNames
-        }
-
-        if (subscriptionIds.size == 1) {
-            checkBalance(subscriptionIds[0])
-        } else {
-            // allow user to pick one carrier
-            AlertDialog.Builder(this)
-                .setItems(carrierNames) { dialog, index ->
-                    val subscriptionId = subscriptionIds[index]
-                    checkBalance(subscriptionId)
-                    dialog.dismiss()
-                }
-                .show()
-        }
-    }
-
-    private fun checkBalance(subscriptionId: Int) {
-        CheckBalanceWorker.checkBalance(this@MainActivity, subscriptionId) { result, data ->
+        CheckBalanceWorker.checkBalance(this@MainActivity) { result, data ->
             Log.d(TAG, "Got result $result")
             binding.swiperefresh.isRefreshing = false
 
@@ -204,17 +173,26 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
                     showSnackbar(R.string.ussd_failed)
                 }
                 CheckResult.MISSING_PERMISSIONS -> {
-                    requestPermissions()
+                    requestPermissionLauncher.launch(arrayOf(CALL_PHONE, READ_PHONE_STATE))
                 }
                 CheckResult.USSD_INVALID -> {
                     showSnackbar(R.string.invalid_ussd_code)
+                }
+                CheckResult.SUBSCRIPTION_INVALID -> {
+                    showSnackbar(R.string.invalid_subscription)
                 }
             }
         }
     }
 
-    private fun requestPermissions() {
-        requestPermissionLauncher.launch(arrayOf(CALL_PHONE, READ_PHONE_STATE))
+    private fun setDefaultSubscriptionId() {
+        val subscriptionManager = getSystemService(SubscriptionManager::class.java)
+        if (ActivityCompat.checkSelfPermission(this, READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+            val defaultSubscriptionId = subscriptionManager.activeSubscriptionInfoList.firstOrNull()?.subscriptionId
+            prefs().edit {
+                putString("subscription_id", "$defaultSubscriptionId")
+            }
+        }
     }
 
     companion object {

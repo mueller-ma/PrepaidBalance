@@ -43,6 +43,7 @@ class CheckBalanceWorker(
                     CheckResult.USSD_FAILED -> context.getString(R.string.ussd_failed)
                     CheckResult.MISSING_PERMISSIONS -> context.getString(R.string.permissions_required)
                     CheckResult.PARSER_FAILED -> context.getString(R.string.unable_get_balance, data)
+                    CheckResult.SUBSCRIPTION_INVALID -> context.getString(R.string.invalid_ussd_code)
                     CheckResult.USSD_INVALID -> context.getString(R.string.invalid_ussd_code)
                     CheckResult.OK -> null
                 }
@@ -94,7 +95,7 @@ class CheckBalanceWorker(
             }
         }
 
-        fun checkBalance(context: Context, subscriptionId: Int? = null, callback: (CheckResult, String?) -> Unit) {
+        fun checkBalance(context: Context, callback: (CheckResult, String?) -> Unit) {
             CoroutineScope(Dispatchers.IO).launch {
                 Log.d(TAG, "Remove entries older than 6 months")
                 AppDatabase
@@ -155,14 +156,18 @@ class CheckBalanceWorker(
                 return callback(CheckResult.USSD_INVALID, null)
             }
 
+            val subscriptionId = context.prefs().getString("subscription_id", "")
+                .orEmpty().toIntOrNull() ?: return callback(CheckResult.SUBSCRIPTION_INVALID, null)
+
+            Log.d(TAG, "SubscriptionId selected: $subscriptionId")
             Log.d(TAG, "Send USSD request to $ussdCode")
-            var telephonyManager = context.getSystemService(TelephonyManager::class.java)
-            subscriptionId?.let { telephonyManager = telephonyManager.createForSubscriptionId(it) }
-            telephonyManager.sendUssdRequest(
-                ussdCode,
-                ussdResponseCallback,
-                Handler(Looper.getMainLooper())
-            )
+            context.getSystemService(TelephonyManager::class.java)
+                .createForSubscriptionId(subscriptionId)
+                .sendUssdRequest(
+                    ussdCode,
+                    ussdResponseCallback,
+                    Handler(Looper.getMainLooper())
+                )
         }
 
         private fun handleNewBalance(
@@ -275,6 +280,7 @@ class CheckBalanceWorker(
             MISSING_PERMISSIONS,
             PARSER_FAILED,
             USSD_FAILED,
+            SUBSCRIPTION_INVALID,
             USSD_INVALID
         }
     }

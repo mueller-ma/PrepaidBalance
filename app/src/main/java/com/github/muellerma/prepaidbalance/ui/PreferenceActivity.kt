@@ -1,13 +1,18 @@
 package com.github.muellerma.prepaidbalance.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.telephony.SubscriptionManager
 import android.text.InputType
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
 import androidx.fragment.app.commit
 import androidx.preference.EditTextPreference
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.work.WorkManager
@@ -66,6 +71,22 @@ class PreferenceActivity : AppCompatActivity() {
                 } else {
                     getString(R.string.ussd_code_summary, currentValue)
                 }
+            }
+
+            if (ActivityCompat.checkSelfPermission(requireContext(),
+                    Manifest.permission.READ_PHONE_STATE
+                ) == PackageManager.PERMISSION_GRANTED) {
+
+                val subscriptionManager = requireContext().getSystemService(SubscriptionManager::class.java)
+                val (subscriptionIds, carrierNames) = subscriptionManager.activeSubscriptionInfoList.let { subscriptions ->
+                    val subscriptionIds = subscriptions.map { "${it.subscriptionId}" }.toTypedArray()
+                    val carrierNames = subscriptions.map { it.carrierName }.toTypedArray()
+                    subscriptionIds to carrierNames
+                }
+
+                val subscriptionIdPref: ListPreference = getPreference("subscription_id") as ListPreference
+                subscriptionIdPref.entries = carrierNames
+                subscriptionIdPref.entryValues = subscriptionIds
             }
 
             val workPref = getPreference("periodic_checks")
