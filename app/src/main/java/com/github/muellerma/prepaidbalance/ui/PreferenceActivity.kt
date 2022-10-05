@@ -84,7 +84,7 @@ class PreferenceActivity : AppCompatActivity() {
                     subscriptionIds to carrierNames
                 }
 
-                val subscriptionIdPref: ListPreference = getPreference("subscription_id") as ListPreference
+                val subscriptionIdPref = getPreference("subscription_id") as ListPreference
                 subscriptionIdPref.entries = carrierNames
                 subscriptionIdPref.entryValues = subscriptionIds
             }
