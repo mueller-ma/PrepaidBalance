@@ -173,7 +173,11 @@ class CheckBalanceWorker(
             val database = AppDatabase.get(context)
 
             val latestInDb = database.balanceDao().getLatest()
-            val new = BalanceEntry(timestamp = System.currentTimeMillis(), balance = balance)
+            val new = BalanceEntry(
+                timestamp = System.currentTimeMillis(),
+                balance = balance,
+                fullResponse = response
+            )
 
             Log.d(TAG, "Insert $new")
             database

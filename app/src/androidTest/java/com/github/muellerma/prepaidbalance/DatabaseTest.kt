@@ -19,11 +19,11 @@ class DatabaseTest {
         AppDatabase.get(appContext)
             .balanceDao().apply {
                 deleteAll()
-                insert(BalanceEntry(timestamp = now, balance = 10.15))
-                insert(BalanceEntry(timestamp = now - 5 * 60 * 1000, balance = 0.15))
-                insert(BalanceEntry(timestamp = now - 60 * 60 * 1000, balance = 5.12))
-                insert(BalanceEntry(timestamp = now - 30 * 60 * 60 * 1000, balance = 7.12))
-                insert(BalanceEntry(timestamp = 12, balance = 7.12)) // quite old
+                insert(BalanceEntry(timestamp = now, balance = 10.15, fullResponse = "foobar 10.15"))
+                insert(BalanceEntry(timestamp = now - 5 * 60 * 1000, balance = 0.15, fullResponse = "foobar 0.15"))
+                insert(BalanceEntry(timestamp = now - 60 * 60 * 1000, balance = 5.12, fullResponse = "foobar 5.12"))
+                insert(BalanceEntry(timestamp = now - 30 * 60 * 60 * 1000, balance = 7.12, fullResponse = "foobar 7.12"))
+                insert(BalanceEntry(timestamp = 12, balance = 7.12, fullResponse = null)) // quite old
             }
     }
 
