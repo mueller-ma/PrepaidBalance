@@ -21,7 +21,6 @@
     <string name="invalid_subscription">Invalid sim card selected, check settings</string>
     <string name="ussd_code">USSD code</string>
     <string name="subscription_id">Sim card</string>
-    <string name="subscription_summary">Change default sim card</string>
     <string name="ussd_code_summary">The app queries the USSD code %s to get the current balance</string>
     <string name="ussd_code_default" translatable="false"/>
     <string name="general">General</string>

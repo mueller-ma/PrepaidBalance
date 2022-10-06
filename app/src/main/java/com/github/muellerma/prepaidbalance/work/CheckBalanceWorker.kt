@@ -104,11 +104,7 @@ class CheckBalanceWorker(
                     .deleteBefore(System.currentTimeMillis() - 6L * 30 * 24 * 60 * 60 * 1000)
             }
 
-            if (ActivityCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
+            if (!context.hasPermission(Manifest.permission.CALL_PHONE)) {
                 return callback(CheckResult.MISSING_PERMISSIONS, null)
             }
 

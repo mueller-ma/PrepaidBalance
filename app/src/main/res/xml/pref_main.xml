@@ -11,7 +11,7 @@
         <ListPreference
             android:key="subscription_id"
             android:title="@string/subscription_id"
-            android:summary="@string/subscription_summary"/>
+            app:useSimpleSummaryProvider="true" />
         <SwitchPreferenceCompat
             android:key="periodic_checks"
             android:defaultValue="false"

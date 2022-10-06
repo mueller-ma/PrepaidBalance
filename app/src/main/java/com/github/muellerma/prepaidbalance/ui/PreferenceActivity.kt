@@ -20,6 +20,7 @@ import androidx.work.WorkManager
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityPreferenceBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
+import com.github.muellerma.prepaidbalance.utils.hasPermission
 import com.github.muellerma.prepaidbalance.utils.isValidUssdCode
 import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
@@ -56,7 +57,6 @@ class PreferenceActivity : AppCompatActivity() {
 
 
     class MainSettingsFragment : PreferenceFragmentCompat() {
-
         private val requestPermissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted ->
@@ -83,11 +83,7 @@ class PreferenceActivity : AppCompatActivity() {
                 }
             }
 
-            if (ActivityCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.READ_PHONE_STATE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
+            if (requireContext().hasPermission(Manifest.permission.READ_PHONE_STATE)) {
                 addSubscriptionList()
             } else {
                 getPreference("subscription_id").isEnabled = false
@@ -161,11 +157,9 @@ class PreferenceActivity : AppCompatActivity() {
         }
 
         private fun addSubscriptionList() {
-            if (ActivityCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.READ_PHONE_STATE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) return
+            if (!requireContext().hasPermission(Manifest.permission.READ_PHONE_STATE)) {
+                return
+            }
             val subscriptionManager = requireContext().getSystemService(SubscriptionManager::class.java)
             val (subscriptionIds, carrierNames) = subscriptionManager.activeSubscriptionInfoList.let { subscriptions ->
                 val subscriptionIds = subscriptions.map { "${it.subscriptionId}" }.toTypedArray()

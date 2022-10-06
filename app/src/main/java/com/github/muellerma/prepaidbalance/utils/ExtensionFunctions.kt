@@ -4,11 +4,13 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.text.format.DateFormat
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.core.app.ActivityCompat
 import androidx.preference.PreferenceManager
 import com.github.muellerma.prepaidbalance.R
 
@@ -48,3 +50,6 @@ fun Context.showToast(@StringRes msg: Int) {
         .makeText(this, msg, Toast.LENGTH_SHORT)
         .show()
 }
+
+fun Context.hasPermission(permission: String) =
+    ActivityCompat.checkSelfPermission(this, permission ) == PackageManager.PERMISSION_GRANTED
