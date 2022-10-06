@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.telephony.SubscriptionManager
 import android.text.InputType
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -55,6 +56,15 @@ class PreferenceActivity : AppCompatActivity() {
 
 
     class MainSettingsFragment : PreferenceFragmentCompat() {
+
+        private val requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            if (isGranted) {
+                addSubscriptionList()
+            }
+        }
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             addPreferencesFromResource(R.xml.pref_main)
 
@@ -73,20 +83,15 @@ class PreferenceActivity : AppCompatActivity() {
                 }
             }
 
-            if (ActivityCompat.checkSelfPermission(requireContext(),
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
                     Manifest.permission.READ_PHONE_STATE
-                ) == PackageManager.PERMISSION_GRANTED) {
-
-                val subscriptionManager = requireContext().getSystemService(SubscriptionManager::class.java)
-                val (subscriptionIds, carrierNames) = subscriptionManager.activeSubscriptionInfoList.let { subscriptions ->
-                    val subscriptionIds = subscriptions.map { "${it.subscriptionId}" }.toTypedArray()
-                    val carrierNames = subscriptions.map { it.carrierName }.toTypedArray()
-                    subscriptionIds to carrierNames
-                }
-
-                val subscriptionIdPref = getPreference("subscription_id") as ListPreference
-                subscriptionIdPref.entries = carrierNames
-                subscriptionIdPref.entryValues = subscriptionIds
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                addSubscriptionList()
+            } else {
+                getPreference("subscription_id").isEnabled = false
+                requestPermissionLauncher.launch(Manifest.permission.READ_PHONE_STATE)
             }
 
             val workPref = getPreference("periodic_checks")
@@ -153,6 +158,25 @@ class PreferenceActivity : AppCompatActivity() {
                     true
                 }
             }
+        }
+
+        private fun addSubscriptionList() {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_PHONE_STATE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) return
+            val subscriptionManager = requireContext().getSystemService(SubscriptionManager::class.java)
+            val (subscriptionIds, carrierNames) = subscriptionManager.activeSubscriptionInfoList.let { subscriptions ->
+                val subscriptionIds = subscriptions.map { "${it.subscriptionId}" }.toTypedArray()
+                val carrierNames = subscriptions.map { it.carrierName }.toTypedArray()
+                subscriptionIds to carrierNames
+            }
+
+            val subscriptionIdPref = getPreference("subscription_id") as ListPreference
+            subscriptionIdPref.isEnabled = true
+            subscriptionIdPref.entries = carrierNames
+            subscriptionIdPref.entryValues = subscriptionIds
         }
     }
 }
