@@ -51,5 +51,8 @@ fun Context.showToast(@StringRes msg: Int) {
         .show()
 }
 
-fun Context.hasPermission(permission: String) =
-    ActivityCompat.checkSelfPermission(this, permission ) == PackageManager.PERMISSION_GRANTED
+fun Context.hasPermissions(vararg permissions: String): Boolean {
+    return permissions
+        .map { permission -> ActivityCompat.checkSelfPermission(this, permission) }
+        .all { result -> result == PackageManager.PERMISSION_GRANTED }
+}

@@ -3,7 +3,6 @@ package com.github.muellerma.prepaidbalance.ui
 import android.Manifest.permission.CALL_PHONE
 import android.Manifest.permission.READ_PHONE_STATE
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,7 +14,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
@@ -25,7 +23,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityMainBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
-import com.github.muellerma.prepaidbalance.utils.hasPermission
+import com.github.muellerma.prepaidbalance.utils.hasPermissions
 import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
@@ -188,7 +186,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
 
     private fun setDefaultSubscriptionId() {
         val subscriptionManager = getSystemService(SubscriptionManager::class.java)
-        if (hasPermission(READ_PHONE_STATE)) {
+        if (hasPermissions(READ_PHONE_STATE)) {
             val defaultSubscriptionId = subscriptionManager.activeSubscriptionInfoList.firstOrNull()?.subscriptionId
             prefs().edit {
                 putString("subscription_id", "$defaultSubscriptionId")

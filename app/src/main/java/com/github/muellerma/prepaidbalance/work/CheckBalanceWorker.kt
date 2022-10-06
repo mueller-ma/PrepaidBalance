@@ -5,14 +5,12 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.Looper
 import android.telephony.TelephonyManager
 import android.telephony.TelephonyManager.USSD_ERROR_SERVICE_UNAVAIL
 import android.telephony.TelephonyManager.USSD_RETURN_FAILURE
 import android.util.Log
-import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
 import androidx.work.*
 import com.github.muellerma.prepaidbalance.R
@@ -104,7 +102,7 @@ class CheckBalanceWorker(
                     .deleteBefore(System.currentTimeMillis() - 6L * 30 * 24 * 60 * 60 * 1000)
             }
 
-            if (!context.hasPermission(Manifest.permission.CALL_PHONE)) {
+            if (!context.hasPermissions(Manifest.permission.CALL_PHONE, Manifest.permission.READ_PHONE_STATE)) {
                 return callback(CheckResult.MISSING_PERMISSIONS, null)
             }
 

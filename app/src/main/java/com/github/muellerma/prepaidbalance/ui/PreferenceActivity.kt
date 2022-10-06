@@ -1,7 +1,6 @@
 package com.github.muellerma.prepaidbalance.ui
 
 import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.telephony.SubscriptionManager
 import android.text.InputType
@@ -9,7 +8,6 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
 import androidx.fragment.app.commit
 import androidx.preference.EditTextPreference
@@ -20,7 +18,7 @@ import androidx.work.WorkManager
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityPreferenceBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
-import com.github.muellerma.prepaidbalance.utils.hasPermission
+import com.github.muellerma.prepaidbalance.utils.hasPermissions
 import com.github.muellerma.prepaidbalance.utils.isValidUssdCode
 import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
@@ -83,7 +81,7 @@ class PreferenceActivity : AppCompatActivity() {
                 }
             }
 
-            if (requireContext().hasPermission(Manifest.permission.READ_PHONE_STATE)) {
+            if (requireContext().hasPermissions(Manifest.permission.READ_PHONE_STATE)) {
                 addSubscriptionList()
             } else {
                 getPreference("subscription_id").isEnabled = false
@@ -157,7 +155,7 @@ class PreferenceActivity : AppCompatActivity() {
         }
 
         private fun addSubscriptionList() {
-            if (!requireContext().hasPermission(Manifest.permission.READ_PHONE_STATE)) {
+            if (!requireContext().hasPermissions(Manifest.permission.READ_PHONE_STATE)) {
                 return
             }
             val subscriptionManager = requireContext().getSystemService(SubscriptionManager::class.java)
