@@ -16,9 +16,13 @@
     <string name="channel_name_balance_increased">היתרה הוגדלה</string>
     <string name="channel_name_threshold_reached">הגעת לסף</string>
     <string name="invalid_ussd_code">הוקלד קוד USSD שגוי</string>
+    <string name="invalid_subscription">נבחר כרטיס SIM שגוי, יש לבדוק את ההגדרות</string>
     <string name="ussd_code">קוד USSD</string>
+    <string name="subscription_id">כרטיס SIM</string>
+    <string name="ussd_code_summary">היישומון מתשאל את קוד ה־USSD‏ %s כדי לקבל את היתרה הנוכחית</string>
     <string name="general">כללי</string>
     <string name="clear_current_data">ניקוי כל הנתונים</string>
+    <string name="no_data_hint">יש להחליק כדי מטה כדי לקבל את יתרת הסכום בתשלום מראש. קודם לכן, כדאי לבדוק את קוד ה־USSD שהוגדר.</string>
     <string name="clear_current_data_summary">נתונים שגילם עולה על חצי שנה נמחקים אוטומטית</string>
     <string name="channel_name_error">שגיאה</string>
     <string name="duplicates">לא לשמור ערכים כפולים</string>
@@ -32,6 +36,8 @@
     <string name="copied_to_clipboard">הועתק ללוח הגזירים</string>
     <string name="retry">ניסיון חוזר</string>
     <string name="confirm_first_request">תוגש בקשת USSD אל %s</string>
+    <string name="close">סגירה</string>
+    <string name="no_response_saved">לא נשמרה תגובה</string>
     <!-- About menu -->
     <string name="about">על יתרה מראש</string>
     <string name="error_no_browser_found">לא נמצא דפדפן</string>
