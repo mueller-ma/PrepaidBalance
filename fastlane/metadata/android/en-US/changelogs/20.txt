@@ -1,0 +1,1 @@
+Add setting to select sim card
