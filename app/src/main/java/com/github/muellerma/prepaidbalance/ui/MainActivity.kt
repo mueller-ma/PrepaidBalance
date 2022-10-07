@@ -1,10 +1,12 @@
 package com.github.muellerma.prepaidbalance.ui
 
-import android.Manifest
+import android.Manifest.permission.CALL_PHONE
+import android.Manifest.permission.READ_PHONE_STATE
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.telephony.SubscriptionManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -21,6 +23,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityMainBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
+import com.github.muellerma.prepaidbalance.utils.hasPermissions
 import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
@@ -39,10 +42,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     private lateinit var database: AppDatabase
     private var databaseLoaded = false
     private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { isGranted: Map<String, Boolean> ->
+        if (isGranted.all { it.value }) {
             binding.swiperefresh.isRefreshing = true
+            setDefaultSubscriptionId()
             onRefresh()
         } else {
             showSnackbar(R.string.permissions_required)
@@ -168,11 +172,24 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
                     showSnackbar(R.string.ussd_failed)
                 }
                 CheckResult.MISSING_PERMISSIONS -> {
-                    requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
+                    requestPermissionLauncher.launch(arrayOf(CALL_PHONE, READ_PHONE_STATE))
                 }
                 CheckResult.USSD_INVALID -> {
                     showSnackbar(R.string.invalid_ussd_code)
                 }
+                CheckResult.SUBSCRIPTION_INVALID -> {
+                    showSnackbar(R.string.invalid_subscription)
+                }
+            }
+        }
+    }
+
+    private fun setDefaultSubscriptionId() {
+        val subscriptionManager = getSystemService(SubscriptionManager::class.java)
+        if (hasPermissions(READ_PHONE_STATE)) {
+            val defaultSubscriptionId = subscriptionManager.activeSubscriptionInfoList.firstOrNull()?.subscriptionId
+            prefs().edit {
+                putString("subscription_id", "$defaultSubscriptionId")
             }
         }
     }

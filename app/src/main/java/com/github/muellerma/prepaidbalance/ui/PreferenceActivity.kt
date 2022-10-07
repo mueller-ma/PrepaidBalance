@@ -1,19 +1,24 @@
 package com.github.muellerma.prepaidbalance.ui
 
+import android.Manifest
 import android.os.Bundle
+import android.telephony.SubscriptionManager
 import android.text.InputType
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.fragment.app.commit
 import androidx.preference.EditTextPreference
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.work.WorkManager
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityPreferenceBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
+import com.github.muellerma.prepaidbalance.utils.hasPermissions
 import com.github.muellerma.prepaidbalance.utils.isValidUssdCode
 import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
@@ -50,6 +55,14 @@ class PreferenceActivity : AppCompatActivity() {
 
 
     class MainSettingsFragment : PreferenceFragmentCompat() {
+        private val requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            if (isGranted) {
+                addSubscriptionList()
+            }
+        }
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             addPreferencesFromResource(R.xml.pref_main)
 
@@ -66,6 +79,13 @@ class PreferenceActivity : AppCompatActivity() {
                 } else {
                     getString(R.string.ussd_code_summary, currentValue)
                 }
+            }
+
+            if (requireContext().hasPermissions(Manifest.permission.READ_PHONE_STATE)) {
+                addSubscriptionList()
+            } else {
+                getPreference("subscription_id").isEnabled = false
+                requestPermissionLauncher.launch(Manifest.permission.READ_PHONE_STATE)
             }
 
             val workPref = getPreference("periodic_checks")
@@ -132,6 +152,23 @@ class PreferenceActivity : AppCompatActivity() {
                     true
                 }
             }
+        }
+
+        private fun addSubscriptionList() {
+            if (!requireContext().hasPermissions(Manifest.permission.READ_PHONE_STATE)) {
+                return
+            }
+            val subscriptionManager = requireContext().getSystemService(SubscriptionManager::class.java)
+            val (subscriptionIds, carrierNames) = subscriptionManager.activeSubscriptionInfoList.let { subscriptions ->
+                val subscriptionIds = subscriptions.map { "${it.subscriptionId}" }.toTypedArray()
+                val carrierNames = subscriptions.map { it.carrierName }.toTypedArray()
+                subscriptionIds to carrierNames
+            }
+
+            val subscriptionIdPref = getPreference("subscription_id") as ListPreference
+            subscriptionIdPref.isEnabled = true
+            subscriptionIdPref.entries = carrierNames
+            subscriptionIdPref.entryValues = subscriptionIds
         }
     }
 }

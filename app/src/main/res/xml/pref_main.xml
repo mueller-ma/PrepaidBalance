@@ -8,6 +8,10 @@
             android:key="ussd_code"
             android:defaultValue="@string/ussd_code_default"
             android:title="@string/ussd_code" />
+        <ListPreference
+            android:key="subscription_id"
+            android:title="@string/subscription_id"
+            app:useSimpleSummaryProvider="true" />
         <SwitchPreferenceCompat
             android:key="periodic_checks"
             android:defaultValue="false"

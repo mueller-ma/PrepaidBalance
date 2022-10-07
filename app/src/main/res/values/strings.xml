@@ -18,7 +18,9 @@
     <string name="channel_name_balance_increased">Balance increased</string>
     <string name="channel_name_threshold_reached">Threshold reached</string>
     <string name="invalid_ussd_code">Invalid USSD code entered</string>
+    <string name="invalid_subscription">Invalid sim card selected, check settings</string>
     <string name="ussd_code">USSD code</string>
+    <string name="subscription_id">Sim card</string>
     <string name="ussd_code_summary">The app queries the USSD code %s to get the current balance</string>
     <string name="ussd_code_default" translatable="false"/>
     <string name="general">General</string>

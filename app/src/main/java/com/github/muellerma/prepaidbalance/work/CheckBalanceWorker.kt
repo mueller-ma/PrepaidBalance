@@ -5,14 +5,12 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.Looper
 import android.telephony.TelephonyManager
 import android.telephony.TelephonyManager.USSD_ERROR_SERVICE_UNAVAIL
 import android.telephony.TelephonyManager.USSD_RETURN_FAILURE
 import android.util.Log
-import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
 import androidx.work.*
 import com.github.muellerma.prepaidbalance.R
@@ -43,6 +41,7 @@ class CheckBalanceWorker(
                     CheckResult.USSD_FAILED -> context.getString(R.string.ussd_failed)
                     CheckResult.MISSING_PERMISSIONS -> context.getString(R.string.permissions_required)
                     CheckResult.PARSER_FAILED -> context.getString(R.string.unable_get_balance, data)
+                    CheckResult.SUBSCRIPTION_INVALID -> context.getString(R.string.invalid_ussd_code)
                     CheckResult.USSD_INVALID -> context.getString(R.string.invalid_ussd_code)
                     CheckResult.OK -> null
                 }
@@ -103,11 +102,7 @@ class CheckBalanceWorker(
                     .deleteBefore(System.currentTimeMillis() - 6L * 30 * 24 * 60 * 60 * 1000)
             }
 
-            if (ActivityCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
+            if (!context.hasPermissions(Manifest.permission.CALL_PHONE, Manifest.permission.READ_PHONE_STATE)) {
                 return callback(CheckResult.MISSING_PERMISSIONS, null)
             }
 
@@ -155,8 +150,13 @@ class CheckBalanceWorker(
                 return callback(CheckResult.USSD_INVALID, null)
             }
 
+            val subscriptionId = context.prefs().getString("subscription_id", "")
+                .orEmpty().toIntOrNull() ?: return callback(CheckResult.SUBSCRIPTION_INVALID, null)
+
+            Log.d(TAG, "SubscriptionId selected: $subscriptionId")
             Log.d(TAG, "Send USSD request to $ussdCode")
             context.getSystemService(TelephonyManager::class.java)
+                .createForSubscriptionId(subscriptionId)
                 .sendUssdRequest(
                     ussdCode,
                     ussdResponseCallback,
@@ -274,6 +274,7 @@ class CheckBalanceWorker(
             MISSING_PERMISSIONS,
             PARSER_FAILED,
             USSD_FAILED,
+            SUBSCRIPTION_INVALID,
             USSD_INVALID
         }
     }
