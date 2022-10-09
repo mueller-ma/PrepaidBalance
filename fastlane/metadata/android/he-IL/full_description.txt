@@ -1,2 +1,2 @@
-יישומון זה עוקב אחר יתרת התשלום מראש. It can automatically record it and post a notification if your balance drops under a configurable threshold.
-It does so by parsing the response of a USSD code, that can be set in the settings.
+יישומון זה עוקב אחר יתרת התשלום מראש. יכול לתעד ולפרסם התראה אם היתרה שלך צונחת מתחת לסף שהגדרת.
+הוא עושה את זה על ידי פענוח התגובה של קוד USSD אותו ניתן להגדיר בהגדרות.
