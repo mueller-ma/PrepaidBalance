@@ -29,6 +29,9 @@ class ResponseParser {
             Matcher("Generic CHF", "^(.*?)((\\d)+\\.(\\d){1,2}) CHF(.*?)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
+            Matcher("Generic Pound", "^(.*?)£((\\d)+\\.?(\\d)?(\\d)?)(.*)[ .](.*)\$".toRegex()) { groups ->
+                return@Matcher parseRegexGroupAsDouble(groups, 2)
+            },
             Matcher("Generic", "^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
