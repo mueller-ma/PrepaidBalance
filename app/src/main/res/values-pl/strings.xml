@@ -25,7 +25,6 @@
     <string name="channel_name_error">Błąd</string>
     <string name="duplicates">Nie zapisuj takich samych wartości</string>
     <string name="debug">Rozwiązywanie problemów</string>
-    <string name="debug_provider_details">Szczegóły operatora</string>
     <string name="debug_last_ussd_response">Ostatnia odpowiedź USSD</string>
     <string name="debug_last_ussd_response_none">Nie wykonano jeszcze żadnego wywołania</string>
     <string name="debug_last_ussd_response_invalid">Ostatnie wywołanie nie powiodło się z kodem %d</string>
