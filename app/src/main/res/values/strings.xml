@@ -30,7 +30,7 @@
     <string name="channel_name_error">Error</string>
     <string name="duplicates">Don\'t save duplicate values</string>
     <string name="debug">Troubleshooting</string>
-    <string name="debug_provider_details">Provider details</string>
+    <string name="debug_provider_details">Default provider details</string>
     <string name="debug_last_ussd_response">Last USSD response</string>
     <string name="debug_last_ussd_response_none">No request has been made yet</string>
     <string name="debug_last_ussd_response_invalid">Last request failed with code %d</string>
