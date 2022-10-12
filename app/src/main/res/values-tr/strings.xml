@@ -23,7 +23,6 @@
     <string name="channel_name_error">Hata</string>
     <string name="duplicates">Yinelenen değerleri kaydetme</string>
     <string name="debug">Sorun giderme</string>
-    <string name="debug_provider_details">Sağlayıcı ayrıntıları</string>
     <string name="debug_last_ussd_response">Son USSD yanıtı</string>
     <string name="debug_last_ussd_response_none">Henüz bir talepte bulunulmadı</string>
     <string name="debug_last_ussd_response_invalid">Son istek %d koduyla başarısız oldu</string>
