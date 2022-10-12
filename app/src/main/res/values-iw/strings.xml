@@ -27,6 +27,7 @@
     <string name="channel_name_error">שגיאה</string>
     <string name="duplicates">לא לשמור ערכים כפולים</string>
     <string name="debug">פתרון תקלות</string>
+    <string name="debug_provider_details">נתוני ספק ברירת מחדל</string>
     <string name="debug_last_ussd_response">תגובת ה־USSD האחרונה</string>
     <string name="debug_last_ussd_response_none">עדיין לא הוגשה אף בקשה</string>
     <string name="debug_last_ussd_response_invalid">הבקשה האחרונה נכשלה עם הקוד %d</string>
