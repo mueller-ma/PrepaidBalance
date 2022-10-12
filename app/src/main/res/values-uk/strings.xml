@@ -25,7 +25,6 @@
     <string name="channel_name_error">Помилка</string>
     <string name="duplicates">Не зберігайте повторювані значення</string>
     <string name="debug">Вирішення проблем</string>
-    <string name="debug_provider_details">Інформація про постачальника</string>
     <string name="debug_last_ussd_response">Остання відповідь USSD</string>
     <string name="debug_last_ussd_response_none">Жодного запиту ще не було</string>
     <string name="debug_last_ussd_response_invalid">Помилка останнього запиту з кодом %d</string>
