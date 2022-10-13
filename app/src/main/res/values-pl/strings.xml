@@ -16,7 +16,9 @@
     <string name="channel_name_balance_increased">Saldo wzrosło</string>
     <string name="channel_name_threshold_reached">Osiągnięto próg</string>
     <string name="invalid_ussd_code">Wprowadzono nieprawidłowy kod USSD</string>
+    <string name="invalid_subscription">Wybrano nieprawidłową kartę SIM, sprawdź ustawienia</string>
     <string name="ussd_code">Kod USSD</string>
+    <string name="subscription_id">Karta SIM</string>
     <string name="ussd_code_summary">Aplikacja zapytuje o kod USSD %s, aby uzyskać bieżące saldo</string>
     <string name="general">Ogólne</string>
     <string name="clear_current_data">Wyczyść wszystkie dane</string>
@@ -25,7 +27,7 @@
     <string name="channel_name_error">Błąd</string>
     <string name="duplicates">Nie zapisuj takich samych wartości</string>
     <string name="debug">Rozwiązywanie problemów</string>
-    <string name="debug_provider_details">Szczegóły operatora</string>
+    <string name="debug_provider_details">Domyślne dane dostawcy</string>
     <string name="debug_last_ussd_response">Ostatnia odpowiedź USSD</string>
     <string name="debug_last_ussd_response_none">Nie wykonano jeszcze żadnego wywołania</string>
     <string name="debug_last_ussd_response_invalid">Ostatnie wywołanie nie powiodło się z kodem %d</string>
@@ -34,6 +36,8 @@
     <string name="copied_to_clipboard">Skopiowano do schowka</string>
     <string name="retry">Spróbuj ponownie</string>
     <string name="confirm_first_request">Wywołanie USSD zostanie wysłane do %s</string>
+    <string name="close">Zamknij</string>
+    <string name="no_response_saved">Nie zapisano odpowiedzi</string>
     <!-- About menu -->
     <string name="about">O aplikacji Stan Konta</string>
     <string name="error_no_browser_found">Nie znaleziono przeglądarki</string>

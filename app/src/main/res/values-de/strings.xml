@@ -16,7 +16,9 @@
     <string name="channel_name_balance_increased">Guthaben erhöht</string>
     <string name="channel_name_threshold_reached">Schwellenwert erreicht</string>
     <string name="invalid_ussd_code">Ungültiger USSD-Code eingegeben</string>
+    <string name="invalid_subscription">Ungültige SIM-Karte ausgewählt, überprüfe die Einstellungen</string>
     <string name="ussd_code">USSD-Code</string>
+    <string name="subscription_id">SIM-Karte</string>
     <string name="ussd_code_summary">Die App fragt den USSD-Code %s ab, um das aktuelle Guthaben zu bekommen</string>
     <string name="general">Allgemein</string>
     <string name="clear_current_data">Alle Daten löschen</string>
@@ -25,7 +27,7 @@
     <string name="channel_name_error">Fehler</string>
     <string name="duplicates">Speichere keine doppelten Werte</string>
     <string name="debug">Fehlersuche</string>
-    <string name="debug_provider_details">Anbieterdetails</string>
+    <string name="debug_provider_details">Details des Standardanbieter</string>
     <string name="debug_last_ussd_response">Letzte USSD-Antwort</string>
     <string name="debug_last_ussd_response_none">Es wurde noch keine Anfrage gestellt</string>
     <string name="debug_last_ussd_response_invalid">Letzte Anfrage fehlgeschlagen mit Code %d</string>
@@ -34,6 +36,8 @@
     <string name="copied_to_clipboard">In Zwischenablage kopiert</string>
     <string name="retry">Wiederholen</string>
     <string name="confirm_first_request">Eine USSD-Anfrage wird an %s gestellt</string>
+    <string name="close">Schließen</string>
+    <string name="no_response_saved">Keine Antwort gespeichert</string>
     <!-- About menu -->
     <string name="about">Über Prepaid-Guthaben</string>
     <string name="error_no_browser_found">Kein Browser gefunden</string>
