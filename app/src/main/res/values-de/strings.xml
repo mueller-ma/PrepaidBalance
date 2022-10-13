@@ -27,6 +27,7 @@
     <string name="channel_name_error">Fehler</string>
     <string name="duplicates">Speichere keine doppelten Werte</string>
     <string name="debug">Fehlersuche</string>
+    <string name="debug_provider_details">Details des Standardanbieter</string>
     <string name="debug_last_ussd_response">Letzte USSD-Antwort</string>
     <string name="debug_last_ussd_response_none">Es wurde noch keine Anfrage gestellt</string>
     <string name="debug_last_ussd_response_invalid">Letzte Anfrage fehlgeschlagen mit Code %d</string>
