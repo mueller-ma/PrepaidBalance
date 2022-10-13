@@ -28,6 +28,9 @@ class ResponseParserTest {
         assertEquals(5.12, ResponseParser.getBalance("Current balance is 5,12 EUR"))
         assertEquals(5.12, ResponseParser.getBalance("Current balance is 5.12 EURO"))
         assertEquals(5.12, ResponseParser.getBalance("Current balance is 5.12 €"))
+        assertEquals(5.12, ResponseParser.getBalance("Current balance is 5,12 EUR."))
+        assertEquals(5.12, ResponseParser.getBalance("Current balance is 5.12 EURO."))
+        assertEquals(5.12, ResponseParser.getBalance("Current balance is 5.12 €."))
         assertEquals(5.12, ResponseParser.getBalance("Current balance is € 5.12"))
         assertEquals(5.12, ResponseParser.getBalance("Current balance is 5.12 USD"))
         assertEquals(5.12, ResponseParser.getBalance("Current balance is $ 5.12"))
@@ -101,11 +104,19 @@ class ResponseParserTest {
             12.34,
             ResponseParser.getBalance("Ihr Guthaben beträgt CHF 12.34")
         )
+        assertEquals(
+            12.34,
+            ResponseParser.getBalance("Ihr Guthaben beträgt CHF 12.34.")
+        )
 
         // O2 UK
         assertEquals(
             6.45,
             ResponseParser.getBalance("O2: Your balance is £6.45. Text BALANCE free to 20202 to check your remaining tariff and Bolt On allowances.")
+        )
+        assertEquals(
+            12.34,
+            ResponseParser.getBalance("O2: Your balance is £12.34. Text BALANCE free to 20202 to check your remaining tariff and Bolt On allowances.")
         )
     }
 }

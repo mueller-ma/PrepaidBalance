@@ -7,7 +7,7 @@ class ResponseParser {
         private val TAG = ResponseParser::class.java.simpleName
 
         private val MATCHERS = listOf(
-            Matcher("Kaufland mobil Germany", "^Dein Guthaben betraegt: ((\\d)+\\.(\\d){1,2})(.*)\$".toRegex()) { groups ->
+            Matcher("Kaufland mobil Germany", "Dein Guthaben betraegt: ((\\d)+\\.(\\d){1,2})(.*)".toRegex()) { groups ->
                 // Get full response (group 0) and split by whitespace
                 // Then convert each element to a double or filter it out.
                 val values = groups?.get(0)?.value
@@ -20,17 +20,14 @@ class ResponseParser {
             Matcher("T-Mobile US", "^(.*?)Account Balance \\\$((\\d)+\\.?(\\d)?(\\d)?)(.*)[ .](.*)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
-            Matcher("Generic Euro", "^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*) EUR[ .](.*)\$".toRegex()) { groups ->
+            Matcher("Generic currency after balance", "(.*?)((\\d)+\\.(\\d){1,2}) (EUR|EURO|PLN)[ .](.*)".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
-            Matcher("Generic PLN", "^(.*?)((\\d)+\\.(\\d){1,2}) PLN(.*?)\$".toRegex()) { groups ->
-                return@Matcher parseRegexGroupAsDouble(groups, 2)
+            Matcher("Generic currency before balance, separated by whitespace", "(.*?) (CHF) ((\\d)+\\.(\\d){1,2})(.*)".toRegex()) { groups ->
+                return@Matcher parseRegexGroupAsDouble(groups, 3)
             },
-            Matcher("Generic CHF", "^(.*?)((\\d)+\\.(\\d){1,2}) CHF(.*?)\$".toRegex()) { groups ->
-                return@Matcher parseRegexGroupAsDouble(groups, 2)
-            },
-            Matcher("Generic Pound", "^(.*?)£((\\d)+\\.?(\\d)?(\\d)?)(.*)[ .](.*)\$".toRegex()) { groups ->
-                return@Matcher parseRegexGroupAsDouble(groups, 2)
+            Matcher("Generic currency before balance", "(.*?) (£|\$)((\\d)+\\.(\\d){1,2})(.*)".toRegex()) { groups ->
+                return@Matcher parseRegexGroupAsDouble(groups, 3)
             },
             Matcher("Generic", "^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
@@ -47,19 +44,18 @@ class ResponseParser {
 
             MATCHERS.forEach { matcher ->
                 Log.d(TAG, "Check matcher $matcher")
-                if (withDots.matches(matcher.regex)) {
-                    val groups = matcher
-                        .regex
-                        .matchEntire(withDots)
-                        ?.groups
-                    groups?.forEachIndexed { index, matchGroup ->
-                        println("Matcher ${matcher.name}: Index '$index' ${matchGroup?.value}")
-                    }
-                    val balance = matcher.process(groups)
-                    Log.d(TAG, "Found balance $balance")
-
-                    return balance
+                val groups = matcher
+                    .regex
+                    .matchEntire(withDots)
+                    ?.groups
+                    ?: return@forEach
+                groups.forEachIndexed { index, matchGroup ->
+                    println("Matcher ${matcher.name}: Index '$index' ${matchGroup?.value}")
                 }
+                val balance = matcher.process(groups)
+                Log.d(TAG, "Found balance $balance")
+
+                return balance
             }
 
             return null
