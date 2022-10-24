@@ -125,9 +125,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     override fun onRefresh() {
         Log.d(TAG, "onRefresh()")
 
-        if (!prefs().getBoolean("confirmed_first_request", false)) {
-            val ussdCode = prefs().getString("ussd_code", "")
-            val message = if (ussdCode.isNullOrEmpty()) {
+        if (!prefs().confirmedFirstRequest) {
+            val ussdCode = prefs().ussdCode
+            val message = if (ussdCode.isEmpty()) {
                 getString(R.string.invalid_ussd_code)
             } else {
                 getString(R.string.confirm_first_request, ussdCode)
@@ -140,9 +140,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
                 }
                 .setPositiveButton(android.R.string.ok) { _, _ ->
                     Log.d(TAG, "Confirmed request")
-                    prefs().edit {
-                        putBoolean("confirmed_first_request", true)
-                    }
+                    prefs().confirmedFirstRequest = true
                     onRefresh()
                 }
                 .show()
@@ -188,9 +186,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
         val subscriptionManager = getSystemService(SubscriptionManager::class.java)
         if (hasPermissions(READ_PHONE_STATE)) {
             val defaultSubscriptionId = subscriptionManager.activeSubscriptionInfoList.firstOrNull()?.subscriptionId
-            prefs().edit {
-                putString("subscription_id", "$defaultSubscriptionId")
-            }
+            prefs().subscriptionId = defaultSubscriptionId
         }
     }
 
