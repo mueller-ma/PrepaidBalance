@@ -7,6 +7,9 @@
     <string name="permissions_required">Wymagane jest uprawnienie \"Telefon\"</string>
     <string name="preferences">Ustawienia</string>
     <string name="periodic_checks_title">Okresowo sprawdzaj saldo</string>
+    <string name="periodic_checks_rate_four_times_a_day">Cztery razy dziennie</string>
+    <string name="periodic_checks_rate_twice_a_day">Dwa razy dziennie</string>
+    <string name="periodic_checks_rate_once_a_week">Raz w tygodniu</string>
     <string name="notify_balance_increased_title">Saldo wzrosło</string>
     <string name="notify_balance_under_threshold_title">Saldo poniżej progu</string>
     <string name="notify_balance_under_threshold_value_title">Próg</string>
