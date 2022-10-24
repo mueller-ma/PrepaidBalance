@@ -4,14 +4,12 @@ import android.Manifest
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Looper
 import android.telephony.TelephonyManager
 import android.telephony.TelephonyManager.USSD_ERROR_SERVICE_UNAVAIL
 import android.telephony.TelephonyManager.USSD_RETURN_FAILURE
 import android.util.Log
-import androidx.core.content.edit
 import androidx.work.*
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.room.AppDatabase
@@ -114,9 +112,7 @@ class CheckBalanceWorker(
                 ) {
                     Log.d(TAG, "onReceiveUssdResponse($response)")
 
-                    context.prefs().edit {
-                        putString("last_ussd_response", response?.toString())
-                    }
+                    context.prefs().lastUssdResponse = response?.toString()
 
                     val balance = ResponseParser.getBalance(response as String?)
                         ?: return callback(CheckResult.PARSER_FAILED, response)
@@ -137,21 +133,19 @@ class CheckBalanceWorker(
                         else -> context.getString(R.string.debug_last_ussd_response_invalid, failureCode)
                     }
 
-                    context.prefs().edit {
-                        putString("last_ussd_response", errorMessage)
-                    }
+                    context.prefs().lastUssdResponse = errorMessage
 
                     return callback(CheckResult.USSD_FAILED, null)
                 }
             }
 
-            val ussdCode = context.prefs().getString("ussd_code", "").orEmpty()
+            val ussdCode = context.prefs().ussdCode
             if (!ussdCode.isValidUssdCode()) {
                 return callback(CheckResult.USSD_INVALID, null)
             }
 
-            val subscriptionId = context.prefs().getString("subscription_id", "")
-                .orEmpty().toIntOrNull() ?: return callback(CheckResult.SUBSCRIPTION_INVALID, null)
+            val subscriptionId = context.prefs().subscriptionId
+                ?: return callback(CheckResult.SUBSCRIPTION_INVALID, null)
 
             Log.d(TAG, "SubscriptionId selected: $subscriptionId")
             Log.d(TAG, "Send USSD request to $ussdCode")
@@ -195,13 +189,13 @@ class CheckBalanceWorker(
         }
 
         private fun removeDuplicatesIfRequired(
-            prefs: SharedPreferences,
+            prefs: Prefs,
             database: AppDatabase,
             new: BalanceEntry,
             latestInDb: BalanceEntry?
         ) {
             if (
-                prefs.getBoolean("no_duplicates", true) &&
+                prefs.noDuplicates &&
                 latestInDb?.balance == new.balance
             ) {
                 Log.d(TAG, "Remove $latestInDb from db")
@@ -210,21 +204,13 @@ class CheckBalanceWorker(
         }
 
         private fun showThresholdIfRequired(
-            prefs: SharedPreferences,
+            prefs: Prefs,
             new: BalanceEntry,
             context: Context
         ) {
-            val threshold = try {
-                prefs
-                    .getString("notify_balance_under_threshold_value", "")
-                    ?.replace(',', '.')
-                    ?.toDouble() ?: Double.MAX_VALUE
-            } catch (e: Exception) {
-                Double.MAX_VALUE
-            }
+            val threshold = prefs.notifyBalanceUnderThresholdValue
             if (
-                prefs.getBoolean("notify_balance_under_threshold", false) &&
-                new.balance < threshold
+                prefs.notifyBalanceUnderThreshold && new.balance < threshold
             ) {
                 Log.d(TAG, "Below threshold")
                 val notification = getBaseNotification(context, CHANNEL_ID_THRESHOLD_REACHED)
@@ -243,12 +229,12 @@ class CheckBalanceWorker(
 
         private fun showBalancedIncreasedIfRequired(
             context: Context,
-            prefs: SharedPreferences,
+            prefs: Prefs,
             latestInDb: BalanceEntry?,
             new: BalanceEntry
         ) {
             if (
-                prefs.getBoolean("notify_balance_increased", false) &&
+                prefs.notifyBalanceIncreased &&
                 latestInDb != null &&
                 new.balance > latestInDb.balance
             ) {

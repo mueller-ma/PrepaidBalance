@@ -73,11 +73,12 @@ class PreferenceActivity : AppCompatActivity() {
 
             val ussdCodePreference = getPreference("ussd_code")
             ussdCodePreference.setSummaryProvider { pref ->
-                val currentValue = pref.sharedPreferences!!.getString(pref.key, "").orEmpty()
-                if (!currentValue.isValidUssdCode()) {
-                    getString(R.string.invalid_ussd_code)
-                } else {
+                val context = pref.context
+                val currentValue = context.prefs().ussdCode
+                if (currentValue.isValidUssdCode()) {
                     getString(R.string.ussd_code_summary, currentValue)
+                } else {
+                    getString(R.string.invalid_ussd_code)
                 }
             }
 
@@ -123,15 +124,14 @@ class PreferenceActivity : AppCompatActivity() {
                 val config = preferenceManager.context.resources.configuration
                 val codes = "MCC: ${config.mcc}\nMNC: ${config.mnc}"
                 summary = codes
-                context.prefs().edit {
-                    // Set as value to make it accessible to CopyToClipboardClickHandler
-                    putString("provider_codes", codes)
-                }
+                // Set as value to make it accessible to CopyToClipboardClickHandler
+                context.prefs().providerCodes = codes
                 onPreferenceClickListener = CopyToClipboardClickHandler()
             }
 
             getPreference("last_ussd_response").apply {
-                summary = context.prefs().getString("last_ussd_response", "")
+                summary = context.prefs().lastUssdResponse
+
                 onPreferenceClickListener = CopyToClipboardClickHandler()
             }
 
