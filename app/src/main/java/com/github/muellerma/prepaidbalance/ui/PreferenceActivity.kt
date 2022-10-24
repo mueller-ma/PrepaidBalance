@@ -2,19 +2,20 @@ package com.github.muellerma.prepaidbalance.ui
 
 import android.Manifest
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.telephony.SubscriptionManager
 import android.text.InputType
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
 import androidx.fragment.app.commit
 import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
 import androidx.preference.Preference
+import androidx.preference.Preference.OnPreferenceChangeListener
 import androidx.preference.PreferenceFragmentCompat
-import androidx.work.WorkManager
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityPreferenceBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
@@ -89,20 +90,16 @@ class PreferenceActivity : AppCompatActivity() {
                 requestPermissionLauncher.launch(Manifest.permission.READ_PHONE_STATE)
             }
 
-            val workPref = getPreference("periodic_checks")
-            workPref.setOnPreferenceChangeListener { _, newValue ->
-                val context = preferenceManager.context
-
-                if (newValue as Boolean) {
-                    CheckBalanceWorker.enqueue(context)
-                } else {
-                    WorkManager
-                        .getInstance(preferenceManager.context)
-                        .cancelAllWork()
+            val updateWorkerListener = OnPreferenceChangeListener { _, _ ->
+                Handler(Looper.getMainLooper()).post {
+                    CheckBalanceWorker.enqueueOrCancel(preferenceManager.context)
                 }
 
                 true
             }
+
+            getPreference("periodic_checks").onPreferenceChangeListener = updateWorkerListener
+            getPreference("periodic_checks_rate").onPreferenceChangeListener = updateWorkerListener
 
             val clearDataPref = getPreference("clear_data")
             clearDataPref.setOnPreferenceClickListener {

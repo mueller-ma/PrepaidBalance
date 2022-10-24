@@ -14,7 +14,7 @@ class RetryBroadcastReceiver : BroadcastReceiver() {
             .manager(context)
             .cancel(NotificationUtils.NOTIFICATION_ID_ERROR)
 
-        CheckBalanceWorker.enqueue(context)
+        CheckBalanceWorker.enqueueOrCancel(context)
     }
 
     companion object {

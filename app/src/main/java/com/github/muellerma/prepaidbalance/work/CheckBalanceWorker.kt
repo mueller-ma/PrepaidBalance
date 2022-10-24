@@ -74,11 +74,23 @@ class CheckBalanceWorker(
     companion object {
         private val TAG = CheckBalanceWorker::class.java.simpleName
 
-        fun enqueue(context: Context) {
+        fun enqueueOrCancel(context: Context) {
+            val enable = context.prefs().periodicCheck
+            val rate = context.prefs().periodicCheckRateHours
+            Log.d(TAG, "enqueue($enable, $rate)")
+            rate ?: return
+
+            if (!enable) {
+                WorkManager
+                    .getInstance(context)
+                    .cancelAllWork()
+                return
+            }
+
             WorkManager.getInstance(context).apply {
                 val request = PeriodicWorkRequest.Builder(
                     CheckBalanceWorker::class.java,
-                    Duration.ofHours(12)
+                    Duration.ofHours(rate)
                 )
                     .setConstraints(Constraints.NONE)
                     .build()

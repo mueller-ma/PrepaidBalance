@@ -9,6 +9,13 @@
     <string name="permissions_required">Phone permissions required</string>
     <string name="preferences">Settings</string>
     <string name="periodic_checks_title">Periodically check balance</string>
+    <string name="periodic_checks_rate_title">Rate</string>
+    <string name="periodic_checks_rate_four_times_a_day">Four times a day</string>
+    <string name="periodic_checks_rate_twice_a_day">Twice a day</string>
+    <string name="periodic_checks_rate_once_a_week">Once a week</string>
+    <string name="periodic_checks_rate_four_times_a_day_value" translatable="false">6</string>
+    <string name="periodic_checks_rate_twice_a_day_value" translatable="false">12</string>
+    <string name="periodic_checks_rate_once_a_week_value" translatable="false">168</string>
     <string name="notify_balance_increased_title">Balance increased</string>
     <string name="notify_balance_under_threshold_title">Balance under threshold</string>
     <string name="notify_balance_under_threshold_value_title">Threshold</string>

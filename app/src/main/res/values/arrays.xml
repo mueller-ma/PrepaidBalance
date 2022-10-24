@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="periodic_checks_rates">
+        <item>@string/periodic_checks_rate_four_times_a_day</item>
+        <item>@string/periodic_checks_rate_twice_a_day</item>
+        <item>@string/periodic_checks_rate_once_a_week</item>
+    </string-array>
+
+    <string-array name="periodic_checks_rates_values">
+        <item>@string/periodic_checks_rate_four_times_a_day_value</item>
+        <item>@string/periodic_checks_rate_twice_a_day_value</item>
+        <item>@string/periodic_checks_rate_once_a_week_value</item>
+    </string-array>
+</resources>

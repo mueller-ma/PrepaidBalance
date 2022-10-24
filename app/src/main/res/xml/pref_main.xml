@@ -12,10 +12,6 @@
             android:key="subscription_id"
             android:title="@string/subscription_id"
             app:useSimpleSummaryProvider="true" />
-        <SwitchPreferenceCompat
-            android:key="periodic_checks"
-            android:defaultValue="false"
-            android:title="@string/periodic_checks_title" />
         <Preference
             android:key="clear_data"
             android:title="@string/clear_current_data"
@@ -24,6 +20,21 @@
             android:key="no_duplicates"
             android:defaultValue="true"
             android:title="@string/duplicates" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/periodic_checks_title">
+        <SwitchPreferenceCompat
+            android:key="periodic_checks"
+            android:defaultValue="false"
+            android:title="@string/periodic_checks_title" />
+        <ListPreference
+            android:key="periodic_checks_rate"
+            android:title="@string/periodic_checks_rate_title"
+            android:entries="@array/periodic_checks_rates"
+            android:entryValues="@array/periodic_checks_rates_values"
+            android:defaultValue="@string/periodic_checks_rate_twice_a_day_value"
+            app:dependency="periodic_checks"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
     <PreferenceCategory

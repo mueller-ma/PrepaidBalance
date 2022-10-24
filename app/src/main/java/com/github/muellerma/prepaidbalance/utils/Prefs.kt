@@ -4,8 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
+import com.github.muellerma.prepaidbalance.R
 
-class Prefs(context: Context) {
+class Prefs(val context: Context) {
     val sharedPrefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     var confirmedFirstRequest: Boolean
@@ -57,6 +58,13 @@ class Prefs(context: Context) {
 
     val notifyBalanceIncreased: Boolean
         get() = sharedPrefs.getBoolean("notify_balance_increased", false)
+
+    val periodicCheckRateHours: Long?
+        get() = sharedPrefs.getStringOrEmpty("periodic_checks_rate").toLongOrNull() ?:
+            context.getString(R.string.periodic_checks_rate_twice_a_day_value).toLongOrNull()
+
+    val periodicCheck: Boolean
+        get() = sharedPrefs.getBoolean("periodic_checks", false)
 }
 
 fun Context.prefs() = Prefs(this)
