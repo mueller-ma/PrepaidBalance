@@ -17,11 +17,11 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">?isLightTheme</item>
         <item name="android:statusBarColor">?android:windowBackgroundFallback</item>
         <item name="android:navigationBarColor">?android:windowBackgroundFallback</item>
+        <item name="switchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Theme.App</item>
     </style>
-
 </resources>
