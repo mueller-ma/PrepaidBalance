@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="app_name" translatable="false">Prepaid Balance Debug</string>
+    <string name="app_name" translatable="false">Debug Prepaid Balance</string>
 </resources>
