@@ -7,6 +7,10 @@
     <string name="permissions_required">Telefon-Berechtigung benötigt</string>
     <string name="preferences">Einstellungen</string>
     <string name="periodic_checks_title">Regelmäßig Guthaben abfragen</string>
+    <string name="periodic_checks_rate_title">Intervall</string>
+    <string name="periodic_checks_rate_four_times_a_day">Viermal pro Tag</string>
+    <string name="periodic_checks_rate_twice_a_day">Zweimal pro Tag</string>
+    <string name="periodic_checks_rate_once_a_week">Einmal pro Woche</string>
     <string name="notify_balance_increased_title">Guthaben erhöht</string>
     <string name="notify_balance_under_threshold_title">Guthaben unter Schwellenwert</string>
     <string name="notify_balance_under_threshold_value_title">Schwellenwert</string>

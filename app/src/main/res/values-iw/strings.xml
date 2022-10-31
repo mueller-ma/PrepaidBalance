@@ -7,6 +7,9 @@
     <string name="permissions_required">נדרשות הרשאות לטלפון</string>
     <string name="preferences">הגדרות</string>
     <string name="periodic_checks_title">לבדוק את היתרה באופן שגרתי</string>
+    <string name="periodic_checks_rate_four_times_a_day">ארבע פעמים ביום</string>
+    <string name="periodic_checks_rate_twice_a_day">פעמיים ביום</string>
+    <string name="periodic_checks_rate_once_a_week">פעם בשבוע</string>
     <string name="notify_balance_increased_title">היתרה הוגדלה</string>
     <string name="notify_balance_under_threshold_title">היתרה מתחת לסף</string>
     <string name="notify_balance_under_threshold_value_title">סף</string>
