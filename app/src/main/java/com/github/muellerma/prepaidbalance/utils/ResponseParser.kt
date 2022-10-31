@@ -38,15 +38,15 @@ class ResponseParser {
             if (response == null || response.trim().isEmpty()) {
                 return null
             }
-            val withDots = response
+            val stripped = response
                 .replace(',', '.')
-                .replace("\n", " ")
+                .replace(Regex("[^A-Za-z0-9.:$£]"), " ")
 
             MATCHERS.forEach { matcher ->
                 Log.d(TAG, "Check matcher $matcher")
                 val groups = matcher
                     .regex
-                    .matchEntire(withDots)
+                    .matchEntire(stripped)
                     ?.groups
                     ?: return@forEach
                 groups.forEachIndexed { index, matchGroup ->
