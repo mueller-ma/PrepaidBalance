@@ -1,0 +1,1 @@
+Make interval of automatic refreshes configurable
