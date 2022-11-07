@@ -7,6 +7,10 @@
     <string name="permissions_required">Потрібні дозволи для телефону</string>
     <string name="preferences">Налаштування</string>
     <string name="periodic_checks_title">Періодично перевіряйте баланс</string>
+    <string name="periodic_checks_rate_title">Інтервал</string>
+    <string name="periodic_checks_rate_four_times_a_day">Чотири рази на день</string>
+    <string name="periodic_checks_rate_twice_a_day">Двічі на день</string>
+    <string name="periodic_checks_rate_once_a_week">Раз на тиждень</string>
     <string name="notify_balance_increased_title">Баланс збільшився</string>
     <string name="notify_balance_under_threshold_title">Баланс під порогом</string>
     <string name="notify_balance_under_threshold_value_title">Поріг</string>
@@ -16,6 +20,7 @@
     <string name="channel_name_balance_increased">Баланс збільшився</string>
     <string name="channel_name_threshold_reached">Досягнуто поріг</string>
     <string name="invalid_ussd_code">Введено недійсний код USSD</string>
+    <string name="invalid_subscription">Обрано невірну сім-карту, перевірте налаштування</string>
     <string name="ussd_code">USSD код</string>
     <string name="ussd_code_summary">Програма запитує USSD-код %s, щоб отримати поточний баланс</string>
     <string name="general">Основне</string>
