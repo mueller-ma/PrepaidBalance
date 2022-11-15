@@ -118,5 +118,10 @@ class ResponseParserTest {
             12.34,
             ResponseParser.getBalance("O2: Your balance is £12.34. Text BALANCE free to 20202 to check your remaining tariff and Bolt On allowances.")
         )
+
+        assertEquals(
+            11.00,
+            ResponseParser.getBalance("Twoja oferta to nju na karte.\n1.Stan konta glownego: 11.00 zl. Srodki wazne bezterminowo.")
+        )
     }
 }

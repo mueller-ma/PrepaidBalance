@@ -20,7 +20,7 @@ class ResponseParser {
             Matcher("T-Mobile US", "^(.*?)Account Balance \\\$((\\d)+\\.?(\\d)?(\\d)?)(.*)[ .](.*)\$".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
-            Matcher("Generic currency after balance", "(.*?)((\\d)+\\.(\\d){1,2}) (EUR|EURO|PLN)[ .](.*)".toRegex()) { groups ->
+            Matcher("Generic currency after balance", "(.*?)((\\d)+\\.(\\d){1,2}) (EUR|EURO|PLN|zl)[ .](.*)".toRegex()) { groups ->
                 return@Matcher parseRegexGroupAsDouble(groups, 2)
             },
             Matcher("Generic currency before balance, separated by whitespace", "(.*?) (CHF) ((\\d)+\\.(\\d){1,2})(.*)".toRegex()) { groups ->
