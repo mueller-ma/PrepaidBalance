@@ -21,5 +21,6 @@
     <string name="no_data_hint">Desliza abajo para obtener su último saldo prepago. Deberías comprobar el código USSD está configurado primero en los ajustes.</string>
     <string name="duplicates">No guardar valores duplicados</string>
     <string name="debug">Solución de problemas</string>
+    <!-- Export as CSV -->
     <!-- About menu -->
 </resources>
