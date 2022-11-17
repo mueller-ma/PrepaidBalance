@@ -41,6 +41,12 @@
     <string name="confirm_first_request">תוגש בקשת USSD אל %s</string>
     <string name="close">סגירה</string>
     <string name="no_response_saved">לא נשמרה תגובה</string>
+    <!-- Export as CSV -->
+    <string name="export">ייצוא כ־CSV</string>
+    <string name="export_saved_file">יוצא בתור „%s” לתיקיית ההורדות</string>
+    <string name="export_error_saving_file">הייצוא נכשל</string>
+    <string name="export_csv_header_balance">יתרה</string>
+    <string name="export_csv_header_data">תאריך</string>
     <!-- About menu -->
     <string name="about">על יתרה מראש</string>
     <string name="error_no_browser_found">לא נמצא דפדפן</string>
