@@ -29,5 +29,6 @@
     <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Telefon hizmeti kullanılamadığından son istek başarısız oldu</string>
     <string name="copied_to_clipboard">Panoya kopyalandı</string>
     <string name="retry">Yeniden dene</string>
+    <!-- Export as CSV -->
     <!-- About menu -->
 </resources>
