@@ -41,6 +41,7 @@
     <string name="confirm_first_request">USSD-запит буде зроблено на %s</string>
     <string name="close">Закрити</string>
     <string name="no_response_saved">Відповідь не збережено</string>
+    <!-- Export as CSV -->
     <!-- About menu -->
     <string name="about">Про додаток</string>
     <string name="error_no_browser_found">Браузер не знайдено</string>
