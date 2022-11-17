@@ -10,6 +10,9 @@ interface BalanceDao {
     @Query("SELECT * FROM BalanceEntry ORDER BY timestamp DESC")
     fun getAll(): List<BalanceEntry>
 
+    @Query("SELECT * FROM BalanceEntry WHERE timestamp > :since ")
+    fun getSince(since: Long): List<BalanceEntry>
+
     @Insert
     fun insert(balance: BalanceEntry)
 
@@ -21,7 +24,4 @@ interface BalanceDao {
 
     @Query("SELECT * FROM BalanceEntry ORDER BY timestamp DESC LIMIT 1")
     fun getLatest(): BalanceEntry?
-
-    @Query("DELETE FROM BalanceEntry WHERE timestamp < :before")
-    fun deleteBefore(before: Long)
 }

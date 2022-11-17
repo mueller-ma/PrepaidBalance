@@ -42,10 +42,9 @@ class DatabaseTest {
     }
 
     @Test
-    fun deleteOldTest() {
+    fun getSinceTest() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val database = AppDatabase.get(appContext).balanceDao()
-        database.deleteBefore(100000)
-        assertEquals(4, database.getAll().size)
+        assertEquals(4, database.getSince(10000).size)
     }
 }

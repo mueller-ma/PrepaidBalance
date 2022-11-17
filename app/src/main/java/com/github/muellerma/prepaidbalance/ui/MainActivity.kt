@@ -14,7 +14,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
@@ -27,7 +26,7 @@ import com.github.muellerma.prepaidbalance.utils.hasPermissions
 import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
-import com.google.android.material.snackbar.BaseTransientBottomBar.Duration
+import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -80,7 +79,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     private fun updateBalanceList() {
         Log.d(TAG, "updateBalanceList()")
         launch {
-            val entries = database.balanceDao().getAll()
+            val lastOneYear = System.currentTimeMillis() - 12L * 30 * 24 * 60 * 60 * 1000
+            val entries = database.balanceDao().getSince(lastOneYear)
             Handler(Looper.getMainLooper()).post {
                 (binding.list.adapter as BalanceListAdapter).balances = entries
                 binding.list.isVisible = entries.isNotEmpty()
@@ -114,11 +114,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
         }
     }
 
-    private fun showSnackbar(@StringRes message: Int, @Duration length: Int = Snackbar.LENGTH_LONG) {
+    private fun showSnackbar(@StringRes message: Int, @BaseTransientBottomBar.Duration length: Int = Snackbar.LENGTH_LONG) {
         showSnackbar(getString(message), length)
     }
 
-    private fun showSnackbar(message: String, @Duration length: Int = Snackbar.LENGTH_LONG) {
+    private fun showSnackbar(message: String, @BaseTransientBottomBar.Duration length: Int = Snackbar.LENGTH_LONG) {
         Snackbar.make(binding.root, message, length).show()
     }
 

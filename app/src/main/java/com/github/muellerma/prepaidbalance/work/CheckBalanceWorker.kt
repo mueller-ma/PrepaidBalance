@@ -104,14 +104,6 @@ class CheckBalanceWorker(
         }
 
         fun checkBalance(context: Context, callback: (CheckResult, String?) -> Unit) {
-            CoroutineScope(Dispatchers.IO).launch {
-                Log.d(TAG, "Remove entries older than 6 months")
-                AppDatabase
-                    .get(context)
-                    .balanceDao()
-                    .deleteBefore(System.currentTimeMillis() - 6L * 30 * 24 * 60 * 60 * 1000)
-            }
-
             if (!context.hasPermissions(Manifest.permission.CALL_PHONE, Manifest.permission.READ_PHONE_STATE)) {
                 return callback(CheckResult.MISSING_PERMISSIONS, null)
             }
