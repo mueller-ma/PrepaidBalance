@@ -7,6 +7,10 @@
     <string name="permissions_required">Потрібні дозволи для телефону</string>
     <string name="preferences">Налаштування</string>
     <string name="periodic_checks_title">Періодично перевіряйте баланс</string>
+    <string name="periodic_checks_rate_title">Інтервал</string>
+    <string name="periodic_checks_rate_four_times_a_day">Чотири рази на день</string>
+    <string name="periodic_checks_rate_twice_a_day">Двічі на день</string>
+    <string name="periodic_checks_rate_once_a_week">Раз на тиждень</string>
     <string name="notify_balance_increased_title">Баланс збільшився</string>
     <string name="notify_balance_under_threshold_title">Баланс під порогом</string>
     <string name="notify_balance_under_threshold_value_title">Поріг</string>
@@ -16,15 +20,17 @@
     <string name="channel_name_balance_increased">Баланс збільшився</string>
     <string name="channel_name_threshold_reached">Досягнуто поріг</string>
     <string name="invalid_ussd_code">Введено недійсний код USSD</string>
+    <string name="invalid_subscription">Обрано невірну сім-карту, перевірте налаштування</string>
     <string name="ussd_code">USSD код</string>
+    <string name="subscription_id">Sim-картка</string>
     <string name="ussd_code_summary">Програма запитує USSD-код %s, щоб отримати поточний баланс</string>
     <string name="general">Основне</string>
     <string name="clear_current_data">Очистити всі дані</string>
     <string name="no_data_hint">Проведіть пальцем вниз, щоб переглянути останній баланс передоплати. Спочатку слід перевірити налаштований USSD-код у налаштуваннях.</string>
-    <string name="clear_current_data_summary">Дані старше 6 місяців видаляються автоматично</string>
     <string name="channel_name_error">Помилка</string>
     <string name="duplicates">Не зберігайте повторювані значення</string>
     <string name="debug">Вирішення проблем</string>
+    <string name="debug_provider_details">Дані оператора за замовчуванням</string>
     <string name="debug_last_ussd_response">Остання відповідь USSD</string>
     <string name="debug_last_ussd_response_none">Жодного запиту ще не було</string>
     <string name="debug_last_ussd_response_invalid">Помилка останнього запиту з кодом %d</string>
@@ -33,6 +39,9 @@
     <string name="copied_to_clipboard">Скопійовано в буфер обміну</string>
     <string name="retry">Повторити</string>
     <string name="confirm_first_request">USSD-запит буде зроблено на %s</string>
+    <string name="close">Закрити</string>
+    <string name="no_response_saved">Відповідь не збережено</string>
+    <!-- Export as CSV -->
     <!-- About menu -->
     <string name="about">Про додаток</string>
     <string name="error_no_browser_found">Браузер не знайдено</string>

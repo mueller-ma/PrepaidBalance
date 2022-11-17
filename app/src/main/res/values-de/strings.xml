@@ -27,7 +27,6 @@
     <string name="general">Allgemein</string>
     <string name="clear_current_data">Alle Daten löschen</string>
     <string name="no_data_hint">Wische nach unten, um das aktuelle Guthaben abzufragen. Vorher solltest du den USSD-Code in den Einstellungen überprüfen.</string>
-    <string name="clear_current_data_summary">Daten, die älter als 6 Monate sind, werden automatisch gelöscht</string>
     <string name="channel_name_error">Fehler</string>
     <string name="duplicates">Speichere keine doppelten Werte</string>
     <string name="debug">Fehlersuche</string>
@@ -42,6 +41,12 @@
     <string name="confirm_first_request">Eine USSD-Anfrage wird an %s gestellt</string>
     <string name="close">Schließen</string>
     <string name="no_response_saved">Keine Antwort gespeichert</string>
+    <!-- Export as CSV -->
+    <string name="export">Als CSV exportieren</string>
+    <string name="export_saved_file">Exportiert als \"%s\" im Download-Ordner</string>
+    <string name="export_error_saving_file">Export fehlgeschlagen</string>
+    <string name="export_csv_header_balance">Guthaben</string>
+    <string name="export_csv_header_data">Datum</string>
     <!-- About menu -->
     <string name="about">Über Prepaid-Guthaben</string>
     <string name="error_no_browser_found">Kein Browser gefunden</string>
