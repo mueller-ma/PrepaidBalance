@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/export"
+        android:title="@string/export"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_outline_table_rows_24"
+        app:iconTint="?android:textColorSecondary" />
+    <item
         android:id="@+id/preferences"
         android:title="@string/preferences"
         app:showAsAction="never" />

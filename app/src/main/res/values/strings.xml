@@ -48,6 +48,13 @@
     <string name="close">Close</string>
     <string name="no_response_saved">No response saved</string>
 
+    <!-- Export as CSV -->
+    <string name="export">Export as CSV</string>
+    <string name="export_saved_file">Exported as \"%s\" to downloads folder</string>
+    <string name="export_error_saving_file">Export failed</string>
+    <string name="export_csv_header_balance">Balance</string>
+    <string name="export_csv_header_data">Date</string>
+
     <!-- About menu -->
     <string name="about">About Prepaid Balance</string>
     <string name="error_no_browser_found">No browser found</string>

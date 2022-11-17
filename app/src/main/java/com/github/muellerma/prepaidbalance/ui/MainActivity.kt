@@ -4,7 +4,9 @@ import android.Manifest.permission.CALL_PHONE
 import android.Manifest.permission.READ_PHONE_STATE
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.telephony.SubscriptionManager
@@ -23,10 +25,12 @@ import com.github.muellerma.prepaidbalance.databinding.ActivityMainBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
 import com.github.muellerma.prepaidbalance.utils.hasPermissions
 import com.github.muellerma.prepaidbalance.utils.prefs
+import com.github.muellerma.prepaidbalance.utils.timestampForUi
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import java.io.File
 
 
 class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListener {
@@ -99,11 +103,54 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
                 }
                 true
             }
+            R.id.export -> {
+                exportAsCsv()
+                true
+            }
             android.R.id.home -> {
                 onBackPressedDispatcher.onBackPressed()
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun exportAsCsv() {
+        launch {
+            val content = buildCsv()
+
+            try {
+                val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
+                writeToFileInDownloads(content, filename)
+                showSnackbar(getString(R.string.export_saved_file, filename))
+                return@launch
+            } catch (e: Exception) {
+                Log.e(TAG, "Error saving file", e)
+            }
+
+            showSnackbar(R.string.export_error_saving_file)
+        }
+    }
+
+    private fun buildCsv(): String {
+        val entries = database.balanceDao().getAll()
+        val csv = StringBuilder()
+        csv.appendLine("${getString(R.string.export_csv_header_balance)};${getString(R.string.export_csv_header_data)}")
+        entries.forEach {
+            csv.appendLine("${it.balance};${it.timestamp.timestampForUi(this@MainActivity)}")
+        }
+        return csv.toString()
+    }
+
+    private fun writeToFileInDownloads(content: String, fileName: String) {
+        val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        dir.mkdirs()
+        val file = Uri.fromFile(File(dir, fileName))
+
+        contentResolver.openOutputStream(file)?.use { outputStream ->
+            outputStream.write(content.toByteArray())
+            outputStream.flush()
+            outputStream.close()
         }
     }
 
