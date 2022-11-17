@@ -19,7 +19,6 @@
     <string name="general">Genel</string>
     <string name="clear_current_data">Tüm verileri temizle</string>
     <string name="no_data_hint">Güncel ön ödemeli bakiyenizi almak için aşağı kaydırın. Önce ayarlarda yapılandırılmış USSD kodunu kontrol etmelisiniz.</string>
-    <string name="clear_current_data_summary">6 aydan eski veriler otomatik olarak silinir</string>
     <string name="channel_name_error">Hata</string>
     <string name="duplicates">Yinelenen değerleri kaydetme</string>
     <string name="debug">Sorun giderme</string>
