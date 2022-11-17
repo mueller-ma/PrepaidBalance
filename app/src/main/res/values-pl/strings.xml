@@ -40,6 +40,7 @@
     <string name="confirm_first_request">Wywołanie USSD zostanie wysłane do %s</string>
     <string name="close">Zamknij</string>
     <string name="no_response_saved">Nie zapisano odpowiedzi</string>
+    <!-- Export as CSV -->
     <!-- About menu -->
     <string name="about">O aplikacji Stan Konta</string>
     <string name="error_no_browser_found">Nie znaleziono przeglądarki</string>
