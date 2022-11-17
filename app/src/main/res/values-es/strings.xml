@@ -19,7 +19,6 @@
     <string name="ussd_code_summary">La aplicación consulta el código USSD %s para obtener el saldo actual</string>
     <string name="clear_current_data">Limpiar todos los datos</string>
     <string name="no_data_hint">Desliza abajo para obtener su último saldo prepago. Deberías comprobar el código USSD está configurado primero en los ajustes.</string>
-    <string name="clear_current_data_summary">Los datos anteriores a más de 6 meses serán borrados automáticamente</string>
     <string name="duplicates">No guardar valores duplicados</string>
     <string name="debug">Solución de problemas</string>
     <!-- About menu -->
