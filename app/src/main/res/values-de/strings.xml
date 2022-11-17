@@ -41,6 +41,12 @@
     <string name="confirm_first_request">Eine USSD-Anfrage wird an %s gestellt</string>
     <string name="close">Schließen</string>
     <string name="no_response_saved">Keine Antwort gespeichert</string>
+    <!-- Export as CSV -->
+    <string name="export">Als CSV exportieren</string>
+    <string name="export_saved_file">Exportiert als \"%s\" im Download-Ordner</string>
+    <string name="export_error_saving_file">Export fehlgeschlagen</string>
+    <string name="export_csv_header_balance">Guthaben</string>
+    <string name="export_csv_header_data">Datum</string>
     <!-- About menu -->
     <string name="about">Über Prepaid-Guthaben</string>
     <string name="error_no_browser_found">Kein Browser gefunden</string>
