@@ -29,8 +29,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class PreferenceActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityPreferenceBinding
+class PreferenceActivity : AbstractBaseActivity() {
+    override lateinit var binding: ActivityPreferenceBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

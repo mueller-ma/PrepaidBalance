@@ -2,6 +2,7 @@ package com.github.muellerma.prepaidbalance.ui
 
 import android.Manifest.permission.CALL_PHONE
 import android.Manifest.permission.READ_PHONE_STATE
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -11,9 +12,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
@@ -26,18 +25,12 @@ import com.github.muellerma.prepaidbalance.utils.hasPermissions
 import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
-import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 
-class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnRefreshListener {
-    override val coroutineContext: CoroutineContext get() = Dispatchers.IO + Job()
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListener {
+    override lateinit var binding: ActivityMainBinding
     private lateinit var database: AppDatabase
     private var databaseLoaded = false
     private val requestPermissionLauncher = registerForActivityResult(
@@ -114,14 +107,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
         }
     }
 
-    private fun showSnackbar(@StringRes message: Int, @BaseTransientBottomBar.Duration length: Int = Snackbar.LENGTH_LONG) {
-        showSnackbar(getString(message), length)
-    }
-
-    private fun showSnackbar(message: String, @BaseTransientBottomBar.Duration length: Int = Snackbar.LENGTH_LONG) {
-        Snackbar.make(binding.root, message, length).show()
-    }
-
     override fun onRefresh() {
         Log.d(TAG, "onRefresh()")
 
@@ -185,6 +170,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope, SwipeRefreshLayout.OnR
     private fun setDefaultSubscriptionId() {
         val subscriptionManager = getSystemService(SubscriptionManager::class.java)
         if (hasPermissions(READ_PHONE_STATE)) {
+            @SuppressLint("MissingPermission") // Permission IS checked one line above
             val defaultSubscriptionId = subscriptionManager.activeSubscriptionInfoList.firstOrNull()?.subscriptionId
             prefs().subscriptionId = defaultSubscriptionId
         }
