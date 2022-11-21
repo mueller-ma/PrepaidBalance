@@ -10,7 +10,7 @@ interface BalanceDao {
     @Query("SELECT * FROM BalanceEntry ORDER BY timestamp DESC")
     fun getAll(): List<BalanceEntry>
 
-    @Query("SELECT * FROM BalanceEntry WHERE timestamp > :since ")
+    @Query("SELECT * FROM BalanceEntry WHERE timestamp > :since ORDER BY timestamp DESC")
     fun getSince(since: Long): List<BalanceEntry>
 
     @Insert
