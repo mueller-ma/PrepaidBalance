@@ -42,6 +42,11 @@
     <string name="close">Закрити</string>
     <string name="no_response_saved">Відповідь не збережено</string>
     <!-- Export as CSV -->
+    <string name="export">Експорт в CSV</string>
+    <string name="export_saved_file">Експортовано як \"%s\" до папки завантажень</string>
+    <string name="export_error_saving_file">Помилка експорту</string>
+    <string name="export_csv_header_balance">Баланс</string>
+    <string name="export_csv_header_data">Дата</string>
     <!-- About menu -->
     <string name="about">Про додаток</string>
     <string name="error_no_browser_found">Браузер не знайдено</string>
