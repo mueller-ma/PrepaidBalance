@@ -189,7 +189,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
                     launch {
                         updateBalanceList()
                         data ?: return@launch
-                        showSnackbar(data, Snackbar.LENGTH_INDEFINITE)
+                        showSnackbar(data)
                     }
                 }
                 CheckResult.PARSER_FAILED -> {
