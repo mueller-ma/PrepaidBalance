@@ -4,7 +4,7 @@
     <string name="app_name">Prepaid-Guthaben</string>
     <string name="ussd_failed">Abfragen des USSD-Codes fehlgeschlagen</string>
     <string name="unable_get_balance">Auslesen des Guthabens fehlgeschlagen: %s</string>
-    <string name="permissions_required">Telefon-Berechtigung benötigt</string>
+    <string name="permissions_required_phone">Telefon-Berechtigung benötigt</string>
     <string name="preferences">Einstellungen</string>
     <string name="periodic_checks_title">Regelmäßig Guthaben abfragen</string>
     <string name="periodic_checks_rate_title">Intervall</string>
@@ -50,4 +50,7 @@
     <!-- About menu -->
     <string name="about">Über Prepaid-Guthaben</string>
     <string name="error_no_browser_found">Kein Browser gefunden</string>
+    <string name="permissions_required_notification">Berechtigung für Benachrichtigungen benötigt</string>
+    <string name="permissions_required_phone_and_notification">Berechtigung für Telefon und Benachrichtigungen benötigt</string>
+    <string name="permissions_required_phone_and_notification">Berechtigung für Benachrichtigungen benötigt</string>
 </resources>

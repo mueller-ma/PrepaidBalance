@@ -4,7 +4,7 @@
     <string name="app_name">Stan konta</string>
     <string name="ussd_failed">Nie udało się wywołać kodu USSD</string>
     <string name="unable_get_balance">Nie można uzyskać salda z odpowiedzi: %s</string>
-    <string name="permissions_required">Wymagane jest uprawnienie \"Telefon\"</string>
+    <string name="permissions_required_phone">Wymagane jest uprawnienie \"Telefon\"</string>
     <string name="preferences">Ustawienia</string>
     <string name="periodic_checks_title">Okresowo sprawdzaj saldo</string>
     <string name="periodic_checks_rate_four_times_a_day">Cztery razy dziennie</string>
