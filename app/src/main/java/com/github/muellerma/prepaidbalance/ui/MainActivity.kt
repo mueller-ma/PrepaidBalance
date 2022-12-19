@@ -1,7 +1,6 @@
 package com.github.muellerma.prepaidbalance.ui
 
-import android.Manifest.permission.CALL_PHONE
-import android.Manifest.permission.READ_PHONE_STATE
+import android.Manifest.permission.*
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
@@ -46,7 +45,16 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
             setDefaultSubscriptionId()
             onRefresh()
         } else {
-            showSnackbar(R.string.permissions_required)
+            val hasPermPhone = (hasPermissions(READ_PHONE_STATE) && hasPermissions(CALL_PHONE))
+            val hasPermNotification = hasPermissions(POST_NOTIFICATIONS)
+
+            if(!hasPermPhone && !hasPermNotification){
+                showSnackbar(R.string.permissions_required_phone_and_notification)
+            } else if(!hasPermNotification){
+                showSnackbar(R.string.permissions_required_notification)
+            } else {
+                showSnackbar(R.string.permissions_required_phone)
+            }
         }
     }
 
@@ -203,8 +211,11 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
                 CheckResult.USSD_FAILED -> {
                     showSnackbar(R.string.ussd_failed)
                 }
-                CheckResult.MISSING_PERMISSIONS -> {
+                CheckResult.MISSING_PERMISSIONS_PHONE -> {
                     requestPermissionLauncher.launch(arrayOf(CALL_PHONE, READ_PHONE_STATE))
+                }
+                CheckResult.MISSING_PERMISSIONS_NOTIFICATION -> {
+                    requestPermissionLauncher.launch(arrayOf(POST_NOTIFICATIONS))
                 }
                 CheckResult.USSD_INVALID -> {
                     showSnackbar(R.string.invalid_ussd_code)
