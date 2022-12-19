@@ -4,7 +4,7 @@
     <string name="app_name">יתרת תשלום מראש</string>
     <string name="ussd_failed">בקשת קוד ה־USSD נכשלה</string>
     <string name="unable_get_balance">לא ניתן לקבל את היתרה מהתגובה: %s</string>
-    <string name="permissions_required_phone">נדרשות הרשאות לטלפון</string>
+    <string name="permissions_required">נדרשות הרשאות לטלפון</string>
     <string name="preferences">הגדרות</string>
     <string name="periodic_checks_title">לבדוק את היתרה באופן שגרתי</string>
     <string name="periodic_checks_rate_title">מרווח זמן</string>
