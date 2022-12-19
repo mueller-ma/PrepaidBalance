@@ -51,7 +51,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         } else {
             // notification permission denied
             if(isGranted.containsKey("android.permission.POST_NOTIFICATIONS")){
-                showSnackbar(R.string.warning_no_notification_permission)
+                showSnackbar(R.string.notification_permission_denied)
             }
 
             // phone permissions denied
