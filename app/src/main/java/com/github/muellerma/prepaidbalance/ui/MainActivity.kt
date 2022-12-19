@@ -1,8 +1,8 @@
 package com.github.muellerma.prepaidbalance.ui
 
-import android.Manifest.permission.CALL_PHONE
-import android.Manifest.permission.READ_PHONE_STATE
+import android.Manifest.permission.*
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +16,7 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.menu.MenuBuilder
+import androidx.core.app.ActivityCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
@@ -42,11 +43,23 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         ActivityResultContracts.RequestMultiplePermissions()
     ) { isGranted: Map<String, Boolean> ->
         if (isGranted.all { it.value }) {
-            binding.swiperefresh.isRefreshing = true
-            setDefaultSubscriptionId()
-            onRefresh()
+            // phone permissions granted
+            if(isGranted.containsKey("android.permission.CALL_PHONE") || isGranted.containsKey("android.permission.READ_PHONE_STATE")){
+                binding.swiperefresh.isRefreshing = true
+                setDefaultSubscriptionId()
+                onRefresh()
+            }
+
         } else {
-            showSnackbar(R.string.permissions_required)
+            // notification permission denied
+            if(isGranted.containsKey("android.permission.POST_NOTIFICATIONS")){
+                showSnackbar(R.string.warning_no_notification_permission)
+            }
+
+            // phone permissions denied
+            if(isGranted.containsKey("android.permission.CALL_PHONE") || isGranted.containsKey("android.permission.READ_PHONE_STATE")){
+                showSnackbar(R.string.permissions_required)
+            }
         }
     }
 
@@ -66,6 +79,10 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         binding.list.adapter = BalanceListAdapter(this)
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_main, false)
+
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)){
+            requestPermissionLauncher.launch(arrayOf(POST_NOTIFICATIONS))
+        }
     }
 
     override fun onResume() {

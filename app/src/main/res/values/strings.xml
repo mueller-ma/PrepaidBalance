@@ -7,6 +7,7 @@
     <string name="ussd_failed">Failed to request USSD code</string>
     <string name="unable_get_balance">Unable to get balance from response: %s</string>
     <string name="permissions_required">Phone permissions required</string>
+    <string name="warning_no_notification_permission">Notification permission denied</string>
     <string name="preferences">Settings</string>
     <string name="periodic_checks_title">Periodically check balance</string>
     <string name="periodic_checks_rate_title">Interval</string>
