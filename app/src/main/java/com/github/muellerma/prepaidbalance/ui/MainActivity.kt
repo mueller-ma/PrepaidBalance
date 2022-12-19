@@ -45,7 +45,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
             setDefaultSubscriptionId()
             onRefresh()
         } else {
-            val hasPermPhone = (hasPermissions(READ_PHONE_STATE) && hasPermissions(CALL_PHONE))
+            val hasPermPhone = hasPermissions(READ_PHONE_STATE) && hasPermissions(CALL_PHONE)
             val hasPermNotification = hasPermissions(POST_NOTIFICATIONS)
 
             if(!hasPermPhone && !hasPermNotification){
