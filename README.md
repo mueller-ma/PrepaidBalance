@@ -36,6 +36,7 @@ You might run into on of these issues with the app:
 ## Android permissions
 
 * `CALL_PHONE`: Used to query USSD codes.
+* `POST_NOTIFICATIONS`: Required to send you notifications (>= Android 13)
 * `ACCESS_NETWORK_STATE`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `WAKE_LOCK`: Used by [WorkManager](https://developer.android.com/reference/androidx/work/WorkManager) to ensure work constraints are met and running workers aren't killed.
 
 ## Credits

@@ -1,6 +1,7 @@
 package com.github.muellerma.prepaidbalance.work
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -36,7 +37,8 @@ class CheckBalanceWorker(
             Log.d(TAG, "Got result $result")
             val errorMessage = when (result) {
                 CheckResult.USSD_FAILED -> context.getString(R.string.ussd_failed)
-                CheckResult.MISSING_PERMISSIONS -> context.getString(R.string.permissions_required)
+                CheckResult.MISSING_PERMISSIONS_PHONE -> context.getString(R.string.permissions_required_phone)
+                CheckResult.MISSING_PERMISSIONS_NOTIFICATION -> context.getString(R.string.permissions_required_notification)
                 CheckResult.PARSER_FAILED -> context.getString(
                     R.string.unable_get_balance,
                     data
@@ -105,9 +107,14 @@ class CheckBalanceWorker(
             }
         }
 
+        @SuppressLint("MissingPermission")
         fun checkBalance(context: Context, callback: (CheckResult, String?) -> Unit) {
             if (!context.hasPermissions(Manifest.permission.CALL_PHONE, Manifest.permission.READ_PHONE_STATE)) {
-                return callback(CheckResult.MISSING_PERMISSIONS, null)
+                return callback(CheckResult.MISSING_PERMISSIONS_PHONE, null)
+            }
+
+            if (!context.hasPermissions(Manifest.permission.POST_NOTIFICATIONS)) {
+                return callback(CheckResult.MISSING_PERMISSIONS_NOTIFICATION, null)
             }
 
             val ussdResponseCallback = object : TelephonyManager.UssdResponseCallback() {
@@ -263,7 +270,8 @@ class CheckBalanceWorker(
 
         enum class CheckResult {
             OK,
-            MISSING_PERMISSIONS,
+            MISSING_PERMISSIONS_PHONE,
+            MISSING_PERMISSIONS_NOTIFICATION,
             PARSER_FAILED,
             USSD_FAILED,
             SUBSCRIPTION_INVALID,
