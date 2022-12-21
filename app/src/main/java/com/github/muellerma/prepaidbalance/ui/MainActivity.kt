@@ -42,7 +42,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     ) { isGranted: Map<String, Boolean> ->
         if (isGranted.all { it.value }) {
             // phone permissions granted
-            if(isGranted.containsKey("android.permission.CALL_PHONE") || isGranted.containsKey("android.permission.READ_PHONE_STATE")){
+            if(isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)){
                 binding.swiperefresh.isRefreshing = true
                 setDefaultSubscriptionId()
                 onRefresh()
@@ -50,12 +50,12 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
         } else {
             // notification permission denied
-            if(isGranted.containsKey("android.permission.POST_NOTIFICATIONS")){
+            if(isGranted.containsKey(POST_NOTIFICATIONS)){
                 showSnackbar(R.string.notification_permission_denied)
             }
 
             // phone permissions denied
-            if(isGranted.containsKey("android.permission.CALL_PHONE") || isGranted.containsKey("android.permission.READ_PHONE_STATE")){
+            if(isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)){
                 showSnackbar(R.string.permissions_required)
             }
         }
