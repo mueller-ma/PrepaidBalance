@@ -49,15 +49,14 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
             }
 
         } else {
-            // notification permission denied
-            if(isGranted.containsKey(POST_NOTIFICATIONS)){
-                showSnackbar(R.string.notification_permission_denied)
+            val message = when {
+                isGranted.containsKey(POST_NOTIFICATIONS) -> R.string.notification_permission_denied
+                isGranted.containsKey(CALL_PHONE) -> R.string.permissions_required
+                isGranted.containsKey(READ_PHONE_STATE) -> R.string.permissions_required
+                else -> throw AssertionError("Unknown denied permission")
             }
 
-            // phone permissions denied
-            if(isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)){
-                showSnackbar(R.string.permissions_required)
-            }
+            showSnackbar(message)
         }
     }
 
