@@ -4,10 +4,7 @@ import android.Manifest.permission.*
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.telephony.SubscriptionManager
 import android.util.Log
 import android.view.Menu
@@ -51,8 +48,8 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         } else {
             val message = when {
                 isGranted.containsKey(POST_NOTIFICATIONS) -> R.string.notification_permission_denied
-                isGranted.containsKey(CALL_PHONE) -> R.string.permissions_required
-                isGranted.containsKey(READ_PHONE_STATE) -> R.string.permissions_required
+                isGranted.containsKey(CALL_PHONE) -> R.string.phone_permissions_required
+                isGranted.containsKey(READ_PHONE_STATE) -> R.string.phone_permissions_required
                 else -> throw AssertionError("Unknown denied permission")
             }
 
@@ -77,7 +74,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_main, false)
 
-        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)){
             requestPermissionLauncher.launch(arrayOf(POST_NOTIFICATIONS))
         }
     }

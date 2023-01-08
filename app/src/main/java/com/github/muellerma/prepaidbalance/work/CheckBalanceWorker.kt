@@ -36,7 +36,7 @@ class CheckBalanceWorker(
             Log.d(TAG, "Got result $result")
             val errorMessage = when (result) {
                 CheckResult.USSD_FAILED -> context.getString(R.string.ussd_failed)
-                CheckResult.MISSING_PERMISSIONS -> context.getString(R.string.permissions_required)
+                CheckResult.MISSING_PERMISSIONS -> context.getString(R.string.phone_permissions_required)
                 CheckResult.PARSER_FAILED -> context.getString(
                     R.string.unable_get_balance,
                     data
