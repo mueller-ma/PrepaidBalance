@@ -1,14 +1,10 @@
 package com.github.muellerma.prepaidbalance.ui
 
-import android.Manifest.permission.CALL_PHONE
-import android.Manifest.permission.READ_PHONE_STATE
+import android.Manifest.permission.*
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.telephony.SubscriptionManager
 import android.util.Log
 import android.view.Menu
@@ -42,11 +38,22 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         ActivityResultContracts.RequestMultiplePermissions()
     ) { isGranted: Map<String, Boolean> ->
         if (isGranted.all { it.value }) {
-            binding.swiperefresh.isRefreshing = true
-            setDefaultSubscriptionId()
-            onRefresh()
+            // phone permissions granted
+            if(isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)){
+                binding.swiperefresh.isRefreshing = true
+                setDefaultSubscriptionId()
+                onRefresh()
+            }
+
         } else {
-            showSnackbar(R.string.permissions_required)
+            val message = when {
+                isGranted.containsKey(POST_NOTIFICATIONS) -> R.string.notification_permission_denied
+                isGranted.containsKey(CALL_PHONE) -> R.string.phone_permissions_required
+                isGranted.containsKey(READ_PHONE_STATE) -> R.string.phone_permissions_required
+                else -> throw AssertionError("Unknown denied permission")
+            }
+
+            showSnackbar(message)
         }
     }
 
@@ -66,6 +73,10 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         binding.list.adapter = BalanceListAdapter(this)
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_main, false)
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)){
+            requestPermissionLauncher.launch(arrayOf(POST_NOTIFICATIONS))
+        }
     }
 
     override fun onResume() {
