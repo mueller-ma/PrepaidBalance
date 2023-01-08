@@ -43,31 +43,29 @@ class CheckBalanceWorker(
                 )
                 CheckResult.SUBSCRIPTION_INVALID -> context.getString(R.string.invalid_ussd_code)
                 CheckResult.USSD_INVALID -> context.getString(R.string.invalid_ussd_code)
-                CheckResult.OK -> null
+                CheckResult.OK -> return@checkBalance
             }
 
-            errorMessage?.let {
-                val retryIntent = Intent(context, RetryBroadcastReceiver::class.java)
-                val retryPendingIntent = PendingIntent.getBroadcast(
-                    context,
-                    0,
-                    retryIntent,
-                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
+            val retryIntent = Intent(context, RetryBroadcastReceiver::class.java)
+            val retryPendingIntent = PendingIntent.getBroadcast(
+                context,
+                0,
+                retryIntent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
+            )
+
+            val notification = getBaseNotification(context, CHANNEL_ID_ERROR)
+                .setContentTitle(errorMessage)
+                .addAction(
+                    R.drawable.ic_baseline_refresh_24,
+                    context.getString(R.string.retry),
+                    retryPendingIntent
                 )
 
-                val notification = getBaseNotification(context, CHANNEL_ID_ERROR)
-                    .setContentTitle(errorMessage)
-                    .addAction(
-                        R.drawable.ic_baseline_refresh_24,
-                        context.getString(R.string.retry),
-                        retryPendingIntent
-                    )
-
-                NotificationUtils.createChannels(context)
-                NotificationUtils
-                    .manager(context)
-                    .notify(NotificationUtils.NOTIFICATION_ID_ERROR, notification.build())
-            }
+            NotificationUtils.createChannels(context)
+            NotificationUtils
+                .manager(context)
+                .notify(NotificationUtils.NOTIFICATION_ID_ERROR, notification.build())
         }
 
         return Result.success()
