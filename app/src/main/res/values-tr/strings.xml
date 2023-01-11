@@ -3,7 +3,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
     <string name="app_name">Ön Ödemeli Bakiye</string>
     <string name="ussd_failed">USSD kodu talep edilemedi</string>
-    <string name="permissions_required">Telefon izinleri gerekli</string>
     <string name="preferences">Ayarlar</string>
     <string name="periodic_checks_title">Bakiyeyi periyodik olarak kontrol et</string>
     <string name="notify_balance_increased_title">Bakiye arttırıldı</string>
