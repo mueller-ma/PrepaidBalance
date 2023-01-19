@@ -1,6 +1,7 @@
 package com.github.muellerma.prepaidbalance.utils
 
 import android.util.Log
+import com.github.muellerma.prepaidbalance.parser.AbstractParser
 import com.github.muellerma.prepaidbalance.parser.concrete.*
 
 class ResponseParser {
@@ -26,7 +27,10 @@ class ResponseParser {
 
             MATCHERS.forEach { parser ->
                 Log.d(TAG, "Check matcher ${parser.name}")
-                val balance = parser.parse(stripped) ?: return@forEach
+                val balance = when (val result = parser.parse(stripped)) {
+                    is AbstractParser.ParserResult.NoMatch -> return@forEach
+                    is AbstractParser.ParserResult.Match -> result.value
+                }
                 Log.d(TAG, "Found balance $balance")
 
                 return balance
