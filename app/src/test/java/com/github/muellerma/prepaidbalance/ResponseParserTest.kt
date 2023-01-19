@@ -123,5 +123,10 @@ class ResponseParserTest {
             11.00,
             ResponseParser.getBalance("Twoja oferta to nju na karte.\n1.Stan konta glownego: 11.00 zl. Srodki wazne bezterminowo.")
         )
+
+        assertEquals(
+            null,
+            ResponseParser.getBalance("In this moment we cannot process your transaction, please call to 888 for more details.")
+        )
     }
 }

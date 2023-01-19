@@ -9,6 +9,7 @@ class ResponseParser {
         private val TAG = ResponseParser::class.java.simpleName
 
         private val MATCHERS = listOf(
+            NoBalanceParser(),
             KauflandMobilParser(),
             TMobileUsParser(),
             PostCurrencyParser(),
