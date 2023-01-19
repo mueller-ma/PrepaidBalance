@@ -1,37 +1,19 @@
 package com.github.muellerma.prepaidbalance.utils
 
 import android.util.Log
+import com.github.muellerma.prepaidbalance.parser.concrete.*
 
 class ResponseParser {
     companion object {
         private val TAG = ResponseParser::class.java.simpleName
 
         private val MATCHERS = listOf(
-            Matcher("Kaufland mobil Germany", "Dein Guthaben betraegt: ((\\d)+\\.(\\d){1,2})(.*)".toRegex()) { groups ->
-                // Get full response (group 0) and split by whitespace
-                // Then convert each element to a double or filter it out.
-                val values = groups?.get(0)?.value
-                    ?.split(" ")
-                    ?.mapNotNull { it.toDoubleOrNull() }
-                    ?: return@Matcher null
-
-                return@Matcher values.sum()
-            },
-            Matcher("T-Mobile US", "^(.*?)Account Balance \\\$((\\d)+\\.?(\\d)?(\\d)?)(.*)[ .](.*)\$".toRegex()) { groups ->
-                return@Matcher parseRegexGroupAsDouble(groups, 2)
-            },
-            Matcher("Generic currency after balance", "(.*?)((\\d)+\\.(\\d){1,2}) (EUR|EURO|PLN|zl)[ .](.*)".toRegex()) { groups ->
-                return@Matcher parseRegexGroupAsDouble(groups, 2)
-            },
-            Matcher("Generic currency before balance, separated by whitespace", "(.*?) (CHF) ((\\d)+\\.(\\d){1,2})(.*)".toRegex()) { groups ->
-                return@Matcher parseRegexGroupAsDouble(groups, 3)
-            },
-            Matcher("Generic currency before balance", "(.*?) (£|\$)((\\d)+\\.(\\d){1,2})(.*)".toRegex()) { groups ->
-                return@Matcher parseRegexGroupAsDouble(groups, 3)
-            },
-            Matcher("Generic", "^(.*?)((\\d)+\\.?(\\d)?(\\d)?)(.*)\$".toRegex()) { groups ->
-                return@Matcher parseRegexGroupAsDouble(groups, 2)
-            },
+            KauflandMobilParser(),
+            TMobileUsParser(),
+            PostCurrencyParser(),
+            PreCurrencyWhitespaceParser(),
+            PreCurrencyParser(),
+            GenericParser()
         )
 
         fun getBalance(response: String?): Double? {
@@ -42,17 +24,9 @@ class ResponseParser {
                 .replace(',', '.')
                 .replace(Regex("[^A-Za-z0-9.:$£]"), " ")
 
-            MATCHERS.forEach { matcher ->
-                Log.d(TAG, "Check matcher $matcher")
-                val groups = matcher
-                    .regex
-                    .matchEntire(stripped)
-                    ?.groups
-                    ?: return@forEach
-                groups.forEachIndexed { index, matchGroup ->
-                    println("Matcher ${matcher.name}: Index '$index' ${matchGroup?.value}")
-                }
-                val balance = matcher.process(groups)
+            MATCHERS.forEach { parser ->
+                Log.d(TAG, "Check matcher ${parser.name}")
+                val balance = parser.parse(stripped) ?: return@forEach
                 Log.d(TAG, "Found balance $balance")
 
                 return balance
@@ -60,15 +34,5 @@ class ResponseParser {
 
             return null
         }
-
-        private fun parseRegexGroupAsDouble(groups: MatchGroupCollection?, groupNumber: Int): Double? {
-            return groups?.get(groupNumber)?.value?.toDouble()
-        }
-
-        private data class Matcher(
-            val name: String,
-            val regex: Regex,
-            val process: (groups: MatchGroupCollection?) -> Double?
-        )
     }
 }
