@@ -1,0 +1,1 @@
+Catch known messages without balance. Otherwise phone numbers might be recognized as balance.
