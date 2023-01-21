@@ -2,6 +2,7 @@ package com.github.muellerma.prepaidbalance
 
 import com.github.muellerma.prepaidbalance.utils.ResponseParser
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Test
 
 class ResponseParserTest {
@@ -124,9 +125,6 @@ class ResponseParserTest {
             ResponseParser.getBalance("Twoja oferta to nju na karte.\n1.Stan konta glownego: 11.00 zl. Srodki wazne bezterminowo.")
         )
 
-        assertEquals(
-            null,
-            ResponseParser.getBalance("In this moment we cannot process your transaction, please call to 888 for more details.")
-        )
+        assertNull(ResponseParser.getBalance("Tu solicitud no puede ser tramitada en este momento. Por favor vuelve a ingresar llamando al *888#"))
     }
 }

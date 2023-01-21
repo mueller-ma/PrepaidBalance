@@ -13,7 +13,7 @@ class NoBalanceParser : AbstractParser("Response without balance") {
 
     companion object {
         private val NO_BALANCE_START = listOf(
-            "In this moment we cannot process your transaction"
+            "Tu solicitud no puede ser tramitada en este momento"
         )
     }
 }
