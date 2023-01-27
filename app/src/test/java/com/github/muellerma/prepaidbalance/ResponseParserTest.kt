@@ -7,10 +7,19 @@ import org.junit.Test
 
 class ResponseParserTest {
     @Test
+    fun testInvalidMessages() {
+        listOf(
+            null,
+            "",
+            "foobar",
+            "Tu solicitud no puede ser tramitada en este momento. Por favor vuelve a ingresar llamando al *888#"
+        ).forEach { message ->
+            assertNull(ResponseParser.getBalance(message))
+        }
+    }
+
+    @Test
     fun testGetBalance() {
-        assertEquals(null, ResponseParser.getBalance(null))
-        assertEquals(null, ResponseParser.getBalance(""))
-        assertEquals(null, ResponseParser.getBalance("foobar"))
         assertEquals(2.42, ResponseParser.getBalance("2.42"))
         assertEquals(2.42, ResponseParser.getBalance("2,42"))
         assertEquals(2.42, ResponseParser.getBalance("02,42"))
@@ -124,7 +133,5 @@ class ResponseParserTest {
             11.00,
             ResponseParser.getBalance("Twoja oferta to nju na karte.\n1.Stan konta glownego: 11.00 zl. Srodki wazne bezterminowo.")
         )
-
-        assertNull(ResponseParser.getBalance("Tu solicitud no puede ser tramitada en este momento. Por favor vuelve a ingresar llamando al *888#"))
     }
 }
