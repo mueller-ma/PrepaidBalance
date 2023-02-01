@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
-    <string name="app_name">*78#</string>
-    <string name="ussd_failed">Failed to request USSD code</string>
-    <string name="invalid_ussd_code">*78#</string>
-    <string name="ussd_code">*78#</string>
-    <string name="no_data_hint">*78#</string>
-    <string name="debug_last_ussd_response">*78#</string>
     <!-- Export as CSV -->
     <!-- About menu -->
 </resources>
