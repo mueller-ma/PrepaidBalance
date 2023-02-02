@@ -13,7 +13,6 @@ class ResponseParser {
             KauflandMobilParser(),
             TMobileUsParser(),
             PostCurrencyParser(),
-            PreCurrencyWhitespaceParser(),
             PreCurrencyParser(),
             GenericParser()
         )
