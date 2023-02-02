@@ -133,5 +133,10 @@ class ResponseParserTest {
             11.00,
             ResponseParser.getBalance("Twoja oferta to nju na karte.\n1.Stan konta glownego: 11.00 zl. Srodki wazne bezterminowo.")
         )
+
+        assertEquals(
+            300.0,
+            ResponseParser.getBalance("Dobry den, aktualni vyse Vaseho kreditu na cisle 12345678 je 300 Kc, z toho bonusovy kredit je 0 Kc. Platnost bezneho kreditu: 30. 1. 2024 18:18. Vase O2")
+        )
     }
 }
