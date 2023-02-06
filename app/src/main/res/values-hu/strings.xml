@@ -3,6 +3,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
     <string name="app_name">doublex.correctscores</string>
     <string name="ussd_failed">doublex.correctscores</string>
+    <string name="unable_get_balance">doublex.correctscores</string>
     <!-- Export as CSV -->
     <!-- About menu -->
 </resources>
