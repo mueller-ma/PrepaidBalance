@@ -4,6 +4,8 @@
     <string name="app_name">Передплачений баланс</string>
     <string name="ussd_failed">Не вдалося запитати USSD-код</string>
     <string name="unable_get_balance">Не вдалося отримати баланс із відповіді: %s</string>
+    <string name="phone_permissions_required">Потрібні дозволи для телефону</string>
+    <string name="notification_permission_denied">Немає дозволу на сповіщення</string>
     <string name="preferences">Налаштування</string>
     <string name="periodic_checks_title">Періодично перевіряйте баланс</string>
     <string name="periodic_checks_rate_title">Інтервал</string>
