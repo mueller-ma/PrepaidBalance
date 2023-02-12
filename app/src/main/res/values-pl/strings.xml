@@ -4,8 +4,11 @@
     <string name="app_name">Stan konta</string>
     <string name="ussd_failed">Nie udało się wywołać kodu USSD</string>
     <string name="unable_get_balance">Nie można uzyskać salda z odpowiedzi: %s</string>
+    <string name="phone_permissions_required">Wymagane jest uprawnienie \"Telefon\"</string>
+    <string name="notification_permission_denied">Odmówiono pozwolenia na wyświetlanie powiadomień</string>
     <string name="preferences">Ustawienia</string>
     <string name="periodic_checks_title">Okresowo sprawdzaj saldo</string>
+    <string name="periodic_checks_rate_title">Przedział czasu</string>
     <string name="periodic_checks_rate_four_times_a_day">Cztery razy dziennie</string>
     <string name="periodic_checks_rate_twice_a_day">Dwa razy dziennie</string>
     <string name="periodic_checks_rate_once_a_week">Raz w tygodniu</string>
@@ -40,6 +43,11 @@
     <string name="close">Zamknij</string>
     <string name="no_response_saved">Nie zapisano odpowiedzi</string>
     <!-- Export as CSV -->
+    <string name="export">Wyeksportuj jako plik CSV</string>
+    <string name="export_saved_file">Wyeksportowano jako \"%s\" do folderu pobierania</string>
+    <string name="export_error_saving_file">Eksportowanie nie powiodło się</string>
+    <string name="export_csv_header_balance">Stan konta</string>
+    <string name="export_csv_header_data">Data</string>
     <!-- About menu -->
     <string name="about">O aplikacji Stan Konta</string>
     <string name="error_no_browser_found">Nie znaleziono przeglądarki</string>
