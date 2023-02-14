@@ -39,7 +39,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     ) { isGranted: Map<String, Boolean> ->
         if (isGranted.all { it.value }) {
             // phone permissions granted
-            if(isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)){
+            if (isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)) {
                 binding.swiperefresh.isRefreshing = true
                 setDefaultSubscriptionId()
                 onRefresh()
@@ -55,6 +55,12 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
             showSnackbar(message)
         }
+    }
+
+    private val requestStoragePermission = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) {
+        if (it) showSnackbar("Permission Granted") else showSnackbar("Permission Denied")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,8 +80,11 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_main, false)
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)) {
             requestPermissionLauncher.launch(arrayOf(POST_NOTIFICATIONS))
+        }
+        if (hasPermissions(WRITE_EXTERNAL_STORAGE).not()){
+            requestStoragePermission.launch(WRITE_EXTERNAL_STORAGE)
         }
     }
 
@@ -109,7 +118,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onOptionsItemSelected($item)")
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.preferences -> {
                 Intent(this, PreferenceActivity::class.java).apply {
                     startActivity(this)
@@ -140,7 +149,6 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
             } catch (e: Exception) {
                 Log.e(TAG, "Error saving file", e)
             }
-
             showSnackbar(R.string.export_error_saving_file)
         }
     }
