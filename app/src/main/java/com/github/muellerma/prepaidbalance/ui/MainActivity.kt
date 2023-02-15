@@ -28,6 +28,7 @@ import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.Che
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.io.File
+import java.io.FileNotFoundException
 
 
 class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListener {
@@ -57,10 +58,18 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         }
     }
 
-    private val requestStoragePermission = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) {
-        if (it) showSnackbar("Permission Granted") else showSnackbar("Permission Denied")
+    private val requestStoragePermissions = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        val readPermission = permissions[READ_EXTERNAL_STORAGE] ?: false
+        val writePermission = permissions[WRITE_EXTERNAL_STORAGE] ?: false
+        if (readPermission && writePermission) {
+            showSnackbar("Permission Granted")
+            exportAsCsv()
+        } else {
+            showSnackbar("Permission Denied")
+            showSnackbar(R.string.export_error_saving_file)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,9 +91,6 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)) {
             requestPermissionLauncher.launch(arrayOf(POST_NOTIFICATIONS))
-        }
-        if (hasPermissions(WRITE_EXTERNAL_STORAGE).not()){
-            requestStoragePermission.launch(WRITE_EXTERNAL_STORAGE)
         }
     }
 
@@ -139,17 +145,32 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
     private fun exportAsCsv() {
         launch {
+//            val content = buildCsv()
+//
+//            try {
+//                val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
+//                writeToFileInDownloads(content, filename)
+//                showSnackbar(getString(R.string.export_saved_file, filename))
+//                return@launch
+//            } catch (e: Exception) {
+//                Log.e(TAG, "Error saving file", e)
+//            }
             val content = buildCsv()
-
+            val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
             try {
-                val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
                 writeToFileInDownloads(content, filename)
                 showSnackbar(getString(R.string.export_saved_file, filename))
                 return@launch
-            } catch (e: Exception) {
-                Log.e(TAG, "Error saving file", e)
+            } catch (e: FileNotFoundException) {
+                if (hasPermissions(WRITE_EXTERNAL_STORAGE).not() &&
+                    hasPermissions(READ_EXTERNAL_STORAGE).not()
+                ) {
+                    requestStoragePermissions.launch(arrayOf(READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE))
+                } else {
+                    writeToFileInDownloads(content, filename)
+                    showSnackbar(getString(R.string.export_saved_file, filename))
+                }
             }
-            showSnackbar(R.string.export_error_saving_file)
         }
     }
 
@@ -167,7 +188,6 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         dir.mkdirs()
         val file = Uri.fromFile(File(dir, fileName))
-
         contentResolver.openOutputStream(file)?.use { outputStream ->
             outputStream.write(content.toByteArray())
             outputStream.flush()
