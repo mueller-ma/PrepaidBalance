@@ -28,6 +28,7 @@ import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.Che
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.io.File
+import java.io.FileNotFoundException
 
 
 class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListener {
@@ -39,7 +40,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     ) { isGranted: Map<String, Boolean> ->
         if (isGranted.all { it.value }) {
             // phone permissions granted
-            if(isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)){
+            if (isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)) {
                 binding.swiperefresh.isRefreshing = true
                 setDefaultSubscriptionId()
                 onRefresh()
@@ -54,6 +55,16 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
             }
 
             showSnackbar(message)
+        }
+    }
+
+    private val requestStoragePermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
+        val isRead = permission[READ_EXTERNAL_STORAGE]?:false
+        val isWrite = permission[WRITE_EXTERNAL_STORAGE]?:false
+        if (isRead && isWrite){
+            exportAsCsv()
+        }else{
+            showSnackbar("Permission Denied")
         }
     }
 
@@ -74,7 +85,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_main, false)
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)) {
             requestPermissionLauncher.launch(arrayOf(POST_NOTIFICATIONS))
         }
     }
@@ -109,7 +120,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onOptionsItemSelected($item)")
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.preferences -> {
                 Intent(this, PreferenceActivity::class.java).apply {
                     startActivity(this)
@@ -130,18 +141,32 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
     private fun exportAsCsv() {
         launch {
-            val content = buildCsv()
+//            val content = buildCsv()
+//
+//            try {
+//                val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
+//                writeToFileInDownloads(content, filename)
+//                showSnackbar(getString(R.string.export_saved_file, filename))
+//                return@launch
+//            } catch (e: Exception) {
+//                Log.e(TAG, "Error saving file", e)
+//            }
+//
+//            showSnackbar(R.string.export_error_saving_file)
 
+            val content = buildCsv()
+            val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
             try {
-                val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
                 writeToFileInDownloads(content, filename)
                 showSnackbar(getString(R.string.export_saved_file, filename))
                 return@launch
-            } catch (e: Exception) {
-                Log.e(TAG, "Error saving file", e)
+            } catch (e: FileNotFoundException) {
+                if (hasPermissions(READ_EXTERNAL_STORAGE) && hasPermissions(WRITE_EXTERNAL_STORAGE)){
+                    exportAsCsv()
+                }else{
+                    requestStoragePermission.launch(arrayOf(READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE))
+                }
             }
-
-            showSnackbar(R.string.export_error_saving_file)
         }
     }
 
