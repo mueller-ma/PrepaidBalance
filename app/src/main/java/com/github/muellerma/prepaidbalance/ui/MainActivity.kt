@@ -141,19 +141,6 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
     private fun exportAsCsv() {
         launch {
-//            val content = buildCsv()
-//
-//            try {
-//                val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
-//                writeToFileInDownloads(content, filename)
-//                showSnackbar(getString(R.string.export_saved_file, filename))
-//                return@launch
-//            } catch (e: Exception) {
-//                Log.e(TAG, "Error saving file", e)
-//            }
-//
-//            showSnackbar(R.string.export_error_saving_file)
-
             val content = buildCsv()
             val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
             try {
