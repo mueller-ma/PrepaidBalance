@@ -59,11 +59,11 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     }
 
     private val requestStoragePermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
-        val isRead = permission[READ_EXTERNAL_STORAGE]?:false
-        val isWrite = permission[WRITE_EXTERNAL_STORAGE]?:false
-        if (isRead && isWrite){
+        val isRead = permission[READ_EXTERNAL_STORAGE] ?: false
+        val isWrite = permission[WRITE_EXTERNAL_STORAGE] ?: false
+        if (isRead && isWrite) {
             exportAsCsv()
-        }else{
+        } else {
             showSnackbar("Permission Denied")
         }
     }
@@ -141,19 +141,6 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
     private fun exportAsCsv() {
         launch {
-//            val content = buildCsv()
-//
-//            try {
-//                val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
-//                writeToFileInDownloads(content, filename)
-//                showSnackbar(getString(R.string.export_saved_file, filename))
-//                return@launch
-//            } catch (e: Exception) {
-//                Log.e(TAG, "Error saving file", e)
-//            }
-//
-//            showSnackbar(R.string.export_error_saving_file)
-
             val content = buildCsv()
             val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
             try {
@@ -161,9 +148,9 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
                 showSnackbar(getString(R.string.export_saved_file, filename))
                 return@launch
             } catch (e: FileNotFoundException) {
-                if (hasPermissions(READ_EXTERNAL_STORAGE) && hasPermissions(WRITE_EXTERNAL_STORAGE)){
+                if (hasPermissions(READ_EXTERNAL_STORAGE) && hasPermissions(WRITE_EXTERNAL_STORAGE)) {
                     exportAsCsv()
-                }else{
+                } else {
                     requestStoragePermission.launch(arrayOf(READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE))
                 }
             }
