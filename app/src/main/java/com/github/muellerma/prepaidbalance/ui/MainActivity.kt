@@ -59,12 +59,12 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     }
 
     private val requestStoragePermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
-        val isRead = permission[READ_EXTERNAL_STORAGE] ?: false
-        val isWrite = permission[WRITE_EXTERNAL_STORAGE] ?: false
-        if (isRead && isWrite) {
+        val canRead = permission[READ_EXTERNAL_STORAGE] ?: false
+        val canWrite = permission[WRITE_EXTERNAL_STORAGE] ?: false
+        if (canRead && canWrite) {
             exportAsCsv()
         } else {
-            showSnackbar("Permission Denied")
+            showSnackbar(R.string.export_error_saving_file)
         }
     }
 
