@@ -35,7 +35,6 @@
     <string name="clear_current_data">Clear all data</string>
     <string name="no_data_hint">Swipe down to get your latest prepaid balance. You should check the configured USSD code in the settings first.</string>
     <string name="channel_name_error">Error</string>
-    <string name="duplicates">Don\'t save duplicate values</string>
     <string name="debug">Troubleshooting</string>
     <string name="debug_provider_details">Default provider details</string>
     <string name="debug_last_ussd_response">Last USSD response</string>
@@ -48,6 +47,7 @@
     <string name="confirm_first_request">A USSD request will be made to %s</string>
     <string name="close">Close</string>
     <string name="no_response_saved">No response saved</string>
+    <string name="last_update">Last update: %s</string>
 
     <!-- Export as CSV -->
     <string name="export">Export as CSV</string>

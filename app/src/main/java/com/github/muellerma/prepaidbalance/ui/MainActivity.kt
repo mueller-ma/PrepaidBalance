@@ -95,6 +95,11 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
             val entries = database.balanceDao().getSince(lastOneYear)
             Handler(Looper.getMainLooper()).post {
                 (binding.list.adapter as BalanceListAdapter).balances = entries
+
+                val lastUpdate = prefs().lastUpdateTimestamp
+                binding.lastUpdate.text = getString(R.string.last_update, lastUpdate.timestampForUi(this@MainActivity))
+                binding.lastUpdate.isVisible = lastUpdate != 0L && entries.isNotEmpty()
+
                 binding.list.isVisible = entries.isNotEmpty()
                 binding.hint.isVisible = entries.isEmpty()
                 databaseLoaded = true

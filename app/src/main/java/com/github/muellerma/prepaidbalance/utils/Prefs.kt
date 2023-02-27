@@ -44,8 +44,13 @@ class Prefs(val context: Context) {
             }
         }
 
-    val noDuplicates: Boolean
-        get() = sharedPrefs.getBoolean("no_duplicates", true)
+    var lastUpdateTimestamp: Long
+        get() = sharedPrefs.getLong("last_update_timestamp", 0)
+        set(value) {
+            sharedPrefs.edit {
+                putLong("last_update_timestamp", value)
+            }
+        }
 
     val notifyBalanceUnderThreshold: Boolean
         get() = sharedPrefs.getBoolean("notify_balance_under_threshold", false)

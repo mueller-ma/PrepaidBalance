@@ -169,42 +169,29 @@ class CheckBalanceWorker(
             callback: (CheckResult, String?) -> Unit
         ) = CoroutineScope(Dispatchers.IO).launch {
             val database = AppDatabase.get(context)
+            val prefs = context.prefs()
+            prefs.lastUpdateTimestamp = System.currentTimeMillis()
 
             val latestInDb = database.balanceDao().getLatest()
-            val new = BalanceEntry(
-                timestamp = System.currentTimeMillis(),
-                balance = balance,
-                fullResponse = response
-            )
+            if (balance == latestInDb?.balance) {
+                Log.d(TAG, "New balance is equal to previous, don't insert")
+            } else {
+                val new = BalanceEntry(
+                    timestamp = System.currentTimeMillis(),
+                    balance = balance,
+                    fullResponse = response
+                )
 
-            Log.d(TAG, "Insert $new")
-            database
-                .balanceDao()
-                .insert(new)
+                Log.d(TAG, "Insert $new")
+                database
+                    .balanceDao()
+                    .insert(new)
 
-            val prefs = context.prefs()
-            removeDuplicatesIfRequired(prefs, database, new, latestInDb)
-
-            callback(CheckResult.OK, response)
-
-            NotificationUtils.createChannels(context)
-            showBalancedIncreasedIfRequired(context, prefs, latestInDb, new)
-            showThresholdIfRequired(prefs, new, context)
-        }
-
-        private fun removeDuplicatesIfRequired(
-            prefs: Prefs,
-            database: AppDatabase,
-            new: BalanceEntry,
-            latestInDb: BalanceEntry?
-        ) {
-            if (
-                prefs.noDuplicates &&
-                latestInDb?.balance == new.balance
-            ) {
-                Log.d(TAG, "Remove $latestInDb from db")
-                database.balanceDao().delete(latestInDb)
+                NotificationUtils.createChannels(context)
+                showBalancedIncreasedIfRequired(context, prefs, latestInDb, new)
+                showThresholdIfRequired(prefs, new, context)
             }
+            callback(CheckResult.OK, response)
         }
 
         private fun showThresholdIfRequired(
