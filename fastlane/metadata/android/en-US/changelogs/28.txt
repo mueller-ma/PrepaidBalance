@@ -1,0 +1,1 @@
+Keep timestamp of each first amount change
