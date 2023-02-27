@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Saldo pré-pago</string>
+    <string name="ussd_failed">Falha ao solicitar o código USSD</string>
+    <string name="unable_get_balance">Não foi possível obter saldo da resposta: %s</string>
+    <string name="phone_permissions_required">Permissões de telefone necessárias</string>
+    <string name="notification_permission_denied">Permissão de notificação recusada</string>
+    <string name="preferences">Configurações</string>
+    <string name="periodic_checks_title">Verificar periodicamente o saldo</string>
+    <string name="periodic_checks_rate_title">Intervalo</string>
+    <string name="periodic_checks_rate_four_times_a_day">Quatro vezes por dia</string>
+    <string name="periodic_checks_rate_twice_a_day">Duas vezes por dia</string>
+    <string name="periodic_checks_rate_once_a_week">Uma vez por semana</string>
+    <string name="notify_balance_increased_title">Saldo aumentado</string>
+    <string name="notify_balance_under_threshold_title">Saldo abaixo do limite</string>
+    <string name="notify_balance_under_threshold_value_title">Limite</string>
+    <string name="notifications">notificações</string>
+    <string name="balance_increased">Saldo foi aumentado em %s</string>
+    <string name="threshold_reached">Saldo está abaixo do limite: %s</string>
+    <string name="channel_name_balance_increased">Saldo aumentado</string>
+    <string name="channel_name_threshold_reached">Limite alcançado</string>
+    <string name="invalid_ussd_code">Código USSD inválido</string>
+    <string name="invalid_subscription">Cartão SIM selecionado inválido, configurações de verificação</string>
+    <string name="ussd_code">Código USSD</string>
+    <string name="subscription_id">Cartão SIM</string>
+    <string name="ussd_code_summary">O aplicativo consulta o código USSD %s para obter o saldo atual</string>
+    <string name="general">Gerar</string>
+    <string name="clear_current_data">Limpar todos os dados</string>
+    <string name="no_data_hint">Deslize para baixo para obter seu saldo pré-pago mais recente. Você deve primeiro verificar o código USSD configurado nas configurações.</string>
+    <string name="channel_name_error">ERRO</string>
+    <string name="debug">Solução de problemas</string>
+    <string name="debug_provider_details">Detalhes do provedor padrão</string>
+    <string name="debug_last_ussd_response">Última resposta USSD</string>
+    <string name="debug_last_ussd_response_none">Nenhum pedido foi feito ainda</string>
+    <string name="debug_last_ussd_response_invalid">Falha na última requisição com o código %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Falha ao concluir a última requisição</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">O último pedido falhou, porque o serviço de telefonia está indisponível</string>
+    <string name="copied_to_clipboard">Copiado para o clipboard</string>
+    <string name="retry">Repetir</string>
+    <string name="confirm_first_request">Uma solicitação USSD será feita para %s</string>
+    <string name="close">FECHAR</string>
+    <string name="no_response_saved">Nenhuma resposta salva</string>
+    <string name="last_update">Última atualização: %s</string>
     <!-- Export as CSV -->
+    <string name="export">Exportar como CSV</string>
+    <string name="export_saved_file">Exportado como \"%s\" para pasta de downloads</string>
+    <string name="export_error_saving_file">Exportação falhou</string>
+    <string name="export_csv_header_balance">Saldo</string>
+    <string name="export_csv_header_data">Encontro</string>
     <!-- About menu -->
+    <string name="about">Sobre o saldo pré-pago</string>
+    <string name="error_no_browser_found">Nenhum navegador encontrado</string>
 </resources>
