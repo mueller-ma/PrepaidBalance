@@ -29,7 +29,6 @@
     <string name="clear_current_data">Очистити всі дані</string>
     <string name="no_data_hint">Проведіть пальцем вниз, щоб переглянути останній баланс передоплати. Спочатку слід перевірити налаштований USSD-код у налаштуваннях.</string>
     <string name="channel_name_error">Помилка</string>
-    <string name="duplicates">Не зберігайте повторювані значення</string>
     <string name="debug">Вирішення проблем</string>
     <string name="debug_provider_details">Дані оператора за замовчуванням</string>
     <string name="debug_last_ussd_response">Остання відповідь USSD</string>
