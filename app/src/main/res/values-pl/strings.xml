@@ -41,6 +41,7 @@
     <string name="confirm_first_request">Wywołanie USSD zostanie wysłane do %s</string>
     <string name="close">Zamknij</string>
     <string name="no_response_saved">Nie zapisano odpowiedzi</string>
+    <string name="last_update">Ostatnia aktualizacja: %s</string>
     <!-- Export as CSV -->
     <string name="export">Wyeksportuj jako plik CSV</string>
     <string name="export_saved_file">Wyeksportowano jako \"%s\" do folderu pobierania</string>
