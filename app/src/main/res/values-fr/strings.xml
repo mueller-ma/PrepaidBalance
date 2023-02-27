@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Solde prépayé</string>
+    <string name="ussd_failed">Impossible de demander le code USSD</string>
+    <string name="unable_get_balance">Impossible d\'obtenir le solde de la réponse : %s</string>
+    <string name="phone_permissions_required">Autorisations requises pour le téléphone</string>
+    <string name="notification_permission_denied">Autorisation de notification refusée</string>
+    <string name="preferences">Paramètres</string>
+    <string name="periodic_checks_title">Vérifier périodiquement le solde</string>
+    <string name="periodic_checks_rate_title">Intervalle</string>
+    <string name="periodic_checks_rate_four_times_a_day">Quatre fois par jour</string>
+    <string name="periodic_checks_rate_twice_a_day">Deux fois par jour</string>
+    <string name="periodic_checks_rate_once_a_week">Une fois par semaine</string>
+    <string name="notify_balance_increased_title">Solde augmenté</string>
+    <string name="notify_balance_under_threshold_title">Solde en dessous du seuil</string>
+    <string name="notify_balance_under_threshold_value_title">Seuil</string>
+    <string name="notifications">Notifications</string>
+    <string name="balance_increased">Le solde a été augmenté de %s</string>
+    <string name="threshold_reached">Le solde est inférieur au seuil : %s</string>
+    <string name="channel_name_balance_increased">Solde augmenté</string>
+    <string name="channel_name_threshold_reached">Seuil atteint</string>
+    <string name="invalid_ussd_code">Code USSD invalide</string>
+    <string name="invalid_subscription">Carte SIM sélectionnée invalide, vérifiez les paramètres</string>
+    <string name="ussd_code">Code USSD</string>
+    <string name="subscription_id">Carte SIM</string>
+    <string name="ussd_code_summary">L\'application interroge le code USSD %s pour obtenir le solde actuel</string>
+    <string name="general">Général</string>
+    <string name="clear_current_data">Effacer toutes les données</string>
+    <string name="no_data_hint">Glissez vers le bas pour obtenir votre dernier solde prépayé. Vous devriez d\'abord vérifier le code USSD configuré dans les paramètres.</string>
+    <string name="channel_name_error">Erreur</string>
+    <string name="debug">Dépannage</string>
+    <string name="debug_provider_details">Détails du fournisseur par défaut</string>
+    <string name="debug_last_ussd_response">Dernière réponse USSD</string>
+    <string name="debug_last_ussd_response_none">Aucune demande n\'a encore été faite</string>
+    <string name="debug_last_ussd_response_invalid">La dernière requête a échoué avec le code %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">La dernière requête n\'a pas pu être terminée</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">La dernière demande a échoué, car le service de téléphonie est indisponible</string>
+    <string name="copied_to_clipboard">Copié dans le presse-papiers</string>
+    <string name="retry">Réessayer</string>
+    <string name="confirm_first_request">Une demande USSD sera envoyée à %s</string>
+    <string name="close">Fermer</string>
+    <string name="no_response_saved">Aucune réponse enregistrée</string>
+    <string name="last_update">Dernière mise à jour : %s</string>
     <!-- Export as CSV -->
+    <string name="export">Exporter en CSV</string>
+    <string name="export_saved_file">Exporté en tant que \"%s\" vers le dossier de téléchargements</string>
+    <string name="export_error_saving_file">L\'exportation a échoué</string>
+    <string name="export_csv_header_balance">Solde</string>
+    <string name="export_csv_header_data">Date</string>
     <!-- About menu -->
+    <string name="about">À propos du solde prépayé</string>
+    <string name="error_no_browser_found">Aucun navigateur trouvé</string>
 </resources>
