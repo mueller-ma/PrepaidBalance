@@ -3,8 +3,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
     <string name="app_name">Saldo Prepago</string>
     <string name="ussd_failed">Error al conseguir el código USSD</string>
+    <string name="unable_get_balance">No se puede obtener el saldo de la respuesta: %s</string>
+    <string name="phone_permissions_required">Se requiere permisos de teléfono</string>
+    <string name="notification_permission_denied">Permiso de notificación denegado</string>
     <string name="preferences">Ajustes</string>
     <string name="periodic_checks_title">Revisar saldo diariamente</string>
+    <string name="periodic_checks_rate_title">Intervalo</string>
+    <string name="periodic_checks_rate_four_times_a_day">Cuatro veces al día</string>
+    <string name="periodic_checks_rate_twice_a_day">Dos veces al día</string>
+    <string name="periodic_checks_rate_once_a_week">Una vez por semana</string>
     <string name="notify_balance_increased_title">Saldo incrementado</string>
     <string name="notify_balance_under_threshold_title">Saldo debajo del umbral</string>
     <string name="notify_balance_under_threshold_value_title">Saldo</string>
@@ -14,11 +21,34 @@
     <string name="channel_name_balance_increased">Saldo incrementado</string>
     <string name="channel_name_threshold_reached">Umbral alcanzado</string>
     <string name="invalid_ussd_code">Código USSD introducido inválido</string>
+    <string name="invalid_subscription">Tarjeta SIM seleccionada no válida, compruebe la configuración</string>
     <string name="ussd_code">Código USSD</string>
+    <string name="subscription_id">Tarjeta Sim</string>
     <string name="ussd_code_summary">La aplicación consulta el código USSD %s para obtener el saldo actual</string>
+    <string name="general">General</string>
     <string name="clear_current_data">Limpiar todos los datos</string>
     <string name="no_data_hint">Desliza abajo para obtener su último saldo prepago. Deberías comprobar el código USSD está configurado primero en los ajustes.</string>
+    <string name="channel_name_error">Error</string>
     <string name="debug">Solución de problemas</string>
+    <string name="debug_provider_details">Detalles del proveedor por defecto</string>
+    <string name="debug_last_ussd_response">Última respuesta USSD</string>
+    <string name="debug_last_ussd_response_none">Aún no se ha hecho ninguna solicitud</string>
+    <string name="debug_last_ussd_response_invalid">La última solicitud falló con código %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">No se pudo completar la última solicitud</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Última solicitud fallida, porque el servicio de telefonía no está disponible</string>
+    <string name="copied_to_clipboard">Copiado al portapapeles</string>
+    <string name="retry">Reintentar</string>
+    <string name="confirm_first_request">Se hará una solicitud USSD a %s</string>
+    <string name="close">Cerrar</string>
+    <string name="no_response_saved">Ninguna respuesta guardada</string>
+    <string name="last_update">Última actualización: %s</string>
     <!-- Export as CSV -->
+    <string name="export">Exportar como CSV</string>
+    <string name="export_saved_file">Exportado como \"%s\" a la carpeta de descargas</string>
+    <string name="export_error_saving_file">Exportación fallida</string>
+    <string name="export_csv_header_balance">Saldo</string>
+    <string name="export_csv_header_data">Fecha</string>
     <!-- About menu -->
+    <string name="about">Acerca del Saldo Prepago</string>
+    <string name="error_no_browser_found">No se encontró ningún navegador</string>
 </resources>
