@@ -97,7 +97,7 @@ class CheckBalanceWorker(
 
                 enqueueUniquePeriodicWork(
                     "work",
-                    ExistingPeriodicWorkPolicy.REPLACE,
+                    ExistingPeriodicWorkPolicy.UPDATE,
                     request
                 )
             }
