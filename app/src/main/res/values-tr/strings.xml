@@ -19,7 +19,6 @@
     <string name="clear_current_data">Tüm verileri temizle</string>
     <string name="no_data_hint">Güncel ön ödemeli bakiyenizi almak için aşağı kaydırın. Önce ayarlarda yapılandırılmış USSD kodunu kontrol etmelisiniz.</string>
     <string name="channel_name_error">Hata</string>
-    <string name="duplicates">Yinelenen değerleri kaydetme</string>
     <string name="debug">Sorun giderme</string>
     <string name="debug_last_ussd_response">Son USSD yanıtı</string>
     <string name="debug_last_ussd_response_none">Henüz bir talepte bulunulmadı</string>
