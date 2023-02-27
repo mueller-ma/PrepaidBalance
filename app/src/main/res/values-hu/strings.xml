@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="preferences">Beállítások</string>
     <!-- Export as CSV -->
     <!-- About menu -->
+    <string name="error_no_browser_found">Nem található böngésző</string>
 </resources>
