@@ -1,2 +1,2 @@
-This app keeps track of your prepaid balance. It can automatically record it and post a notification if your balance drops under a configurable threshold.
-It does so by parsing the response of a USSD code, that can be set in the settings.
+Это приложение следит за вашим балансом телефона. Оно может автоматически записывать его и отправлять уведомление, если баланс падает ниже указанного вами порога.
+Оно делает это, анализируя ответ USSD-запроса (вроде *000#), код которого можно установить в настройках.

@@ -1,0 +1,2 @@
+Denne appen holder styr på din forskuddsbetalingssaldo. Det kan automatisk ta det og skrive inn et varsel hvis balansen faller under en konfigurerbar terskel.
+Den gjør det ved å analysere responsen på en USSD kode, som kan angis i innstillingene.

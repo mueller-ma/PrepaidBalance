@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">الرصيد المدفوع مسبقاً</string>
+    <string name="ussd_failed">فشل في طلب رمز USSD</string>
+    <string name="unable_get_balance">غير قادر على الحصول على الرصيد من الرد: %s</string>
+    <string name="phone_permissions_required">مطلوب أذونات الهاتف</string>
+    <string name="notification_permission_denied">إذن التنبيه مرفوض</string>
+    <string name="preferences">الإعدادات</string>
+    <string name="periodic_checks_title">التحقق دوريا من الرصيد</string>
+    <string name="periodic_checks_rate_title">الفاصل</string>
+    <string name="periodic_checks_rate_four_times_a_day">أربع مرات في اليوم</string>
+    <string name="periodic_checks_rate_twice_a_day">مرتين في اليوم</string>
+    <string name="periodic_checks_rate_once_a_week">مرة في الأسبوع</string>
+    <string name="notify_balance_increased_title">زيادة الرصيد</string>
+    <string name="notify_balance_under_threshold_title">الرصيد تحت العتبة</string>
+    <string name="notify_balance_under_threshold_value_title">عتبة</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="balance_increased">تم زيادة الرصيد ب %s</string>
+    <string name="threshold_reached">الرصيد تحت العتبة: %s</string>
+    <string name="channel_name_balance_increased">زيادة الرصيد</string>
+    <string name="channel_name_threshold_reached">وصلت العتبة</string>
+    <string name="invalid_ussd_code">تم إدخال رمز USSD غير صالح</string>
+    <string name="invalid_subscription">بطاقة Sm غير صالحة، تحقق من الإعدادات</string>
+    <string name="ussd_code">رمز USSD</string>
+    <string name="subscription_id">بطاقة سيم</string>
+    <string name="ussd_code_summary">يستفسر التطبيق من رمز USSD %s للحصول على الرصيد الحالي</string>
+    <string name="general">عام</string>
+    <string name="clear_current_data">مسح جميع البيانات</string>
+    <string name="no_data_hint">مرر للأسفل للحصول على آخر رصيد مدفوع مسبقاً. يجب عليك التحقق من رمز USSD المكون في الإعدادات أولاً.</string>
+    <string name="channel_name_error">خطأ</string>
+    <string name="debug">استكشاف الأخطاء</string>
+    <string name="debug_provider_details">تفاصيل المزود الافتراضية</string>
+    <string name="debug_last_ussd_response">آخر رد USSD</string>
+    <string name="debug_last_ussd_response_none">لم يقدم أي طلب حتى الآن</string>
+    <string name="debug_last_ussd_response_invalid">فشل آخر طلب مع الرمز %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">فشل في إكمال آخر طلب</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">فشل الطلب الأخير، لأن خدمة الهاتف غير متوفرة</string>
+    <string name="copied_to_clipboard">نسخ إلى الحافظة</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="confirm_first_request">سيتم تقديم طلب USSD إلى %s</string>
+    <string name="close">أغلق</string>
+    <string name="no_response_saved">لم يتم حفظ أي رد</string>
+    <string name="last_update">آخر تحديث: %s</string>
     <!-- Export as CSV -->
+    <string name="export">تصدير كـ CSV</string>
+    <string name="export_saved_file">تصدير كـ \"%s\" إلى مجلد التحميلات</string>
+    <string name="export_error_saving_file">فشل التصدير</string>
+    <string name="export_csv_header_balance">الرصيد</string>
+    <string name="export_csv_header_data">التاريخ</string>
     <!-- About menu -->
+    <string name="about">حول الرصيد المدفوع مسبقاً</string>
+    <string name="error_no_browser_found">لم يتم العثور على متصفح</string>
 </resources>

@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Forudbetalt Saldo</string>
+    <string name="ussd_failed">Kunne ikke anmode om USSD-kode</string>
+    <string name="unable_get_balance">Kan ikke hente saldo fra svar: %s</string>
+    <string name="phone_permissions_required">Telefon tilladelser kræves</string>
+    <string name="notification_permission_denied">Notifikation tilladelse nægtet</string>
+    <string name="preferences">Indstillinger</string>
+    <string name="periodic_checks_title">Tjek jævnligt saldoen</string>
+    <string name="periodic_checks_rate_title">Interval</string>
+    <string name="periodic_checks_rate_four_times_a_day">Fire gange om dagen</string>
+    <string name="periodic_checks_rate_twice_a_day">To gange om dagen</string>
+    <string name="periodic_checks_rate_once_a_week">En gang om ugen</string>
+    <string name="notify_balance_increased_title">Øget saldo</string>
+    <string name="notify_balance_under_threshold_title">Saldo under tærskel</string>
+    <string name="notify_balance_under_threshold_value_title">Tærskel</string>
+    <string name="notifications">Notifikationer</string>
+    <string name="balance_increased">Saldo er blevet øget med %s</string>
+    <string name="threshold_reached">Saldo er under tærskelværdien: %s</string>
+    <string name="channel_name_balance_increased">Øget saldo</string>
+    <string name="channel_name_threshold_reached">Tærskel nået</string>
+    <string name="invalid_ussd_code">Ugyldig USSD-kode angivet</string>
+    <string name="invalid_subscription">Ugyldigt SIM-kort valgt, tjek indstillinger</string>
+    <string name="ussd_code">USSD kode</string>
+    <string name="subscription_id">SIM-kort</string>
+    <string name="ussd_code_summary">Appen forespørger USSD-koden %s for at få den aktuelle saldo</string>
+    <string name="general">Generelt</string>
+    <string name="clear_current_data">Ryd alle data</string>
+    <string name="no_data_hint">Stryg nedad for at få din seneste forudbetalte saldo. Du bør først tjekke den konfigurerede USSD-kode i indstillingerne.</string>
+    <string name="channel_name_error">Fejl</string>
+    <string name="debug">Fejlfinding</string>
+    <string name="debug_provider_details">Standard udbyder detaljer</string>
+    <string name="debug_last_ussd_response">Sidste USSD svar</string>
+    <string name="debug_last_ussd_response_none">Der er endnu ikke foretaget nogen anmodning</string>
+    <string name="debug_last_ussd_response_invalid">Sidste anmodning mislykkedes med koden %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Sidste forespørgsel kunne ikke fuldføres</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Sidste forespørgsel mislykkedes, fordi telefoni service er utilgængelig</string>
+    <string name="copied_to_clipboard">Kopieret til udklipsholder</string>
+    <string name="retry">Forsøg igen</string>
+    <string name="confirm_first_request">En USSD-anmodning vil blive fremsat til %s</string>
+    <string name="close">Luk</string>
+    <string name="no_response_saved">Intet svar gemt</string>
+    <string name="last_update">Seneste opdatering: %s</string>
     <!-- Export as CSV -->
+    <string name="export">Eksporter som CSV</string>
+    <string name="export_saved_file">Eksporteret som \"%s\" til download-mappe</string>
+    <string name="export_error_saving_file">Eksport mislykkedes</string>
+    <string name="export_csv_header_balance">Saldo</string>
+    <string name="export_csv_header_data">Dato</string>
     <!-- About menu -->
+    <string name="about">Om Forudbetalt Saldo</string>
+    <string name="error_no_browser_found">Ingen browser fundet</string>
 </resources>

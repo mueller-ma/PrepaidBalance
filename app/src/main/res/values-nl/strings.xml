@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Prepaid Saldo</string>
+    <string name="ussd_failed">Opvragen van USSD-code is mislukt</string>
+    <string name="unable_get_balance">Niet in staat om saldo op te halen uit reactie: %s</string>
+    <string name="phone_permissions_required">Telefoon machtigingen vereist</string>
+    <string name="notification_permission_denied">Notificatie toestemming geweigerd</string>
+    <string name="preferences">Instellingen</string>
+    <string name="periodic_checks_title">Periodiek controle saldo</string>
+    <string name="periodic_checks_rate_title">Interval</string>
+    <string name="periodic_checks_rate_four_times_a_day">Vier per dag</string>
+    <string name="periodic_checks_rate_twice_a_day">Twee keer per dag</string>
+    <string name="periodic_checks_rate_once_a_week">Een keer per week</string>
+    <string name="notify_balance_increased_title">Saldo verhoogd</string>
+    <string name="notify_balance_under_threshold_title">Saldo onder drempelwaarde</string>
+    <string name="notify_balance_under_threshold_value_title">Drempel</string>
+    <string name="notifications">Notificaties</string>
+    <string name="balance_increased">Saldo is verhoogd met %s</string>
+    <string name="threshold_reached">Saldo is onder drempel: %s</string>
+    <string name="channel_name_balance_increased">Saldo verhoogd</string>
+    <string name="channel_name_threshold_reached">Drempel bereikt</string>
+    <string name="invalid_ussd_code">Ongeldige USSD code ingevoerd</string>
+    <string name="invalid_subscription">Ongeldige simkaart geselecteerd, controleer instellingen</string>
+    <string name="ussd_code">USSD code</string>
+    <string name="subscription_id">Sim kaart</string>
+    <string name="ussd_code_summary">De app vraagt de USSD-code %s om het huidige saldo te krijgen</string>
+    <string name="general">Algemeen</string>
+    <string name="clear_current_data">Wis alle gegevens</string>
+    <string name="no_data_hint">Swipe naar beneden om het laatste prepaid saldo te krijgen. Controleer eerst de geconfigureerde USSD-code in de instellingen.</string>
+    <string name="channel_name_error">Foutmelding</string>
+    <string name="debug">Probleemoplossing</string>
+    <string name="debug_provider_details">Standaard provider details</string>
+    <string name="debug_last_ussd_response">Laatste USSD-reactie</string>
+    <string name="debug_last_ussd_response_none">Er is nog geen verzoek ingediend</string>
+    <string name="debug_last_ussd_response_invalid">Laatste aanvraag mislukt met code %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Laatste aanvraag is niet voltooid</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Laatste verzoek mislukt, omdat telefonische service niet beschikbaar is</string>
+    <string name="copied_to_clipboard">Gekopieerd naar klembord</string>
+    <string name="retry">Opnieuw</string>
+    <string name="confirm_first_request">Een USSD-verzoek zal gemaakt worden naar %s</string>
+    <string name="close">Sluiten</string>
+    <string name="no_response_saved">Geen antwoord opgeslagen</string>
+    <string name="last_update">Laatst bijgewerkt: %s</string>
     <!-- Export as CSV -->
+    <string name="export">Exporteren als CSV</string>
+    <string name="export_saved_file">Geëxporteerd als \"%s\" naar download-map</string>
+    <string name="export_error_saving_file">Exporteren mislukt</string>
+    <string name="export_csv_header_balance">Saldo</string>
+    <string name="export_csv_header_data">Datum:</string>
     <!-- About menu -->
+    <string name="about">Over Prepaid Saldo</string>
+    <string name="error_no_browser_found">Geen browser gevonden</string>
 </resources>

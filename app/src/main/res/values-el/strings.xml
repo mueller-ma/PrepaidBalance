@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Προπληρωμένο Υπόλοιπο</string>
+    <string name="ussd_failed">Αποτυχία αίτησης κώδικα USSD</string>
+    <string name="unable_get_balance">Δεν είναι δυνατή η λήψη υπολοίπου από την απάντηση: %s</string>
+    <string name="phone_permissions_required">Απαιτούνται δικαιώματα τηλεφώνου</string>
+    <string name="notification_permission_denied">Άρνηση άδειας ειδοποίησης</string>
+    <string name="preferences">Ρυθμίσεις</string>
+    <string name="periodic_checks_title">Περιοδικός έλεγχος υπολοίπου</string>
+    <string name="periodic_checks_rate_title">Διάστημα</string>
+    <string name="periodic_checks_rate_four_times_a_day">Τέσσερις φορές την ημέρα</string>
+    <string name="periodic_checks_rate_twice_a_day">Δύο φορές την ημέρα</string>
+    <string name="periodic_checks_rate_once_a_week">Μία φορά την εβδομάδα</string>
+    <string name="notify_balance_increased_title">Αυξημένη ισορροπία</string>
+    <string name="notify_balance_under_threshold_title">Υπόλοιπο κάτω από το όριο</string>
+    <string name="notify_balance_under_threshold_value_title">Όριο</string>
+    <string name="notifications">Ειδοποιήσεις</string>
+    <string name="balance_increased">Το υπόλοιπο αυξήθηκε κατά %s</string>
+    <string name="threshold_reached">Το υπόλοιπο είναι κάτω από το όριο: %s</string>
+    <string name="channel_name_balance_increased">Αυξημένη ισορροπία</string>
+    <string name="channel_name_threshold_reached">Έφτασε όριο</string>
+    <string name="invalid_ussd_code">Εισήχθη μη έγκυρος κωδικός USSD</string>
+    <string name="invalid_subscription">Μη έγκυρη κάρτα sim επιλέχθηκε, ελέγξτε τις ρυθμίσεις</string>
+    <string name="ussd_code">Κωδικός USSD</string>
+    <string name="subscription_id">Κάρτα SIM</string>
+    <string name="ussd_code_summary">Η εφαρμογή ρωτά τον κωδικό USSD %s για να πάρει το τρέχον υπόλοιπο</string>
+    <string name="general">Γενικά</string>
+    <string name="clear_current_data">Εκκαθάριση όλων των δεδομένων</string>
+    <string name="no_data_hint">Σύρετε προς τα κάτω για να λάβετε το τελευταίο προπληρωμένο υπόλοιπο. Πρέπει πρώτα να ελέγξετε τον ρυθμισμένο κωδικό USSD στις ρυθμίσεις.</string>
+    <string name="channel_name_error">Σφάλμα</string>
+    <string name="debug">Αντιμετώπιση Προβλημάτων</string>
+    <string name="debug_provider_details">Λεπτομέρειες προεπιλεγμένου παρόχου</string>
+    <string name="debug_last_ussd_response">Τελευταία απάντηση USSD</string>
+    <string name="debug_last_ussd_response_none">Δεν έχει υποβληθεί ακόμα κανένα αίτημα</string>
+    <string name="debug_last_ussd_response_invalid">Η τελευταία αίτηση απέτυχε με τον κωδικό %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Το τελευταίο αίτημα απέτυχε να ολοκληρωθεί</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Το τελευταίο αίτημα απέτυχε, επειδή η υπηρεσία τηλεφωνίας δεν είναι διαθέσιμη</string>
+    <string name="copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
+    <string name="retry">Επανάληψη</string>
+    <string name="confirm_first_request">Ένα αίτημα USSD θα υποβληθεί στο %s</string>
+    <string name="close">Κλείσιμο</string>
+    <string name="no_response_saved">Καμία απάντηση δεν αποθηκεύτηκε</string>
+    <string name="last_update">Τελευταία ενημέρωση: %s</string>
     <!-- Export as CSV -->
+    <string name="export">Εξαγωγή ως CSV</string>
+    <string name="export_saved_file">Εξήχθη ως \"%s\" στο φάκελο λήψεων</string>
+    <string name="export_error_saving_file">Η εξαγωγή απέτυχε</string>
+    <string name="export_csv_header_balance">Υπόλοιπο</string>
+    <string name="export_csv_header_data">Ημερομηνία</string>
     <!-- About menu -->
+    <string name="about">Σχετικά Με Prepaid Υπόλοιπο</string>
+    <string name="error_no_browser_found">Δεν βρέθηκε πρόγραμμα περιήγησης</string>
 </resources>
