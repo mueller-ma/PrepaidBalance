@@ -3,6 +3,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
     <string name="app_name">Ön Ödemeli Bakiye</string>
     <string name="ussd_failed">USSD kodu talep edilemedi</string>
+    <string name="phone_permissions_required">Telefon izinleri gerekli</string>
     <string name="preferences">Ayarlar</string>
     <string name="periodic_checks_title">Bakiyeyi periyodik olarak kontrol et</string>
     <string name="notify_balance_increased_title">Bakiye arttırıldı</string>
@@ -27,6 +28,8 @@
     <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Telefon hizmeti kullanılamadığından son istek başarısız oldu</string>
     <string name="copied_to_clipboard">Panoya kopyalandı</string>
     <string name="retry">Yeniden dene</string>
+    <string name="close">Kapat</string>
     <!-- Export as CSV -->
     <!-- About menu -->
+    <string name="error_no_browser_found">Web tarayıcısı bulunamadı</string>
 </resources>
