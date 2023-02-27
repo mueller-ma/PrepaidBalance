@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Soldul preplătit</string>
+    <string name="ussd_failed">Solicitarea codului USSD a eșuat</string>
+    <string name="unable_get_balance">Imposibil de obținut soldul din răspuns: %s</string>
+    <string name="phone_permissions_required">Permisiuni de telefon necesare</string>
+    <string name="notification_permission_denied">Permisiune de notificare refuzată</string>
+    <string name="preferences">Setări</string>
+    <string name="periodic_checks_title">Verificare periodică a soldului</string>
+    <string name="periodic_checks_rate_title">Interval</string>
+    <string name="periodic_checks_rate_four_times_a_day">De patru ori pe zi</string>
+    <string name="periodic_checks_rate_twice_a_day">De două ori pe zi</string>
+    <string name="periodic_checks_rate_once_a_week">O dată pe săptămână</string>
+    <string name="notify_balance_increased_title">Sold crescut</string>
+    <string name="notify_balance_under_threshold_title">Sold sub prag</string>
+    <string name="notify_balance_under_threshold_value_title">Pragul</string>
+    <string name="notifications">Notificări</string>
+    <string name="balance_increased">Balanța a fost mărită cu %s</string>
+    <string name="threshold_reached">Soldul este sub prag: %s</string>
+    <string name="channel_name_balance_increased">Sold crescut</string>
+    <string name="channel_name_threshold_reached">Pragul a atins</string>
+    <string name="invalid_ussd_code">Cod USSD introdus nevalid</string>
+    <string name="invalid_subscription">Card SIM selectat nevalid, verificați setările</string>
+    <string name="ussd_code">Cod USSD</string>
+    <string name="subscription_id">Card Sim</string>
+    <string name="ussd_code_summary">Aplicația interogează codul USSD %s pentru a obține soldul curent</string>
+    <string name="general">Generalități</string>
+    <string name="clear_current_data">Ștergeți toate datele</string>
+    <string name="no_data_hint">Glisați în jos pentru a obține cel mai recent sold preplătit. Ar trebui să verificați mai întâi codul USSD configurat în setări.</string>
+    <string name="channel_name_error">Eroare</string>
+    <string name="debug">Depanare</string>
+    <string name="debug_provider_details">Detalii furnizor implicit</string>
+    <string name="debug_last_ussd_response">Ultimul răspuns USSD</string>
+    <string name="debug_last_ussd_response_none">Încă nu a fost făcută nicio solicitare</string>
+    <string name="debug_last_ussd_response_invalid">Ultima cerere a eșuat cu codul %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Ultima cerere a eșuat</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Ultima cerere a eșuat, deoarece serviciul de telefonie nu este disponibil</string>
+    <string name="copied_to_clipboard">Copiat în clipboard</string>
+    <string name="retry">Reîncercați</string>
+    <string name="confirm_first_request">O cerere USSD va fi făcută către %s</string>
+    <string name="close">Inchide</string>
+    <string name="no_response_saved">Niciun răspuns salvat</string>
+    <string name="last_update">Ultima actualizare: %s</string>
     <!-- Export as CSV -->
+    <string name="export">Exportă ca CSV</string>
+    <string name="export_saved_file">Exportat ca \"%s\" în directorul de descărcări</string>
+    <string name="export_error_saving_file">Exportul a eșuat</string>
+    <string name="export_csv_header_balance">Sold</string>
+    <string name="export_csv_header_data">Data</string>
     <!-- About menu -->
+    <string name="about">Despre Soldul preplătit</string>
+    <string name="error_no_browser_found">Nici un browser găsit</string>
 </resources>
