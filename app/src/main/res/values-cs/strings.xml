@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Předplacený zůstatek</string>
+    <string name="ussd_failed">Nepodařilo se požádat o USSD kód</string>
+    <string name="unable_get_balance">Nelze získat zůstatek z odpovědi: %s</string>
+    <string name="phone_permissions_required">Vyžadována oprávnění telefonu</string>
+    <string name="notification_permission_denied">Oznamovací oprávnění bylo odepřeno</string>
+    <string name="preferences">Nastavení</string>
+    <string name="periodic_checks_title">Pravidelná kontrola zůstatku</string>
+    <string name="periodic_checks_rate_title">Interval</string>
+    <string name="periodic_checks_rate_four_times_a_day">Čtyřikrát denně</string>
+    <string name="periodic_checks_rate_twice_a_day">Dvakrát denně</string>
+    <string name="periodic_checks_rate_once_a_week">Jednou týdně</string>
+    <string name="notify_balance_increased_title">Zvýšený zůstatek</string>
+    <string name="notify_balance_under_threshold_title">Zůstatek pod prahovou hodnotou</string>
+    <string name="notify_balance_under_threshold_value_title">Prahová hodnota</string>
+    <string name="notifications">Oznámení</string>
+    <string name="balance_increased">Zůstatek byl navýšen o %s</string>
+    <string name="threshold_reached">Zůstatek je pod limitem: %s</string>
+    <string name="channel_name_balance_increased">Zvýšený zůstatek</string>
+    <string name="channel_name_threshold_reached">Dosažen práh</string>
+    <string name="invalid_ussd_code">Zadán neplatný USSD kód</string>
+    <string name="invalid_subscription">Byla vybrána neplatná SIM karta, zkontrolujte nastavení</string>
+    <string name="ussd_code">USSD kód</string>
+    <string name="subscription_id">SIM karta</string>
+    <string name="ussd_code_summary">Aplikace se dotazuje na USSD kód %s pro získání aktuálního zůstatku</string>
+    <string name="general">Obecná ustanovení</string>
+    <string name="clear_current_data">Vymazat všechna data</string>
+    <string name="no_data_hint">Přejetím dolů získáte nejnovější předplacený zůstatek. Nejprve byste měli zkontrolovat nakonfigurovaný USSD kód v nastavení.</string>
+    <string name="channel_name_error">Chyba</string>
+    <string name="debug">Řešení problémů</string>
+    <string name="debug_provider_details">Podrobnosti výchozího poskytovatele</string>
+    <string name="debug_last_ussd_response">Poslední odpověď USSD</string>
+    <string name="debug_last_ussd_response_none">Zatím nebyl podán žádný požadavek</string>
+    <string name="debug_last_ussd_response_invalid">Poslední požadavek selhal s kódem %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Poslední požadavek se nepodařilo dokončit</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Poslední požadavek se nezdařil, protože služba telefonie není k dispozici</string>
+    <string name="copied_to_clipboard">Zkopírováno do schránky</string>
+    <string name="retry">Opakovat</string>
+    <string name="confirm_first_request">Požadavek USSD bude proveden na %s</string>
+    <string name="close">Zavřít</string>
+    <string name="no_response_saved">Žádná odpověď nebyla uložena</string>
+    <string name="last_update">Poslední aktualizace: %s</string>
     <!-- Export as CSV -->
+    <string name="export">Exportovat jako CSV</string>
+    <string name="export_saved_file">Exportováno jako \"%s\" do složky ke stažení</string>
+    <string name="export_error_saving_file">Export selhal</string>
+    <string name="export_csv_header_balance">Zůstatek</string>
+    <string name="export_csv_header_data">Datum:</string>
     <!-- About menu -->
+    <string name="about">O předplaceném zůstatku</string>
+    <string name="error_no_browser_found">Nebyl nalezen žádný prohlížeč</string>
 </resources>
