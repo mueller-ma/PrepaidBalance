@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Ennakkoon Maksettu Saldo</string>
+    <string name="ussd_failed">USSD-koodia ei voitu pyytää</string>
+    <string name="unable_get_balance">Tasapainoa ei saatu vastauksesta: %s</string>
+    <string name="phone_permissions_required">Puhelimen käyttöoikeudet vaaditaan</string>
+    <string name="notification_permission_denied">Käyttöoikeus ilmoituksiin evätty</string>
+    <string name="preferences">Asetukset</string>
+    <string name="periodic_checks_title">Tarkastussaldo määräajoin</string>
+    <string name="periodic_checks_rate_title">Aikaväli</string>
+    <string name="periodic_checks_rate_four_times_a_day">Neljä kertaa päivässä</string>
+    <string name="periodic_checks_rate_twice_a_day">Kahdesti päivässä</string>
+    <string name="periodic_checks_rate_once_a_week">Kerran viikossa</string>
+    <string name="notify_balance_increased_title">Saldo kasvoi</string>
+    <string name="notify_balance_under_threshold_title">Kynnysarvon mukainen saldo</string>
+    <string name="notify_balance_under_threshold_value_title">Kynnysarvo</string>
+    <string name="notifications">Ilmoitukset</string>
+    <string name="balance_increased">Saldoa on lisätty %s</string>
+    <string name="threshold_reached">Saldo on alle kynnyksen: %s</string>
+    <string name="channel_name_balance_increased">Saldo kasvoi</string>
+    <string name="channel_name_threshold_reached">Kynnysarvo saavutettu</string>
+    <string name="invalid_ussd_code">Virheellinen USSD-koodi syötetty</string>
+    <string name="invalid_subscription">Valittu SIM-kortti ei kelpaa, tarkista asetukset</string>
+    <string name="ussd_code">USSD-koodi</string>
+    <string name="subscription_id">SIM-kortti</string>
+    <string name="ussd_code_summary">Sovellus kysyy USSD-koodia %s saadaksesi nykyisen saldon</string>
+    <string name="general">Yleiset</string>
+    <string name="clear_current_data">Tyhjennä kaikki tiedot</string>
+    <string name="no_data_hint">Pyyhkäise alas saadaksesi viimeisimmän ennalta maksetun saldon. Sinun tulee ensin tarkistaa konfiguroitu USSD-koodi.</string>
+    <string name="channel_name_error">Virhe</string>
+    <string name="debug">Vianmääritys</string>
+    <string name="debug_provider_details">Oletustiedot tarjoajalle</string>
+    <string name="debug_last_ussd_response">Viimeisin USSD-vastaus</string>
+    <string name="debug_last_ussd_response_none">Pyyntöä ei ole vielä tehty</string>
+    <string name="debug_last_ussd_response_invalid">Viimeisin pyyntö epäonnistui koodilla %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Viimeinen pyyntö epäonnistui</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Viimeisin pyyntö epäonnistui, koska puhelinpalvelu ei ole käytettävissä</string>
+    <string name="copied_to_clipboard">Kopioitu leikepöydälle</string>
+    <string name="retry">Yritä Uudelleen</string>
+    <string name="confirm_first_request">USSD-pyyntö tehdään kohteeseen %s</string>
+    <string name="close">Sulje</string>
+    <string name="no_response_saved">Ei tallennettuja vastauksia</string>
+    <string name="last_update">Viimeisin päivitys: %s</string>
     <!-- Export as CSV -->
+    <string name="export">Vie CSV-muodossa</string>
+    <string name="export_saved_file">Viedyt nimellä \"%s\" latauksia kansioon</string>
+    <string name="export_error_saving_file">Vienti epäonnistui</string>
+    <string name="export_csv_header_balance">Saldo</string>
+    <string name="export_csv_header_data">Päivämäärä</string>
     <!-- About menu -->
+    <string name="about">Tietoja Prepaid-saldosta</string>
+    <string name="error_no_browser_found">Selainta ei löytynyt</string>
 </resources>
