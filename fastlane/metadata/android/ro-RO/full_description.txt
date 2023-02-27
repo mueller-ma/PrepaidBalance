@@ -1,2 +1,2 @@
-This app keeps track of your prepaid balance. It can automatically record it and post a notification if your balance drops under a configurable threshold.
-It does so by parsing the response of a USSD code, that can be set in the settings.
+Această aplicație ține evidența soldului dvs. preplătit. Poate înregistra automat și posta o notificare în cazul în care soldul dvs. scade sub un prag configurabil.
+Face acest lucru analizând răspunsul unui cod USSD, care poate fi setat în setări.
