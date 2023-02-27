@@ -29,7 +29,6 @@
     <string name="clear_current_data">Очистить все данные</string>
     <string name="no_data_hint">Смахните вниз, чтобы получить ваш последний баланс предоплаты. Сначала проверьте настроенный USSD-код в настройках.</string>
     <string name="channel_name_error">Ошибка</string>
-    <string name="duplicates">Не сохранять повторяющиеся значения</string>
     <string name="debug">Устранение проблем</string>
     <string name="debug_provider_details">Детали провайдера по умолчанию</string>
     <string name="debug_last_ussd_response">Последний ответ USSD</string>
