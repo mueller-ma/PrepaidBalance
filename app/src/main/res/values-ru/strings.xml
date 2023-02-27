@@ -42,6 +42,7 @@
     <string name="close">Закрыть</string>
     <string name="no_response_saved">Ответ не сохранён</string>
     <string name="last_update">Последнее обновление: %s</string>
+    <string name="widget_description">Показать последний баланс</string>
     <!-- Export as CSV -->
     <string name="export">Экспорт в CSV</string>
     <string name="export_saved_file">Экспортировано как \"%s\" в папку загрузок</string>
