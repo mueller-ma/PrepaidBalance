@@ -1,2 +1,2 @@
-This app keeps track of your prepaid balance. It can automatically record it and post a notification if your balance drops under a configurable threshold.
-It does so by parsing the response of a USSD code, that can be set in the settings.
+此应用将跟踪您的预付余额。 如果您的余额出现在可配置的阈值下，它可以自动记录并发布通知。
+它这样做的方法是解析一个 USSD 代码的响应，它可以设置在设置中。
