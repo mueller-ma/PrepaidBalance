@@ -29,7 +29,6 @@
     <string name="clear_current_data">Wyczyść wszystkie dane</string>
     <string name="no_data_hint">Przesuń palcem w dół, aby uzyskać najnowsze saldo konta. Sprawdź najpierw w ustawieniach skonfigurowany kod USSD.</string>
     <string name="channel_name_error">Błąd</string>
-    <string name="duplicates">Nie zapisuj takich samych wartości</string>
     <string name="debug">Rozwiązywanie problemów</string>
     <string name="debug_provider_details">Domyślne dane dostawcy</string>
     <string name="debug_last_ussd_response">Ostatnia odpowiedź USSD</string>
