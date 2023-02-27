@@ -48,6 +48,7 @@
     <string name="close">Close</string>
     <string name="no_response_saved">No response saved</string>
     <string name="last_update">Last update: %s</string>
+    <string name="widget_description">Show latest balance</string>
 
     <!-- Export as CSV -->
     <string name="export">Export as CSV</string>
