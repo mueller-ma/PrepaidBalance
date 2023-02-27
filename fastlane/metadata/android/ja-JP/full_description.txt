@@ -1,2 +1,2 @@
-This app keeps track of your prepaid balance. It can automatically record it and post a notification if your balance drops under a configurable threshold.
-It does so by parsing the response of a USSD code, that can be set in the settings.
+このアプリは前払い残高を記録します。 残高が設定可能なしきい値を下回った場合、自動的に記録し、通知を投稿することができます。
+これは、USSDコードの応答を解析することによって、設定で設定できます。
