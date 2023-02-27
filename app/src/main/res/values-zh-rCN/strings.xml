@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">预付余额</string>
+    <string name="ussd_failed">请求 USSD 代码失败</string>
+    <string name="unable_get_balance">无法从响应中获得余额： %s</string>
+    <string name="phone_permissions_required">需要电话权限</string>
+    <string name="notification_permission_denied">通知权限被拒绝</string>
+    <string name="preferences">设置</string>
+    <string name="periodic_checks_title">定期检查余额</string>
+    <string name="periodic_checks_rate_title">间隔</string>
+    <string name="periodic_checks_rate_four_times_a_day">每天四次</string>
+    <string name="periodic_checks_rate_twice_a_day">每天两次</string>
+    <string name="periodic_checks_rate_once_a_week">每周一次</string>
+    <string name="notify_balance_increased_title">余额增加</string>
+    <string name="notify_balance_under_threshold_title">阈值下的余额</string>
+    <string name="notify_balance_under_threshold_value_title">阈值</string>
+    <string name="notifications">通知</string>
+    <string name="balance_increased">余额增加了 %s</string>
+    <string name="threshold_reached">余额低于阈值： %s</string>
+    <string name="channel_name_balance_increased">余额增加</string>
+    <string name="channel_name_threshold_reached">达到阈值</string>
+    <string name="invalid_ussd_code">输入无效的 USSD 代码</string>
+    <string name="invalid_subscription">选中的sim卡无效，请检查设置</string>
+    <string name="ussd_code">USSD 代码</string>
+    <string name="subscription_id">Sim 卡</string>
+    <string name="ussd_code_summary">应用程序查询USSD 代码 %s 以获取当前余额</string>
+    <string name="general">通用</string>
+    <string name="clear_current_data">清除所有数据</string>
+    <string name="no_data_hint">向下滑动以获取您最新的预付余额。您应该先在设置中检查已配置的 USSD 代码。</string>
+    <string name="channel_name_error">错误</string>
+    <string name="debug">故障排除</string>
+    <string name="debug_provider_details">默认提供商详细信息</string>
+    <string name="debug_last_ussd_response">最后一次USSD 响应</string>
+    <string name="debug_last_ussd_response_none">尚未提出请求</string>
+    <string name="debug_last_ussd_response_invalid">最后一次请求失败，代码 %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">上次请求完成失败</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">最后一个请求失败，因为电话服务不可用</string>
+    <string name="copied_to_clipboard">复制到剪贴板</string>
+    <string name="retry">重试</string>
+    <string name="confirm_first_request">USSD 请求将被提交给 %s</string>
+    <string name="close">关闭</string>
+    <string name="no_response_saved">未保存响应</string>
+    <string name="last_update">上次更新： %s</string>
     <!-- Export as CSV -->
+    <string name="export">导出为 CSV</string>
+    <string name="export_saved_file">导出为 \"%s\" 来下载文件夹</string>
+    <string name="export_error_saving_file">导出失败</string>
+    <string name="export_csv_header_balance">余额</string>
+    <string name="export_csv_header_data">日期</string>
     <!-- About menu -->
+    <string name="about">关于预付余额</string>
+    <string name="error_no_browser_found">未找到可用的浏览器</string>
 </resources>
