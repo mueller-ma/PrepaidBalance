@@ -74,7 +74,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_main, false)
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermissions(POST_NOTIFICATIONS)) {
             requestPermissionLauncher.launch(arrayOf(POST_NOTIFICATIONS))
         }
     }

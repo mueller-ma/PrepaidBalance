@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity
-            android:name="com.github.muellerma.prepaidbalance.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:theme="@style/Theme.App.Starting"
             android:exported="true">
             <intent-filter>
@@ -25,7 +25,7 @@
         </activity>
 
         <activity
-            android:name="com.github.muellerma.prepaidbalance.ui.PreferenceActivity"
+            android:name=".ui.PreferenceActivity"
             android:exported="false" />
 
         <receiver
