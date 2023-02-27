@@ -25,6 +25,7 @@ import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.utils.timestampForUi
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
+import com.google.android.material.color.DynamicColors
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.io.File
@@ -59,6 +60,8 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
+        // Apply dynamic colors here to avoid losing them due to splash screen: https://github.com/material-components/material-components-android/issues/2555
+        DynamicColors.applyToActivityIfAvailable(this)
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate()")
         splashScreen.setKeepOnScreenCondition { !databaseLoaded }

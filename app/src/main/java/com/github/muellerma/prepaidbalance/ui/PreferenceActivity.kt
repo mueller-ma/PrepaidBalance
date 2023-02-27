@@ -9,7 +9,6 @@ import android.text.InputType
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
