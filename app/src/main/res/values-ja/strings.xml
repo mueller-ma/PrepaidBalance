@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">プリペイド 残高</string>
+    <string name="ussd_failed">USSDコードのリクエストに失敗しました</string>
+    <string name="unable_get_balance">応答から残高を取得できません: %s</string>
+    <string name="phone_permissions_required">携帯電話のアクセス許可が必要です</string>
+    <string name="notification_permission_denied">通知の権限が拒否されました</string>
+    <string name="preferences">設定</string>
+    <string name="periodic_checks_title">定期的に残高を確認する</string>
+    <string name="periodic_checks_rate_title">間隔</string>
+    <string name="periodic_checks_rate_four_times_a_day">1日4回</string>
+    <string name="periodic_checks_rate_twice_a_day">1日2回</string>
+    <string name="periodic_checks_rate_once_a_week">週に1回</string>
+    <string name="notify_balance_increased_title">残高増加</string>
+    <string name="notify_balance_under_threshold_title">閾値以下の残高</string>
+    <string name="notify_balance_under_threshold_value_title">しきい値</string>
+    <string name="notifications">通知</string>
+    <string name="balance_increased">残高が %s増加しました</string>
+    <string name="threshold_reached">残高はしきい値以下です: %s</string>
+    <string name="channel_name_balance_increased">残高増加</string>
+    <string name="channel_name_threshold_reached">限界値に達しました</string>
+    <string name="invalid_ussd_code">無効なUSSDコードが入力されました</string>
+    <string name="invalid_subscription">SIMカードが無効です。設定を確認してください</string>
+    <string name="ussd_code">USSD コード</string>
+    <string name="subscription_id">SIM カード</string>
+    <string name="ussd_code_summary">アプリは現在の残高を得るためにUSSDコード %s を照会します</string>
+    <string name="general">全般</string>
+    <string name="clear_current_data">すべてのデータを消去</string>
+    <string name="no_data_hint">下にスワイプして、最新の前払い残高を取得します。最初に設定されたUSSDコードを確認してください。</string>
+    <string name="channel_name_error">エラー</string>
+    <string name="debug">トラブルシューティング</string>
+    <string name="debug_provider_details">デフォルトのプロバイダの詳細</string>
+    <string name="debug_last_ussd_response">前回のUSSD応答</string>
+    <string name="debug_last_ussd_response_none">リクエストはまだありません</string>
+    <string name="debug_last_ussd_response_invalid">最後のリクエストはコード %d で失敗しました</string>
+    <string name="debug_last_ussd_response_failed_to_complete">最後のリクエストを完了できませんでした</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">最後のリクエストに失敗しました。電話サービスが利用できないためです。</string>
+    <string name="copied_to_clipboard">クリップボードにコピーしました</string>
+    <string name="retry">再試行する</string>
+    <string name="confirm_first_request">%s に USSD リクエストが行われます</string>
+    <string name="close">閉じる</string>
+    <string name="no_response_saved">応答が保存されていません</string>
+    <string name="last_update">最終更新日: %s</string>
     <!-- Export as CSV -->
+    <string name="export">CSV形式でエクスポート</string>
+    <string name="export_saved_file">ダウンロードフォルダに「%s」としてエクスポートしました</string>
+    <string name="export_error_saving_file">エクスポートに失敗しました</string>
+    <string name="export_csv_header_balance">残高</string>
+    <string name="export_csv_header_data">日付</string>
     <!-- About menu -->
+    <string name="about">プリペイド残高について</string>
+    <string name="error_no_browser_found">ブラウザが見つかりませんでした</string>
 </resources>
