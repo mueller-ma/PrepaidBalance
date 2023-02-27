@@ -41,6 +41,7 @@
     <string name="confirm_first_request">USSD-запит буде зроблено на %s</string>
     <string name="close">Закрити</string>
     <string name="no_response_saved">Відповідь не збережено</string>
+    <string name="last_update">Останнє оновлення: %s</string>
     <!-- Export as CSV -->
     <string name="export">Експорт в CSV</string>
     <string name="export_saved_file">Експортовано як \"%s\" до папки завантажень</string>
