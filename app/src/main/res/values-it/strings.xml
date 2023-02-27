@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Saldo Prepagato</string>
+    <string name="ussd_failed">Impossibile richiedere il codice USSD</string>
+    <string name="unable_get_balance">Impossibile ottenere il saldo dalla risposta: %s</string>
+    <string name="phone_permissions_required">Autorizzazioni telefoniche richieste</string>
+    <string name="notification_permission_denied">Permesso di notifica negato</string>
+    <string name="preferences">Impostazioni</string>
+    <string name="periodic_checks_title">Controlla periodicamente il saldo</string>
+    <string name="periodic_checks_rate_title">Intervallo</string>
+    <string name="periodic_checks_rate_four_times_a_day">Quattro volte al giorno</string>
+    <string name="periodic_checks_rate_twice_a_day">Due volte al giorno</string>
+    <string name="periodic_checks_rate_once_a_week">Una volta alla settimana</string>
+    <string name="notify_balance_increased_title">Saldo aumentato</string>
+    <string name="notify_balance_under_threshold_title">Saldo sotto la soglia</string>
+    <string name="notify_balance_under_threshold_value_title">Soglia</string>
+    <string name="notifications">Notifiche</string>
+    <string name="balance_increased">Il saldo è stato aumentato di %s</string>
+    <string name="threshold_reached">Il saldo è sotto la soglia: %s</string>
+    <string name="channel_name_balance_increased">Saldo aumentato</string>
+    <string name="channel_name_threshold_reached">Soglia raggiunta</string>
+    <string name="invalid_ussd_code">Inserito un codice USSD non valido</string>
+    <string name="invalid_subscription">Scheda SIM selezionata non valida, controlla le impostazioni</string>
+    <string name="ussd_code">Codice USSD</string>
+    <string name="subscription_id">Scheda SIM</string>
+    <string name="ussd_code_summary">L\'app chiede il codice USSD %s per ottenere il saldo corrente</string>
+    <string name="general">Generali</string>
+    <string name="clear_current_data">Cancella tutti i dati</string>
+    <string name="no_data_hint">Scorri verso il basso per ottenere l\'ultimo saldo prepagato. Dovresti controllare prima il codice USSD configurato nelle impostazioni.</string>
+    <string name="channel_name_error">Errore</string>
+    <string name="debug">Risoluzione Dei Problemi</string>
+    <string name="debug_provider_details">Dettagli provider predefiniti</string>
+    <string name="debug_last_ussd_response">Ultima risposta USSD</string>
+    <string name="debug_last_ussd_response_none">Nessuna richiesta è stata ancora fatta</string>
+    <string name="debug_last_ussd_response_invalid">Ultima richiesta fallita con il codice %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Ultima richiesta fallita</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Ultima richiesta non riuscita, perché il servizio di telefonia non è disponibile</string>
+    <string name="copied_to_clipboard">Copiato negli appunti</string>
+    <string name="retry">Riprova</string>
+    <string name="confirm_first_request">Una richiesta USSD verrà fatta a %s</string>
+    <string name="close">Chiudi</string>
+    <string name="no_response_saved">Nessuna risposta salvata</string>
+    <string name="last_update">Ultimo aggiornamento: %s</string>
     <!-- Export as CSV -->
+    <string name="export">Esporta come CSV</string>
+    <string name="export_saved_file">Esportato come \"%s\" nella cartella degli scaricamenti</string>
+    <string name="export_error_saving_file">Esportazione fallita</string>
+    <string name="export_csv_header_balance">Saldo</string>
+    <string name="export_csv_header_data">Data</string>
     <!-- About menu -->
+    <string name="about">Informazioni Sul Saldo Prepagato</string>
+    <string name="error_no_browser_found">Nessun browser trovato</string>
 </resources>
