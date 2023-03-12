@@ -69,7 +69,9 @@ class ResponseParserTest {
             // https://github.com/mueller-ma/PrepaidBalance/issues/160
             "Twoja oferta to nju na karte.\n1.Stan konta glownego: 11.00 zl. Srodki wazne bezterminowo." to 11.0,
             // https://github.com/mueller-ma/PrepaidBalance/issues/188
-            "Dobry den, aktualni vyse Vaseho kreditu na cisle 12345678 je 300 Kc, z toho bonusovy kredit je 0 Kc. Platnost bezneho kreditu: 30. 1. 2024 18:18. Vase O2" to 300.0
+            "Dobry den, aktualni vyse Vaseho kreditu na cisle 12345678 je 300 Kc, z toho bonusovy kredit je 0 Kc. Platnost bezneho kreditu: 30. 1. 2024 18:18. Vase O2" to 300.0,
+            // https://silent.link
+            "IMSI:123456789012345\n USD:5.87\n Num#:123456789012" to 5.87
         ).forEach { (message, balance) ->
             assertEquals(message, balance, ResponseParser.getBalance(message))
         }

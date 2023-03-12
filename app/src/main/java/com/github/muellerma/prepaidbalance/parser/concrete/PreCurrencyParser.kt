@@ -6,5 +6,5 @@ class PreCurrencyParser : RegexParser("Currency before balance") {
     override val groupIndex: Int
         get() = 4
     override val regex: Regex
-        get() = "(.*?) (£|\$|CHF)( |)((\\d)+\\.(\\d){1,2})(.*)".toRegex()
+        get() = "(.*?) (£|\$|CHF|USD)( |:|)((\\d)+\\.(\\d){1,2})(.*)".toRegex()
 }
