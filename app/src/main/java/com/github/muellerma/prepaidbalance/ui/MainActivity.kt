@@ -29,6 +29,7 @@ import com.google.android.material.color.DynamicColors
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.io.File
+import java.io.FileNotFoundException
 
 
 class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListener {
@@ -40,7 +41,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     ) { isGranted: Map<String, Boolean> ->
         if (isGranted.all { it.value }) {
             // phone permissions granted
-            if(isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)){
+            if (isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)) {
                 binding.swiperefresh.isRefreshing = true
                 setDefaultSubscriptionId()
                 onRefresh()
@@ -55,6 +56,16 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
             }
 
             showSnackbar(message)
+        }
+    }
+
+    private val requestStoragePermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+        val canRead = permissions[READ_EXTERNAL_STORAGE] ?: false
+        val canWrite = permissions[WRITE_EXTERNAL_STORAGE] ?: false
+        if (canRead && canWrite) {
+            exportAsCsv()
+        } else {
+            showSnackbar(R.string.export_error_saving_file)
         }
     }
 
@@ -117,7 +128,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onOptionsItemSelected($item)")
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.preferences -> {
                 Intent(this, PreferenceActivity::class.java).apply {
                     startActivity(this)
@@ -139,17 +150,21 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     private fun exportAsCsv() {
         launch {
             val content = buildCsv()
-
+            val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
             try {
-                val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
                 writeToFileInDownloads(content, filename)
                 showSnackbar(getString(R.string.export_saved_file, filename))
                 return@launch
-            } catch (e: Exception) {
+            } catch (e: FileNotFoundException) {
+                if (hasPermissions(READ_EXTERNAL_STORAGE) && hasPermissions(WRITE_EXTERNAL_STORAGE)) {
+                    writeToFileInDownloads(content, filename)
+                    showSnackbar(getString(R.string.export_saved_file, filename))
+                } else {
+                    requestStoragePermission.launch(arrayOf(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE))
+                }
+            }catch (e: Exception) {
                 Log.e(TAG, "Error saving file", e)
             }
-
-            showSnackbar(R.string.export_error_saving_file)
         }
     }
 
