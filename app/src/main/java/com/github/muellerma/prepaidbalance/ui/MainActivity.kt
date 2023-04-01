@@ -64,15 +64,9 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         val canRead = permissions[READ_EXTERNAL_STORAGE] ?: false
         val canWrite = permissions[WRITE_EXTERNAL_STORAGE] ?: false
         if (canRead && canWrite) {
-            try {
-                // when user grant read and write permission,
-                // export the file to download folder
-                exportAsCsv()
-            } catch (e: Exception) {
-                // should unknown error occur notify user
-                Log.e(TAG, "Error saving file", e)
-                showSnackbar(R.string.export_error_saving_file)
-            }
+            // when user grant read and write permission,
+            // export the file to download folder
+            exportAsCsv()
         } else {
             // User did not grant permission so an error is displayed for the user to see
             showSnackbar(R.string.export_error_saving_file)
