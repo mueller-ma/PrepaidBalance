@@ -40,7 +40,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     ) { isGranted: Map<String, Boolean> ->
         if (isGranted.all { it.value }) {
             // phone permissions granted
-            if(isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)){
+            if (isGranted.containsKey(CALL_PHONE) || isGranted.containsKey(READ_PHONE_STATE)) {
                 binding.swiperefresh.isRefreshing = true
                 setDefaultSubscriptionId()
                 onRefresh()
@@ -55,6 +55,27 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
             }
 
             showSnackbar(message)
+        }
+    }
+
+    private val requestStoragePermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+        // Because of api version some device need permission to save file in storage
+        // so a contract is created
+        val canRead = permissions[READ_EXTERNAL_STORAGE] ?: false
+        val canWrite = permissions[WRITE_EXTERNAL_STORAGE] ?: false
+        if (canRead && canWrite) {
+            try {
+                // when user grant read and write permission,
+                // export the file to download folder
+                exportAsCsv()
+            } catch (e: Exception) {
+                // should unknown error occur notify user
+                Log.e(TAG, "Error saving file", e)
+                showSnackbar(R.string.export_error_saving_file)
+            }
+        } else {
+            // User did not grant permission so an error is displayed for the user to see
+            showSnackbar(R.string.export_error_saving_file)
         }
     }
 
@@ -117,7 +138,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onOptionsItemSelected($item)")
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.preferences -> {
                 Intent(this, PreferenceActivity::class.java).apply {
                     startActivity(this)
@@ -125,7 +146,20 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
                 true
             }
             R.id.export -> {
-                exportAsCsv()
+                if (
+                    (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) &&
+                    hasPermissions(READ_EXTERNAL_STORAGE).not() &&
+                    hasPermissions(WRITE_EXTERNAL_STORAGE).not()
+                ) {
+                    // this if statement check if this device is with in the version that needs
+                    // permission to save file. It also check if read and write permission not granted.
+                    // It then launch the contract for the user to grant the permission
+                    requestStoragePermission.launch(arrayOf(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE))
+                } else {
+                    // modern device does not need permission to save file in public folder like
+                    // download
+                    exportAsCsv()
+                }
                 true
             }
             android.R.id.home -> {
@@ -137,19 +171,19 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     }
 
     private fun exportAsCsv() {
+        // Export and save csv file to download folder
         launch {
-            val content = buildCsv()
-
             try {
+                val content = buildCsv()
                 val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
                 writeToFileInDownloads(content, filename)
                 showSnackbar(getString(R.string.export_saved_file, filename))
                 return@launch
             } catch (e: Exception) {
+                // if any error occur log it and notify user
                 Log.e(TAG, "Error saving file", e)
+                showSnackbar(R.string.export_error_saving_file)
             }
-
-            showSnackbar(R.string.export_error_saving_file)
         }
     }
 
