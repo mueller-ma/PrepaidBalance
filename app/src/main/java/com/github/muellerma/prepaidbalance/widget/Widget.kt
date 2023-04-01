@@ -11,6 +11,7 @@ import android.widget.RemoteViews
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.room.AppDatabase
 import com.github.muellerma.prepaidbalance.ui.MainActivity
+import com.github.muellerma.prepaidbalance.utils.formatAsCurrency
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -42,10 +43,10 @@ class Widget : AppWidgetProvider(), CoroutineScope {
         }
     }
 
-    private suspend fun setupWidget(context: Context, widgetId: Int, widgetManager: AppWidgetManager) {
+    private fun setupWidget(context: Context, widgetId: Int, widgetManager: AppWidgetManager) {
         val database = AppDatabase.get(context)
-        val latestInDb = database.balanceDao().getLatest()
-        val textForWidget = latestInDb?.balance?.toString() ?: "0"
+        val balance = database.balanceDao().getLatest()?.balance ?: 0.0
+        val textForWidget = balance.formatAsCurrency()
         Log.d(TAG, "textForWidget = $textForWidget")
 
         val intent = Intent(context, MainActivity::class.java)
