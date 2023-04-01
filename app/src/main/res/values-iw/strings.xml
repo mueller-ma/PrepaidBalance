@@ -41,6 +41,8 @@
     <string name="confirm_first_request">תוגש בקשת USSD אל %s</string>
     <string name="close">סגירה</string>
     <string name="no_response_saved">לא נשמרה תגובה</string>
+    <string name="last_update">עדכון אחרון: %s</string>
+    <string name="widget_description">הצגת היתרה העדכנית</string>
     <!-- Export as CSV -->
     <string name="export">ייצוא כ־CSV</string>
     <string name="export_saved_file">יוצא בתור „%s” לתיקיית ההורדות</string>

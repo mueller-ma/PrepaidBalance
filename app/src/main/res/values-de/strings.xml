@@ -42,6 +42,7 @@
     <string name="close">Schließen</string>
     <string name="no_response_saved">Keine Antwort gespeichert</string>
     <string name="last_update">Letzte Aktualisierung: %s</string>
+    <string name="widget_description">Neustes Guthaben anzeigen</string>
     <!-- Export as CSV -->
     <string name="export">Als CSV exportieren</string>
     <string name="export_saved_file">Exportiert als \"%s\" im Download-Ordner</string>
