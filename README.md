@@ -7,7 +7,7 @@
 This app keeps track of your prepaid balance. It can automatically record it and post a notification if your balance drops under a configurable threshold.
 It does so by parsing the response of a USSD code, that can be set in the settings.
 
-[<img src="assets/get-it-on-fdroid.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/de/packages/com.github.muellerma.prepaidbalance/)
+[<img alt="Get it on F-Droid" height="80" src="https://raw.githubusercontent.com/mueller-ma/android-common/main/assets/get-it-on-fdroid.png"/>](https://f-droid.org/de/packages/com.github.muellerma.prepaidbalance/)[<img alt="Download from GitHub" height="80" src="https://raw.githubusercontent.com/mueller-ma/android-common/main/assets/direct-apk-download.png"/>](https://github.com/mueller-ma/PrepaidBalance/releases)
 
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="Screenshot" width=200px>
 
