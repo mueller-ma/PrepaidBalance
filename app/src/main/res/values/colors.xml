@@ -3,6 +3,7 @@
     <color name="golden">#D7BF2A</color>
     <color name="red">#B71C1C</color>
     <color name="green">#2E7D32</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
 
     <color name="seed">#D7BF2A</color>
     <color name="md_theme_light_primary">#6C5E00</color>
