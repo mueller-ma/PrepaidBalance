@@ -141,9 +141,9 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
             }
             R.id.export -> {
                 if (
-                    (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) &&
-                    hasPermissions(READ_EXTERNAL_STORAGE).not() &&
-                    hasPermissions(WRITE_EXTERNAL_STORAGE).not()
+                    Build.VERSION.SDK_INT <= Build.VERSION_CODES.P &&
+                    !hasPermissions(READ_EXTERNAL_STORAGE) &&
+                    !hasPermissions(WRITE_EXTERNAL_STORAGE)
                 ) {
                     // this if statement check if this device is with in the version that needs
                     // permission to save file. It also check if read and write permission not granted.
@@ -164,17 +164,17 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         }
     }
 
+    /**
+     * Export a CSV file to the Downloads folder.
+     */
     private fun exportAsCsv() {
-        // Export and save csv file to download folder
         launch {
             try {
                 val content = buildCsv()
                 val filename = "prepaid-balance-${System.currentTimeMillis()}.csv"
                 writeToFileInDownloads(content, filename)
                 showSnackbar(getString(R.string.export_saved_file, filename))
-                return@launch
             } catch (e: Exception) {
-                // if any error occur log it and notify user
                 Log.e(TAG, "Error saving file", e)
                 showSnackbar(R.string.export_error_saving_file)
             }
