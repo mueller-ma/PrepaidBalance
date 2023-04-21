@@ -10,11 +10,8 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.commit
-import androidx.preference.EditTextPreference
-import androidx.preference.ListPreference
-import androidx.preference.Preference
+import androidx.preference.*
 import androidx.preference.Preference.OnPreferenceChangeListener
-import androidx.preference.PreferenceFragmentCompat
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityPreferenceBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase

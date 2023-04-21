@@ -21,6 +21,7 @@
         <SwitchPreferenceCompat
             android:key="periodic_checks"
             android:defaultValue="false"
+            app:singleLineTitle="false"
             android:title="@string/periodic_checks_title" />
         <ListPreference
             android:key="periodic_checks_rate"
@@ -28,6 +29,7 @@
             android:entries="@array/periodic_checks_rates"
             android:entryValues="@array/periodic_checks_rates_values"
             android:defaultValue="@string/periodic_checks_rate_twice_a_day_value"
+            app:singleLineTitle="false"
             app:dependency="periodic_checks"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
@@ -37,10 +39,12 @@
         <SwitchPreferenceCompat
             android:key="notify_balance_increased"
             android:defaultValue="false"
+            app:singleLineTitle="false"
             android:title="@string/notify_balance_increased_title" />
         <SwitchPreferenceCompat
             android:key="notify_balance_under_threshold"
             android:defaultValue="true"
+            app:singleLineTitle="false"
             android:title="@string/notify_balance_under_threshold_title" />
         <EditTextPreference
             android:key="notify_balance_under_threshold_value"
@@ -48,15 +52,18 @@
             android:title="@string/notify_balance_under_threshold_value_title"
             app:useSimpleSummaryProvider="true"
             android:inputType="number"
-            android:defaultValue="1.00" />
+            android:defaultValue="1.00"
+            app:singleLineTitle="false" />
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/debug">
         <Preference
             android:key="provider_codes"
+            app:singleLineTitle="false"
             android:title="@string/debug_provider_details" />
         <Preference
             android:key="last_ussd_response"
+            app:singleLineTitle="false"
             android:title="@string/debug_last_ussd_response"
             android:defaultValue="@string/debug_last_ussd_response_none" />
     </PreferenceCategory>
