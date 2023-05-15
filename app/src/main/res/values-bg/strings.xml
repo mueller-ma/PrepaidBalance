@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <string name="app_name">Предплатен Баланс</string>
+    <string name="ussd_failed">Неуспешна заявка на USSD код</string>
+    <string name="unable_get_balance">Не може да се получи баланс от отговора: %s</string>
+    <string name="phone_permissions_required">Необходими са права достъп до телефон</string>
+    <string name="notification_permission_denied">Необходими са права достъп до известия</string>
+    <string name="preferences">Нстройки</string>
+    <string name="periodic_checks_title">Периодично проверяване на баланса</string>
+    <string name="periodic_checks_rate_title">Интервал</string>
+    <string name="periodic_checks_rate_four_times_a_day">Четири пъти на ден</string>
+    <string name="periodic_checks_rate_twice_a_day">Два пъти дневно</string>
+    <string name="periodic_checks_rate_once_a_week">Веднъж седмично</string>
+    <string name="notify_balance_increased_title">Балансът се увеличи</string>
+    <string name="notify_balance_under_threshold_title">Баланса е под посочения праг</string>
+    <string name="notify_balance_under_threshold_value_title">Праг</string>
+    <string name="notifications">Известия</string>
+    <string name="balance_increased">Баланса се увеличи с %s</string>
+    <string name="threshold_reached">Баланса е под посочения праг: %s</string>
+    <string name="channel_name_balance_increased">Балансът се увеличи</string>
+    <string name="channel_name_threshold_reached">Достигнат праг</string>
+    <string name="invalid_ussd_code">Въведен е невалиден USSD код</string>
+    <string name="invalid_subscription">Избрана е невалидна сим карта, проверете настройките</string>
+    <string name="ussd_code">USSD код</string>
+    <string name="subscription_id">Сим карта</string>
+    <string name="ussd_code_summary">Приложението изпълнява запитване към USSD кода %s, за да получи текущия баланс</string>
+    <string name="general">Общи</string>
+    <string name="clear_current_data">Изчистване на всички данни</string>
+    <string name="no_data_hint">Плъзнете надолу, за да получите последния си предплатен баланс. Първо трябва да проверите конфигурирания USSD код в настройките.</string>
+    <string name="channel_name_error">Грешка</string>
+    <string name="debug">Отстраняване на неизправности</string>
+    <string name="debug_provider_details">Подробности за доставчика по подразбиране</string>
+    <string name="debug_last_ussd_response">Последен USSD отговор</string>
+    <string name="debug_last_ussd_response_none">Все още няма заявка</string>
+    <string name="debug_last_ussd_response_invalid">Последната заявка е неуспешна с код %d</string>
+    <string name="debug_last_ussd_response_failed_to_complete">Последната заявка не успя да бъде изпълнена</string>
+    <string name="debug_last_ussd_response_failed_telephony_service_unavailable">Последната заявка е неуспешна, защото телефонната услуга не е достъпна</string>
+    <string name="copied_to_clipboard">Копирано в клипборда</string>
+    <string name="retry">Повторен опит</string>
+    <string name="confirm_first_request">USSD заявка ще бъде направена до %s</string>
+    <string name="close">Затвори</string>
+    <string name="no_response_saved">Няма запазен отговор</string>
+    <string name="last_update">Последна актуализация: %s</string>
+    <string name="widget_description">Показване на последния баланс</string>
     <!-- Export as CSV -->
+    <string name="export">Екпсорт като CSV</string>
+    <string name="export_saved_file">Експортирано като „%s“ в папка за изтегляния</string>
+    <string name="export_error_saving_file">Експортирането неуспя</string>
+    <string name="export_csv_header_balance">Баланс</string>
+    <string name="export_csv_header_data">Дата</string>
     <!-- About menu -->
+    <string name="about">Относно предплатения баланс</string>
+    <string name="error_no_browser_found">Няма намерен браузър</string>
 </resources>
