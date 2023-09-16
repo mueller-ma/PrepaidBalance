@@ -6,7 +6,7 @@
     <string name="unable_get_balance">Не може да се получи баланс от отговора: %s</string>
     <string name="phone_permissions_required">Необходими са права достъп до телефон</string>
     <string name="notification_permission_denied">Необходими са права достъп до известия</string>
-    <string name="preferences">Нстройки</string>
+    <string name="preferences">Настройки</string>
     <string name="periodic_checks_title">Периодично проверяване на баланса</string>
     <string name="periodic_checks_rate_title">Интервал</string>
     <string name="periodic_checks_rate_four_times_a_day">Четири пъти на ден</string>
@@ -14,7 +14,7 @@
     <string name="periodic_checks_rate_once_a_week">Веднъж седмично</string>
     <string name="notify_balance_increased_title">Балансът се увеличи</string>
     <string name="notify_balance_under_threshold_title">Баланса е под посочения праг</string>
-    <string name="notify_balance_under_threshold_value_title">Праг</string>
+    <string name="notify_balance_under_threshold_value_title">Граница</string>
     <string name="notifications">Известия</string>
     <string name="balance_increased">Баланса се увеличи с %s</string>
     <string name="threshold_reached">Баланса е под посочения праг: %s</string>
@@ -44,7 +44,7 @@
     <string name="last_update">Последна актуализация: %s</string>
     <string name="widget_description">Показване на последния баланс</string>
     <!-- Export as CSV -->
-    <string name="export">Екпсорт като CSV</string>
+    <string name="export">Експорт като CSV</string>
     <string name="export_saved_file">Експортирано като „%s“ в папка за изтегляния</string>
     <string name="export_error_saving_file">Експортирането неуспя</string>
     <string name="export_csv_header_balance">Баланс</string>
