@@ -40,6 +40,8 @@
     <string name="retry">ניסיון חוזר</string>
     <string name="confirm_first_request">תוגש בקשת USSD אל %s</string>
     <string name="close">סגירה</string>
+    <string name="delete">מחיקה</string>
+    <string name="delete_entry">למחוק את הרשומה „%s”?</string>
     <string name="no_response_saved">לא נשמרה תגובה</string>
     <string name="last_update">עדכון אחרון: %s</string>
     <string name="widget_description">הצגת היתרה העדכנית</string>
