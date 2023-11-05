@@ -103,7 +103,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         super.onResume()
     }
 
-    private fun updateBalanceList() {
+    fun updateBalanceList() {
         Log.d(TAG, "updateBalanceList()")
         launch {
             val lastOneYear = System.currentTimeMillis() - 12L * 30 * 24 * 60 * 60 * 1000
