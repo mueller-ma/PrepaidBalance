@@ -1,0 +1,2 @@
+* Long-press to delete an entry
+* Prepare for Android 14
