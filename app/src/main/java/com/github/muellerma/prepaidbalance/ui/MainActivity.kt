@@ -17,9 +17,11 @@ import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.github.muellerma.prepaidbalance.BuildConfig
 import com.github.muellerma.prepaidbalance.R
 import com.github.muellerma.prepaidbalance.databinding.ActivityMainBinding
 import com.github.muellerma.prepaidbalance.room.AppDatabase
+import com.github.muellerma.prepaidbalance.room.BalanceEntry
 import com.github.muellerma.prepaidbalance.utils.hasPermissions
 import com.github.muellerma.prepaidbalance.utils.prefs
 import com.github.muellerma.prepaidbalance.utils.timestampForUi
@@ -27,6 +29,8 @@ import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker
 import com.github.muellerma.prepaidbalance.work.CheckBalanceWorker.Companion.CheckResult
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -127,6 +131,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         Log.d(TAG, "onCreateOptionsMenu()")
         menuInflater.inflate(R.menu.main_menu, menu)
         (menu as? MenuBuilder)?.setOptionalIconsVisible(true)
+        menu.findItem(R.id.demo_values).isVisible = BuildConfig.DEBUG
         return true
     }
 
@@ -153,6 +158,21 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
                     // modern device does not need permission to save file in public folder like
                     // download
                     exportAsCsv()
+                }
+                true
+            }
+            R.id.demo_values -> {
+                val now = System.currentTimeMillis()
+                CoroutineScope(Dispatchers.IO).launch {
+                    AppDatabase.get(this@MainActivity)
+                        .balanceDao().apply {
+                            insert(BalanceEntry(timestamp = now, balance = 10.15, fullResponse = "foobar 10.15"))
+                            insert(BalanceEntry(timestamp = now - 5 * 60 * 1000, balance = 0.15, fullResponse = "foobar 0.15"))
+                            insert(BalanceEntry(timestamp = now - 60 * 60 * 1000, balance = 5.12, fullResponse = "foobar 5.12"))
+                            insert(BalanceEntry(timestamp = now - 30 * 60 * 60 * 1000, balance = 7.12, fullResponse = "foobar 7.12"))
+                            insert(BalanceEntry(timestamp = 12, balance = 7.12, fullResponse = null)) // quite old
+                        }
+                    updateBalanceList()
                 }
                 true
             }
