@@ -46,6 +46,8 @@
     <string name="retry">Retry</string>
     <string name="confirm_first_request">A USSD request will be made to %s</string>
     <string name="close">Close</string>
+    <string name="delete">Delete</string>
+    <string name="delete_entry">Do you want do delete the entry \"%s\"?</string>
     <string name="no_response_saved">No response saved</string>
     <string name="last_update">Last update: %s</string>
     <string name="widget_description">Show latest balance</string>
