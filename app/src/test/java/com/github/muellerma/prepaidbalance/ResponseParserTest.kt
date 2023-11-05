@@ -12,7 +12,8 @@ class ResponseParserTest {
             null,
             "",
             "foobar",
-            "Tu solicitud no puede ser tramitada en este momento. Por favor vuelve a ingresar llamando al *888#"
+            "Tu solicitud no puede ser tramitada en este momento. Por favor vuelve a ingresar llamando al *888#",
+            "Dieser Service steht auf Grund von Wartungsarbeiten leider erst ab 9 Uhr wieder zur Verfügung."
         ).forEach { message ->
             assertNull(ResponseParser.getBalance(message))
         }

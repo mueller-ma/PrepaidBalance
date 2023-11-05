@@ -13,7 +13,8 @@ class NoBalanceParser : AbstractParser("Response without balance") {
 
     companion object {
         private val NO_BALANCE_START = listOf(
-            "Tu solicitud no puede ser tramitada en este momento"
+            "Tu solicitud no puede ser tramitada en este momento",
+            "Dieser Service steht auf Grund von Wartungsarbeiten leider erst"
         )
     }
 }
