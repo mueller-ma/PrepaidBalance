@@ -7,7 +7,7 @@ import com.github.muellerma.prepaidbalance.parser.AbstractParser
  */
 class NoBalanceParser : AbstractParser("Response without balance") {
     override fun parse(message: String): ParserResult {
-        val isMessageWithoutBalance = NO_BALANCE_START.any { message.startsWith(it) }
+        val isMessageWithoutBalance = NO_BALANCE_START.any { message.startsWith(it, ignoreCase = true) }
         return if (isMessageWithoutBalance) ParserResult.Match(null) else ParserResult.NoMatch
     }
 
