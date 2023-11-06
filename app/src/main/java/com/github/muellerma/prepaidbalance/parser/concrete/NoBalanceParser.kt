@@ -12,9 +12,11 @@ class NoBalanceParser : AbstractParser("Response without balance") {
     }
 
     companion object {
+        // The char replacement that is done in ReponseParser.getBalance() must be done here manually
         private val NO_BALANCE_START = listOf(
             "Tu solicitud no puede ser tramitada en este momento",
-            "Dieser Service steht auf Grund von Wartungsarbeiten leider erst"
+            "Dieser Service steht auf Grund von Wartungsarbeiten leider erst",
+            "Wir k nnen Deine Anfrage derzeit leider nicht bearbeiten",
         )
     }
 }
