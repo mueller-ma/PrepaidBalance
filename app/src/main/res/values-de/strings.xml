@@ -40,6 +40,8 @@
     <string name="retry">Wiederholen</string>
     <string name="confirm_first_request">Eine USSD-Anfrage wird an %s gestellt</string>
     <string name="close">Schließen</string>
+    <string name="delete">Löschen</string>
+    <string name="delete_entry">Soll der Eintrag \"%s\" gelöscht werden?</string>
     <string name="no_response_saved">Keine Antwort gespeichert</string>
     <string name="last_update">Letzte Aktualisierung: %s</string>
     <string name="widget_description">Neustes Guthaben anzeigen</string>
