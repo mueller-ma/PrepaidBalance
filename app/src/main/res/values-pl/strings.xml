@@ -40,6 +40,8 @@
     <string name="retry">Spróbuj ponownie</string>
     <string name="confirm_first_request">Wywołanie USSD zostanie wysłane do %s</string>
     <string name="close">Zamknij</string>
+    <string name="delete">Usuń</string>
+    <string name="delete_entry">Czy na pewno chcesz usunąć \"%s\"?</string>
     <string name="no_response_saved">Nie zapisano odpowiedzi</string>
     <string name="last_update">Ostatnia aktualizacja: %s</string>
     <string name="widget_description">Pokaż najnowszy stan konta</string>
