@@ -13,7 +13,8 @@ class ResponseParserTest {
             "",
             "foobar",
             "Tu solicitud no puede ser tramitada en este momento. Por favor vuelve a ingresar llamando al *888#",
-            "Dieser Service steht auf Grund von Wartungsarbeiten leider erst ab 9 Uhr wieder zur Verfügung."
+            "Dieser Service steht auf Grund von Wartungsarbeiten leider erst ab 9 Uhr wieder zur Verfügung.",
+            "Wir können Deine Anfrage derzeit leider nicht bearbeiten. Bitte versuche es später erneut oder unter 7. (8)",
         ).forEach { message ->
             assertNull(ResponseParser.getBalance(message))
         }
