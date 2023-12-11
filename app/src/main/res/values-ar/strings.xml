@@ -24,7 +24,7 @@
     <string name="invalid_subscription">بطاقة Sm غير صالحة، تحقق من الإعدادات</string>
     <string name="ussd_code">رمز USSD</string>
     <string name="subscription_id">بطاقة سيم</string>
-    <string name="ussd_code_summary">يستفسر التطبيق من رمز USSD %s للحصول على الرصيد الحالي</string>
+    <string name="ussd_code_summary">The app queries the USSD code %s to get the current balance</string>
     <string name="general">عام</string>
     <string name="clear_current_data">مسح جميع البيانات</string>
     <string name="no_data_hint">مرر للأسفل للحصول على آخر رصيد مدفوع مسبقاً. يجب عليك التحقق من رمز USSD المكون في الإعدادات أولاً.</string>
