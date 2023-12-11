@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Translation instructions can be found in the Readme -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
-    <string name="app_name">الرصيد المدفوع مسبقاً</string>
-    <string name="ussd_failed">فشل في طلب رمز USSD</string>
+    <string name="app_name">Prepaid Balancehttps://crowdin.com/translate/prepaidbalance/99/en-ar#261</string>
+    <string name="ussd_failed">https://crowdin.com/translate/prepaidbalance/99/en-ar#263</string>
     <string name="unable_get_balance">غير قادر على الحصول على الرصيد من الرد: %s</string>
-    <string name="phone_permissions_required">مطلوب أذونات الهاتف</string>
-    <string name="notification_permission_denied">إذن التنبيه مرفوض</string>
+    <string name="phone_permissions_required">مطلوب إذن الهاتف</string>
+    <string name="notification_permission_denied">Немає дозволу на сповіщення</string>
     <string name="preferences">الإعدادات</string>
     <string name="periodic_checks_title">التحقق دوريا من الرصيد</string>
     <string name="periodic_checks_rate_title">الفاصل</string>
@@ -40,8 +40,11 @@
     <string name="retry">إعادة المحاولة</string>
     <string name="confirm_first_request">سيتم تقديم طلب USSD إلى %s</string>
     <string name="close">أغلق</string>
+    <string name="delete">حذف</string>
+    <string name="delete_entry">هل تريد حذف إدخال\"%s\"؟</string>
     <string name="no_response_saved">لم يتم حفظ أي رد</string>
     <string name="last_update">آخر تحديث: %s</string>
+    <string name="widget_description">1702279036787</string>
     <!-- Export as CSV -->
     <string name="export">تصدير كـ CSV</string>
     <string name="export_saved_file">تصدير كـ \"%s\" إلى مجلد التحميلات</string>
