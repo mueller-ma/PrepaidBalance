@@ -21,6 +21,11 @@ buildscript {
     }
 }
 
+plugins {
+    // modern kotlin annotation support; replaces kapt: https://developer.android.com/build/migrate-to-ksp
+    id 'com.google.devtools.ksp' version '1.9.22-1.0.17' apply false
+}
+
 allprojects {
     repositories {
         google()
