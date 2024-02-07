@@ -1,7 +1,7 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
-    id "kotlin-kapt"
+    id "com.google.devtools.ksp"
     id "com.mikepenz.aboutlibraries.plugin"
 }
 
@@ -24,10 +24,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
         }
     }
 
@@ -77,7 +75,7 @@ dependencies {
     implementation "androidx.work:work-runtime-ktx:$workmanager_version"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    ksp "androidx.room:room-compiler:$room_version"
     implementation "com.mikepenz:aboutlibraries:$about_libraries_version"
     implementation "androidx.core:core-splashscreen:1.0.1"
 
