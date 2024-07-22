@@ -154,7 +154,7 @@ class PreferenceActivity : AbstractBaseActivity() {
             val subscriptionManager = requireContext().getSystemService(SubscriptionManager::class.java)
             val (subscriptionIds, carrierNames) = subscriptionManager.activeSubscriptionInfoList.let { subscriptions ->
                 val subscriptionIds = subscriptions.map { "${it.subscriptionId}" }.toTypedArray()
-                val carrierNames = subscriptions.map { it.carrierName }.toTypedArray()
+                val carrierNames = subscriptions.map { it.carrierName.ifBlank { it.displayName } }.toTypedArray()
                 subscriptionIds to carrierNames
             }
 
