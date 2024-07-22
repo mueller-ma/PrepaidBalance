@@ -1,0 +1,1 @@
+Fix SIM selection preference with empty entries
