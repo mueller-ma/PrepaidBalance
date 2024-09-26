@@ -2,7 +2,7 @@
 buildscript {
     ext.kotlin_version = "1.9.23"
     ext.room_version = "2.6.1"
-    ext.workmanager_version = "2.9.0"
+    ext.workmanager_version = "2.9.1"
     ext.about_libraries_version="11.2.3"
 
     repositories {
