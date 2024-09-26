@@ -1,10 +1,18 @@
 package com.github.muellerma.prepaidbalance.ui
 
-import android.Manifest.permission.*
+import android.Manifest.permission.CALL_PHONE
+import android.Manifest.permission.POST_NOTIFICATIONS
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.READ_PHONE_STATE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.telephony.SubscriptionManager
 import android.util.Log
 import android.view.Menu
@@ -110,8 +118,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
     fun updateBalanceList() {
         Log.d(TAG, "updateBalanceList()")
         launch {
-            val lastOneYear = System.currentTimeMillis() - 12L * 30 * 24 * 60 * 60 * 1000
-            val entries = database.balanceDao().getSince(lastOneYear)
+            val entries = database.balanceDao().getAll()
             Handler(Looper.getMainLooper()).post {
                 (binding.list.adapter as BalanceListAdapter).balances = entries
 
