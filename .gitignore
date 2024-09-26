@@ -11,6 +11,7 @@
 /.idea/navEditor.xml
 /.idea/workspace.xml
 /.idea/other.xml
+/.idea/deploymentTargetSelector.xml
 .DS_Store
 /build
 /captures
