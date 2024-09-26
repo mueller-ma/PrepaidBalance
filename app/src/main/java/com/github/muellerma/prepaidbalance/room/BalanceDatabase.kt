@@ -28,7 +28,6 @@ abstract class AppDatabase : RoomDatabase() {
                 ).build()
             }
 
-            // TODO better solution?
             return instance!!
         }
     }
