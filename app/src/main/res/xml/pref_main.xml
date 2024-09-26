@@ -22,6 +22,7 @@
             android:key="periodic_checks"
             android:defaultValue="false"
             app:singleLineTitle="false"
+            android:widgetLayout="@layout/preference_material_switch"
             android:title="@string/periodic_checks_title" />
         <ListPreference
             android:key="periodic_checks_rate"
@@ -40,11 +41,13 @@
             android:key="notify_balance_increased"
             android:defaultValue="false"
             app:singleLineTitle="false"
+            android:widgetLayout="@layout/preference_material_switch"
             android:title="@string/notify_balance_increased_title" />
         <SwitchPreferenceCompat
             android:key="notify_balance_under_threshold"
             android:defaultValue="true"
             app:singleLineTitle="false"
+            android:widgetLayout="@layout/preference_material_switch"
             android:title="@string/notify_balance_under_threshold_title" />
         <EditTextPreference
             android:key="notify_balance_under_threshold_value"
