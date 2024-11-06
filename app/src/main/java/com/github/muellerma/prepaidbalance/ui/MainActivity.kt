@@ -294,7 +294,7 @@ class MainActivity : AbstractBaseActivity(), SwipeRefreshLayout.OnRefreshListene
         val subscriptionManager = getSystemService(SubscriptionManager::class.java)
         if (hasPermissions(READ_PHONE_STATE)) {
             @SuppressLint("MissingPermission") // Permission IS checked one line above
-            val defaultSubscriptionId = subscriptionManager.activeSubscriptionInfoList.firstOrNull()?.subscriptionId
+            val defaultSubscriptionId = subscriptionManager.activeSubscriptionInfoList?.firstOrNull()?.subscriptionId
             prefs().subscriptionId = defaultSubscriptionId
         }
     }

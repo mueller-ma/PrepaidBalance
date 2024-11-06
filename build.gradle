@@ -1,8 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.9.23"
+    ext.kotlin_version = "2.0.21"
     ext.room_version = "2.6.1"
-    ext.workmanager_version = "2.9.1"
+    ext.workmanager_version = "2.10.0"
     ext.about_libraries_version="11.2.3"
 
     repositories {
@@ -12,7 +12,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.5.2'
+        classpath 'com.android.tools.build:gradle:8.6.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:$about_libraries_version"
 
@@ -23,7 +23,7 @@ buildscript {
 
 plugins {
     // modern kotlin annotation support; replaces kapt: https://developer.android.com/build/migrate-to-ksp
-    id 'com.google.devtools.ksp' version '1.9.23-1.0.20' apply false
+    id 'com.google.devtools.ksp' version '2.0.21-1.0.26' apply false
 }
 
 allprojects {
